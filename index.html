@@ -766,6 +766,38 @@ html:not([lang="en"]) .hero h1{line-height:1.1}
   .split .zone-card[data-zone=z1]{height:345px}
 }
 
+
+.lang-menu{min-width:180px}
+.lang-option{white-space:nowrap}
+
+/* ===== v11 ===== */
+.lang-btn,.nav-cta{white-space:nowrap}
+.lang-menu{min-width:200px}
+.lang-option .fl,.lang-btn .fl{font-size:15px;line-height:1}
+.map-expand{display:none}
+.map-lb{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.97)}
+.map-lb-close{position:absolute;z-index:2;top:calc(10px + env(safe-area-inset-top,0px));right:calc(10px + env(safe-area-inset-right,0px));width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(20,26,40,.92);color:#fff;font-size:34px;line-height:1;padding:0 0 4px;display:grid;place-items:center;cursor:pointer}
+.map-lb-inner{position:absolute;inset:8px}
+.map-lb-inner img{width:100%;height:100%;object-fit:contain}
+@media(orientation:portrait){
+  .map-lb-inner{inset:auto;top:50%;left:50%;width:calc(100vh - 16px);width:calc(100dvh - 16px);height:calc(100vw - 16px);transform:translate(-50%,-50%) rotate(90deg)}
+}
+@media(max-width:900px){
+  .map-frame{position:relative;cursor:pointer}
+  .map-expand{display:grid;place-items:center;position:absolute;right:10px;bottom:10px;width:40px;height:40px;border-radius:12px;background:rgba(5,7,13,.75);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:16px}
+}
+@media(max-width:760px){
+  .nav,.nav.scrolled{padding:10px 8px}
+  .nav-inner{padding:0 8px 0 14px;gap:6px;height:58px}
+  .logo{font-size:19px;letter-spacing:.8px}
+  .nav-right{gap:6px}
+  .lang-btn{padding:0 9px;gap:6px;letter-spacing:.3px}
+  .icon-btn{width:40px;height:40px}
+}
+@media(max-width:520px){
+  #currentLangLabel .ln{display:none}
+}
+
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
 }
@@ -794,7 +826,7 @@ html:not([lang="en"]) .hero h1{line-height:1.1}
     </div>
     <div class="nav-right">
       <div class="custom-lang-dropdown" id="langDropdown">
-        <button class="lang-btn" id="langBtn" aria-expanded="false"><span id="currentLangLabel">🇬🇧 English</span> <i class="fa-solid fa-chevron-down"></i></button>
+        <button class="lang-btn" id="langBtn" aria-expanded="false"><span id="currentLangLabel"><span class="fl">🇬🇧</span><span class="ln"> English</span></span> <i class="fa-solid fa-chevron-down"></i></button>
         <div class="lang-menu" id="langMenu">
           <button class="lang-option active" data-value="en">🇬🇧 English</button>
           <button class="lang-option" data-value="pl">🇵🇱 Polski</button>
@@ -1036,6 +1068,7 @@ html:not([lang="en"]) .hero h1{line-height:1.1}
   <div class="map-shell reveal">
     <div class="map-frame">
       <img src="park_map.jpg" alt="Energylandia park map" loading="lazy" onerror="this.style.opacity='.15'">
+      <span class="map-expand" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
     </div>
   </div>
 </section>
@@ -1166,7 +1199,7 @@ html:not([lang="en"]) .hero h1{line-height:1.1}
         <legend>How intense?</legend>
         <div class="choice-grid four">
           <label class="choice-pill"><input type="radio" name="intensity" value="chill"><span>Chill</span></label>
-          <label class="choice-pill"><input type="radio" name="intensity" value="medium"><span>Medium</span></label>
+          <label class="choice-pill"><input type="radio" name="intensity" value="medium"><span data-i18n="Medium intensity">Medium</span></label>
           <label class="choice-pill"><input type="radio" name="intensity" value="intense"><span>Intense</span></label>
           <label class="choice-pill"><input type="radio" name="intensity" value="extreme"><span>Extreme</span></label>
         </div>
@@ -1191,10 +1224,10 @@ html:not([lang="en"]) .hero h1{line-height:1.1}
       </fieldset>
 
       <fieldset class="find-fieldset">
-        <legend>Launches?</legend>
+        <legend>Launch or lift hill?</legend>
         <div class="choice-grid three">
-          <label class="choice-pill"><input type="radio" name="launch" value="yes"><span>Yes</span></label>
-          <label class="choice-pill"><input type="radio" name="launch" value="no"><span>No</span></label>
+          <label class="choice-pill"><input type="radio" name="launch" value="yes"><span>Launch</span></label>
+          <label class="choice-pill"><input type="radio" name="launch" value="no"><span>Lift hill</span></label>
           <label class="choice-pill"><input type="radio" name="launch" value="dontcare"><span>Don't care</span></label>
         </div>
       </fieldset>
@@ -1208,7 +1241,7 @@ html:not([lang="en"]) .hero h1{line-height:1.1}
       </fieldset>
 
       <div class="find-actions">
-        <button type="button" class="btn btn-primary" id="findButton">Find my match</i></button>
+        <button type="button" class="btn btn-primary" id="findButton">Find my match <i class="fa-solid fa-wand-magic-sparkles"></i></button>
       </div>
     </div>
 
@@ -1348,7 +1381,7 @@ html:not([lang="en"]) .hero h1{line-height:1.1}
 
 <div class="modal" id="rideModal" role="dialog" aria-modal="true">
   <div class="modal-box">
-    <button class="close" onclick="closeModal()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <button class="close" onclick="closeModal()" aria-label="Close">&times;</button>
     <div class="modal-hero"><img id="modalImg" src="" alt=""></div>
     <div class="modal-content">
       <span class="modal-kicker" id="modalKicker"></span>
@@ -1380,6 +1413,10 @@ html:not([lang="en"]) .hero h1{line-height:1.1}
   </div>
 </div>
 
+<div class="map-lb" id="mapLb" role="dialog" aria-modal="true" hidden>
+  <button class="map-lb-close" id="mapLbClose" aria-label="Close map"><i class="fa-solid fa-xmark"></i></button>
+  <div class="map-lb-inner"><img id="mapLbImg" alt="Energylandia park map"></div>
+</div>
 <script>
 const coasters = [
   { name: "Zadra", rank: 1, year: 2019, type: "Extreme", mfg: "RMC", height: "63.8 m", heightNum: 63.8, speed: "121.0 km/h", speedNum: 121.0, length: "1316 m", lengthNum: 1316, image: "zadra.jpg", desc: "World-class RMC hybrid coaster featuring massive wooden structure look with hyper-steep steel tracking and inversions." },
@@ -1681,7 +1718,7 @@ $$('#langMenu .lang-option').forEach(option => {
     const lang = option.dataset.value;
     $$('#langMenu .lang-option').forEach(opt => opt.classList.remove('active'));
     option.classList.add('active');
-    currentLangLabel.textContent = option.textContent;
+    {const parts=option.textContent.trim().split(/\s+/);currentLangLabel.innerHTML='<span class="fl">'+parts[0]+'</span><span class="ln"> '+parts.slice(1).join(' ')+'</span>';}
     closeDropdowns(null);
     applyLanguage(lang);
   });
@@ -2404,7 +2441,7 @@ const unitUi = {
 
 const finderProfiles = {
   "Zadra":                {intensity:4, inversions:'yes',      height:'high',   launch:'no',       family:'no'},
-  "Hyperion":             {intensity:4, inversions:'yes',      height:'high',   launch:'no',       family:'no'},
+  "Hyperion":             {intensity:4, inversions:'no',       height:'high',   launch:'no',       family:'no'},
   "Abyssus":              {intensity:4, inversions:'yes',      height:'high',   launch:'yes',      family:'no'},
   "Formuła":              {intensity:4, inversions:'yes',      height:'medium', launch:'yes',      family:'no'},
   "Speed":                {intensity:4, inversions:'no',       height:'high',   launch:'no',       family:'no'},
@@ -2492,7 +2529,7 @@ function runCoasterFinder(silent){
   if(!answers.intensity) missing.push(tr('How intense'));
   if(!answers.inversions) missing.push(tr('Inversions'));
   if(!answers.heightPref) missing.push(tr('Height'));
-  if(!answers.launch) missing.push(tr('Launches'));
+  if(!answers.launch) missing.push(tr('Launch or lift hill'));
   if(!answers.familyFriendly) missing.push(tr('Family friendly'));
 
   if(missing.length){
@@ -2503,7 +2540,9 @@ function runCoasterFinder(silent){
   const scored = coasters
     .filter(c => c.rank !== "?" && finderProfiles[c.name])
     .map(c => ({coaster:c, score:finderScore(finderProfiles[c.name], answers)}))
-    .sort((a,b) => b.score-a.score || a.coaster.rank-b.coaster.rank);
+    const ext = c => (c.heightNum||0)*(c.speedNum||0);
+  const wantBig = finderIntensityValue(answers.intensity) >= 3;
+  scored.sort((a,b) => b.score-a.score || (wantBig ? ext(b.coaster)-ext(a.coaster) : 0) || a.coaster.rank-b.coaster.rank);
 
   const winner = scored[0];
   if(!winner){
@@ -2556,7 +2595,7 @@ const DYN={
  'How intense':['Intensywność','Intensität','Intenzita','Intenzita'],
  'Inversions':['Inwersje','Inversionen','Inverze','Inverzie'],
  'Height':['Wysokość','Höhe','Výška','Výška'],
- 'Launches':['Starty','Launches','Vystřelení','Vystrelenia'],
+ 'Launch or lift hill':['Launch czy lift hill','Launch oder Lift Hill','Launch, nebo lift hill','Launch, alebo lift hill'],
  'Family friendly':['Rodzinna','Familienfreundlich','Rodinná','Rodinná'],
  'MATCH':['DOPASOWANIA','TREFFER','SHODA','ZHODA'],
  'match':['dopasowania','Treffer','shoda','zhoda'],
@@ -2577,14 +2616,14 @@ function dayLabel(code){
 const FX={
   eur:{r:.235,sym:'€',pos:'after',step:1},
   czk:{r:5.7, sym:'CZK',pos:'after',step:10},
-  gbp:{r:.20, sym:'£',pos:'before',step:1},
+  eurEn:{r:.235,sym:'€',pos:'before',step:1},
   usd:{r:.27, sym:'$',pos:'before',step:1}
 };
 function currencyFor(l){
   if(l==='pl')return null;
   if(l==='de'||l==='sk')return FX.eur;
   if(l==='cs')return FX.czk;
-  return unitSystem==='imperial'?FX.usd:FX.gbp;   // English: metric → £, imperial → $
+  return unitSystem==='imperial'?FX.usd:FX.eurEn;   // English: metric → €, imperial → $
 }
 function renderPrices(){
   const l=getLangSafe(),cur=currencyFor(l);
@@ -2602,124 +2641,599 @@ function renderPrices(){
 }
 
 const I18N_SCOPE='#tickets,#map,#hours,#find-coaster,#plan,#modalPov';
-const I18N_SKIP='[data-pln],[data-dl],#findEmptyState';
+const I18N_SKIP='[data-pln],[data-dl],#findEmptyState,#findResultTitle,#findResultScore,#findHeroName,#findHeroScore,#findResultDesc,#findAlternates';
 let i18nNodes=null;
+const I18N_MAP={
+"Orientation": [
+"Orientacja",
+"Orientierung",
+"Orientace",
+"Orientácia"
+],
+"Park": [
+"Mapa",
+"Karte",
+"Mapa",
+"Mapa"
+],
+"map.": [
+"parku.",
+"des Parks.",
+"parku.",
+"parku."
+],
+"Season schedule": [
+"Harmonogram sezonu",
+"Saisonkalender",
+"Sezónní rozvrh",
+"Sezónny rozvrh"
+],
+"Opening": [
+"Godziny",
+"Tägliche",
+"Otevírací",
+"Otváracie"
+],
+"hours.": [
+"otwarcia.",
+"Öffnungszeiten.",
+"doba.",
+"hodiny."
+],
+"A simple overview of the 2026 operating periods. Exact dates and special-event times can change, so the official Energylandia calendar remains the final reference.": [
+"Prosty przegląd okresów działania w 2026 roku. Dokładne daty i godziny wydarzeń specjalnych mogą się zmienić, dlatego ostatecznym źródłem jest oficjalny kalendarz Energylandii.",
+"Ein einfacher Überblick über die Betriebszeiten 2026. Genaue Termine und Zeiten bei Sonderveranstaltungen können sich ändern – maßgeblich ist der offizielle Energylandia-Kalender.",
+"Jednoduchý přehled provozních období v roce 2026. Přesná data a časy zvláštních akcí se mohou změnit, proto je rozhodující oficiální kalendář Energylandie.",
+"Jednoduchý prehľad prevádzkových období v roku 2026. Presné dátumy a časy osobitných podujatí sa môžu zmeniť, preto je rozhodujúci oficiálny kalendár Energylandie."
+],
+"Spring & Autumn": [
+"Wiosna i jesień",
+"Frühling & Herbst",
+"Jaro a podzim",
+"Jar a jeseň"
+],
+"Regular opening hours used through the lower-season operating periods.": [
+"Standardowe godziny otwarcia w okresach niższego sezonu.",
+"Reguläre Öffnungszeiten in den Nebensaison-Zeiträumen.",
+"Běžná otevírací doba v obdobích nižší sezóny.",
+"Bežné otváracie hodiny v obdobiach nižšej sezóny."
+],
+"Summer high season": [
+"Letni wysoki sezon",
+"Sommer-Hauptsaison",
+"Letní hlavní sezóna",
+"Letná hlavná sezóna"
+],
+"Extended regular hours during the main summer season.": [
+"Wydłużone godziny otwarcia w głównym sezonie letnim.",
+"Verlängerte reguläre Öffnungszeiten in der Sommer-Hauptsaison.",
+"Prodloužená běžná otevírací doba během hlavní letní sezóny.",
+"Predĺžené bežné otváracie hodiny počas hlavnej letnej sezóny."
+],
+"Selected special dates": [
+"Wybrane dni specjalne",
+"Ausgewählte Sondertermine",
+"Vybrané speciální dny",
+"Vybrané špeciálne dni"
+],
+"Some event dates use extended or special operating hours.": [
+"W niektóre dni wydarzeń obowiązują wydłużone lub specjalne godziny otwarcia.",
+"An manchen Veranstaltungstagen gelten verlängerte oder besondere Öffnungszeiten.",
+"V některé dny akcí platí prodloužená nebo zvláštní otevírací doba.",
+"V niektoré dni podujatí platí predĺžená alebo osobitná otváracia doba."
+],
+"Before your visit": [
+"Przed wizytą",
+"Vor deinem Besuch",
+"Před návštěvou",
+"Pred návštevou"
+],
+"Check the official calendar": [
+"Sprawdź oficjalny kalendarz",
+"Offiziellen Kalender prüfen",
+"Zkontroluj oficiální kalendář",
+"Skontroluj oficiálny kalendár"
+],
+"Use Energylandia's published calendar for the exact opening time on your chosen day.": [
+"Skorzystaj z kalendarza Energylandii, aby poznać dokładną godzinę otwarcia w wybranym dniu.",
+"Nutze den Kalender von Energylandia für die genaue Öffnungszeit an deinem Wunschtag.",
+"Použij kalendář Energylandie a zjisti přesnou otevírací dobu ve vybraný den.",
+"Použi kalendár Energylandie a zisti presný čas otvorenia vo vybraný deň."
+],
+"Official calendar": [
+"Oficjalny kalendarz",
+"Offizieller Kalender",
+"Oficiální kalendář",
+"Oficiálny kalendár"
+],
+"Visit strategy": [
+"Strategia wizyty",
+"Besuchsstrategie",
+"Strategie návštěvy",
+"Stratégia návštevy"
+],
+"Plan it": [
+"Zaplanuj to",
+"Plane es",
+"Naplánuj to",
+"Naplánuj to"
+],
+"right.": [
+"dobrze.",
+"richtig.",
+"správně.",
+"správne."
+],
+"One section combining the three practical things visitors usually need: when to come, how to plan a family day, and what to pack.": [
+"Jedna sekcja z trzema praktycznymi sprawami: kiedy przyjechać, jak zaplanować rodzinny dzień i co zabrać.",
+"Ein Bereich mit den drei wichtigsten praktischen Themen: wann kommen, wie den Familientag planen und was einpacken.",
+"Jedna sekce se třemi praktickými tématy: kdy přijet, jak naplánovat rodinný den a co si vzít.",
+"Jedna sekcia s tromi praktickými témami: kedy prísť, ako naplánovať rodinný deň a čo si zbaliť."
+],
+"Best time to visit": [
+"Najlepszy czas na wizytę",
+"Beste Besuchszeit",
+"Nejlepší čas návštěvy",
+"Najlepší čas návštevy"
+],
+"Use the opening calendar to choose a day that matches your schedule, then check the official site again for event-specific hours.": [
+"Wybierz dzień na podstawie kalendarza otwarcia, a potem jeszcze raz sprawdź oficjalną stronę pod kątem godzin w dniach wydarzeń.",
+"Wähle anhand des Öffnungskalenders einen passenden Tag und prüfe danach noch einmal die offizielle Seite auf Veranstaltungszeiten.",
+"Vyber si den podle kalendáře otevírací doby a poté znovu zkontroluj oficiální web kvůli časům při akcích.",
+"Vyber si deň podľa kalendára otváracích hodín a potom znovu skontroluj oficiálny web kvôli časom pri podujatiach."
+],
+"Early opening hours are easiest to plan around.": [
+"Najłatwiej planować wokół wczesnych godzin otwarcia.",
+"Am einfachsten planst du rund um die frühen Öffnungszeiten.",
+"Nejsnáze se plánuje kolem časné otevírací doby.",
+"Najľahšie sa plánuje okolo skorých otváracích hodín."
+],
+"Weekdays outside school-holiday peaks can be easier for a full coaster day.": [
+"Dni powszednie poza szczytem wakacji to łatwiejszy dzień na kolejki.",
+"Wochentage außerhalb der Ferienspitzen sind für einen Achterbahn-Tag oft entspannter.",
+"Všední dny mimo prázdninové špičky bývají pro dráhový den snazší.",
+"Pracovné dni mimo prázdninových špičiek bývajú pre dráhový deň jednoduchšie."
+],
+"Magic Nights and seasonal events can change the rhythm of the day.": [
+"Magic Nights i wydarzenia sezonowe mogą zmienić rytm dnia.",
+"Magic Nights und saisonale Events können den Tagesablauf verändern.",
+"Magic Nights a sezónní akce mohou změnit rytmus dne.",
+"Magic Nights a sezónne podujatia môžu zmeniť rytmus dňa."
+],
+"Family planning": [
+"Planowanie z rodziną",
+"Familienplanung",
+"Plánování s rodinou",
+"Plánovanie s rodinou"
+],
+"Start with attractions that match your group's height limits, then work outward through zones instead of crossing the park repeatedly.": [
+"Zacznij od atrakcji pasujących do limitów wzrostu w grupie, a potem przechodź strefa po strefie, zamiast wielokrotnie przemierzać park.",
+"Beginne mit Attraktionen, die zu den Größenlimits deiner Gruppe passen, und arbeite dich Bereich für Bereich vor, statt ständig durch den Park zu laufen.",
+"Začni atrakcemi, které odpovídají výškovým limitům skupiny, a pokračuj zónu po zóně, místo abys park opakovaně přecházel.",
+"Začni atrakciami, ktoré zodpovedajú výškovým limitom skupiny, a pokračuj zónu po zóne, namiesto opakovaného prechádzania parkom."
+],
+"Check the height requirement of major rides before queueing.": [
+"Przed kolejką sprawdź wymagania wzrostu największych atrakcji.",
+"Prüfe vor dem Anstehen die Größenanforderungen der großen Fahrgeschäfte.",
+"Před frontou zkontroluj výškové požadavky větších atrakcí.",
+"Pred státím v rade skontroluj výškové požiadavky väčších atrakcií."
+],
+"Mix bigger coasters with family and water attractions for an easier day.": [
+"Łącz większe kolejki z atrakcjami rodzinnymi i wodnymi dla łatwiejszego dnia.",
+"Kombiniere große Achterbahnen mit Familien- und Wasserattraktionen für einen entspannteren Tag.",
+"Kombinuj větší dráhy s rodinnými a vodními atrakcemi pro pohodlnější den.",
+"Kombinuj väčšie dráhy s rodinnými a vodnými atrakciami pre pohodlnejší deň."
+],
+"Keep meal, rest and shade breaks in the plan instead of treating them as an afterthought.": [
+"Uwzględnij w planie posiłki, odpoczynek i cień – to nie dodatek.",
+"Plane Essens-, Ruhe- und Schattenpausen fest ein, statt sie nebenbei zu behandeln.",
+"Do plánu zahrň jídlo, odpočinek i stín, ne jako dodatek.",
+"Do plánu zahrň jedlo, odpočinok aj tieň, nie ako dodatok."
+],
+"What to bring": [
+"Co zabrać",
+"Was mitbringen",
+"Co si vzít",
+"Čo si zbaliť"
+],
+"Pack for a long outdoor day with a mix of dry land, splash attractions and changing weather.": [
+"Spakuj się na długi dzień na zewnątrz: sucha strefa, atrakcje z wodą i zmienna pogoda.",
+"Pack für einen langen Tag im Freien: trockene Bereiche, Wasserattraktionen und wechselhaftes Wetter.",
+"Zabal si na dlouhý den venku: suchá část, vodní atrakce a proměnlivé počasí.",
+"Zbaľ si na dlhý deň vonku: suchá časť, vodné atrakcie a premenlivé počasie."
+],
+"Comfortable shoes and clothes you can move in all day.": [
+"Wygodne buty i ubranie, w którym swobodnie się poruszasz cały dzień.",
+"Bequeme Schuhe und Kleidung, in der du dich den ganzen Tag bewegen kannst.",
+"Pohodlné boty a oblečení, ve kterém se můžeš celý den hýbat.",
+"Pohodlné topánky a oblečenie, v ktorom sa môžeš celý deň hýbať."
+],
+"Sun protection, water bottle and a light rain layer.": [
+"Ochrona przed słońcem, butelka wody i lekka warstwa przeciwdeszczowa.",
+"Sonnenschutz, Wasserflasche und eine leichte Regenjacke.",
+"Ochrana proti slunci, láhev s vodou a lehká vrstva do deště.",
+"Ochrana pred slnkom, fľaša s vodou a ľahká vrstva do dažďa."
+],
+"A small dry bag or waterproof pouch for valuables around water attractions.": [
+"Mała wodoodporna torba lub saszetka na cenne rzeczy przy atrakcjach wodnych.",
+"Ein kleiner Trockenbeutel oder wasserdichtes Täschchen für Wertsachen bei Wasserattraktionen.",
+"Malý nepromokavý vak nebo pouzdro na cennosti u vodních atrakcí.",
+"Malý nepremokavý vak alebo puzdro na cennosti pri vodných atrakciách."
+],
+"Plan your visit": [
+"Zaplanuj wizytę",
+"Besuch planen",
+"Naplánuj návštěvu",
+"Naplánuj návštevu"
+],
+"Tickets": [
+"Bilety",
+"Tickets",
+"Vstupenky",
+"Vstupenky"
+],
+"Current 2026 e-ticket prices, split into low and high season, with the discounted category for guests up to 140 cm and other eligible visitors.": [
+"Aktualne ceny e-biletów 2026, podzielone na niski i wysoki sezon, z kategorią ulgową dla gości do 140 cm i innych uprawnionych osób.",
+"Aktuelle E-Ticket-Preise 2026, aufgeteilt in Neben- und Hauptsaison, mit ermäßigter Kategorie für Gäste bis 140 cm und weitere Berechtigte.",
+"Aktuální ceny e-vstupenek 2026 rozdělené na nízkou a vysokou sezónu, se slevou pro hosty do 140 cm a další oprávněné návštěvníky.",
+"Aktuálne ceny e-vstupeniek 2026 rozdelené na nízku a vysokú sezónu, so zľavou pre hostí do 140 cm a ďalších oprávnených návštevníkov."
+],
+"Low season": [
+"Niski sezon",
+"Nebensaison",
+"Nízká sezóna",
+"Nízka sezóna"
+],
+"16 Apr – 26 Jun & 1 Sep – 31 Oct 2026": [
+"16 kwi – 26 cze i 1 wrz – 31 paź 2026",
+"16. Apr – 26. Jun & 1. Sep – 31. Okt 2026",
+"16. 4. – 26. 6. a 1. 9. – 31. 10. 2026",
+"16. 4. – 26. 6. a 1. 9. – 31. 10. 2026"
+],
+"Discounted category: up to 140 cm, seniors 65+, people with disabilities and pregnant women, subject to the official ticket rules.": [
+"Kategoria ulgowa: do 140 cm, seniorzy 65+, osoby z niepełnosprawnościami i kobiety w ciąży, zgodnie z oficjalnym regulaminem biletów.",
+"Ermäßigte Kategorie: bis 140 cm, Senioren 65+, Menschen mit Behinderung und Schwangere, gemäß den offiziellen Ticketbedingungen.",
+"Zlevněná kategorie: do 140 cm, senioři 65+, osoby se zdravotním postižením a těhotné ženy dle oficiálních pravidel vstupenek.",
+"Zľavnená kategória: do 140 cm, seniori 65+, osoby so zdravotným postihnutím a tehotné ženy podľa oficiálnych pravidiel vstupeniek."
+],
+"High season": [
+"Wysoki sezon",
+"Hauptsaison",
+"Vysoká sezóna",
+"Vysoká sezóna"
+],
+"27 Jun – 31 Aug 2026 • high season (summer)": [
+"27 cze – 31 sie 2026 • wysoki sezon (lato)",
+"27. Jun – 31. Aug 2026 • Hauptsaison (Sommer)",
+"27. 6. – 31. 8. 2026 • vysoká sezóna (léto)",
+"27. 6. – 31. 8. 2026 • vysoká sezóna (leto)"
+],
+"Official e-ticket pricing currently lists discounted tickets for guests up to 140 cm, seniors 65+, people with disabilities and pregnant women. Date-specific promotions can change the final price.": [
+"Oficjalny cennik e-biletów obejmuje bilety ulgowe dla gości do 140 cm, seniorów 65+, osób z niepełnosprawnościami i kobiet w ciąży. Promocje na wybrane daty mogą zmienić cenę końcową.",
+"Die offiziellen E-Ticket-Preise führen ermäßigte Tickets für Gäste bis 140 cm, Senioren 65+, Menschen mit Behinderung und Schwangere. Aktionen für bestimmte Tage können den Endpreis ändern.",
+"Oficiální ceník e-vstupenek uvádí slevy pro hosty do 140 cm, seniory 65+, osoby se zdravotním postižením a těhotné ženy. Akce na konkrétní data mohou změnit konečnou cenu.",
+"Oficiálny cenník e-vstupeniek uvádza zľavy pre hostí do 140 cm, seniorov 65+, osoby so zdravotným postihnutím a tehotné ženy. Akcie na konkrétne dátumy môžu zmeniť konečnú cenu."
+],
+"Parking": [
+"Parking",
+"Parken",
+"Parkování",
+"Parkovanie"
+],
+"Standard annual": [
+"Roczny standardowy",
+"Jahreskarte Standard",
+"Roční standardní",
+"Ročná štandardná"
+],
+"Discounted annual": [
+"Roczny ulgowy",
+"Jahreskarte ermäßigt",
+"Roční zlevněná",
+"Ročná zľavnená"
+],
+"Official season": [
+"Oficjalny sezon",
+"Offizielle Saison",
+"Oficiální sezóna",
+"Oficiálna sezóna"
+],
+"16 Apr – 31 Oct": [
+"16 kwi – 31 paź",
+"16. Apr – 31. Okt",
+"16. 4. – 31. 10.",
+"16. 4. – 31. 10."
+],
+"Prices in other currencies are approximate conversions from PLN. The final price is charged in PLN.": [
+"Ceny w innych walutach są przybliżonymi przeliczeniami z PLN. Ostateczna cena jest pobierana w PLN.",
+"Preise in anderen Währungen sind ungefähre Umrechnungen aus PLN. Der Endpreis wird in PLN berechnet.",
+"Ceny v jiných měnách jsou přibližné přepočty z PLN. Konečná cena se účtuje v PLN.",
+"Ceny v iných menách sú približné prepočty z PLN. Konečná cena sa účtuje v PLN."
+],
+"Buy tickets": [
+"Kup bilety",
+"Tickets kaufen",
+"Koupit vstupenky",
+"Kúpiť vstupenky"
+],
+"Before you buy": [
+"Zanim kupisz",
+"Vor dem Kauf",
+"Než koupíš",
+"Skôr než kúpiš"
+],
+"Ticket essentials.": [
+"Najważniejsze o biletach.",
+"Ticket-Grundlagen.",
+"Vstupenky v kostce.",
+"Vstupenky v skratke."
+],
+"Choose your date": [
+"Wybierz datę",
+"Datum wählen",
+"Vyber datum",
+"Vyber dátum"
+],
+"Season pricing is split between the lower-priced periods and the summer high season.": [
+"Ceny zależą od sezonu: tańsze okresy i letni wysoki sezon.",
+"Die Preise unterscheiden sich zwischen den günstigeren Zeiträumen und der Sommer-Hauptsaison.",
+"Ceny se dělí na levnější období a letní vysokou sezónu.",
+"Ceny sa delia na lacnejšie obdobia a letnú vysokú sezónu."
+],
+"Check the category": [
+"Sprawdź kategorię",
+"Kategorie prüfen",
+"Zkontroluj kategorii",
+"Skontroluj kategóriu"
+],
+"The discounted ticket covers eligible guests including children up to 140 cm.": [
+"Bilet ulgowy obejmuje uprawnionych gości, w tym dzieci do 140 cm.",
+"Das ermäßigte Ticket gilt für berechtigte Gäste, darunter Kinder bis 140 cm.",
+"Zlevněná vstupenka platí pro oprávněné hosty včetně dětí do 140 cm.",
+"Zľavnená vstupenka platí pre oprávnených hostí vrátane detí do 140 cm."
+],
+"Buy online": [
+"Kup online",
+"Online kaufen",
+"Kup online",
+"Kúp online"
+],
+"Use Energylandia's official e-ticket system for the current prices, terms and available dates.": [
+"Skorzystaj z oficjalnego systemu e-biletów Energylandii, aby zobaczyć aktualne ceny, zasady i dostępne terminy.",
+"Nutze das offizielle E-Ticket-System von Energylandia für aktuelle Preise, Bedingungen und freie Termine.",
+"Použij oficiální systém e-vstupenek Energylandie pro aktuální ceny, podmínky a volné termíny.",
+"Použi oficiálny systém e-vstupeniek Energylandie pre aktuálne ceny, podmienky a voľné termíny."
+],
+"Re-check before purchase": [
+"Sprawdź przed zakupem",
+"Vor dem Kauf prüfen",
+"Zkontroluj před nákupem",
+"Skontroluj pred nákupom"
+],
+"Event dates, promotions and ticket terms can change, so use the official page as the final reference.": [
+"Terminy wydarzeń, promocje i zasady mogą się zmienić, więc ostatecznym źródłem jest oficjalna strona.",
+"Termine, Aktionen und Ticketbedingungen können sich ändern – maßgeblich ist die offizielle Seite.",
+"Termíny akcí, slevy i podmínky se mohou změnit, proto je rozhodující oficiální stránka.",
+"Termíny podujatí, akcie a podmienky sa môžu zmeniť, preto je rozhodujúca oficiálna stránka."
+],
+"Open official ticket page": [
+"Otwórz oficjalną stronę biletów",
+"Offizielle Ticketseite öffnen",
+"Otevřít oficiální stránku vstupenek",
+"Otvoriť oficiálnu stránku vstupeniek"
+],
+"Interactive finder": [
+"Interaktywny kreator",
+"Interaktiver Finder",
+"Interaktivní hledač",
+"Interaktívny hľadač"
+],
+"Find your": [
+"Znajdź swoją",
+"Finde deine",
+"Najdi svou",
+"Nájdi svoju"
+],
+"coaster.": [
+"kolejkę.",
+"Achterbahn.",
+"dráhu.",
+"dráhu."
+],
+"Answer five quick questions about the experience you want. Your answers are compared against the coaster database and turned into a match percentage.": [
+"Odpowiedz na pięć krótkich pytań o wymarzone wrażenia. Odpowiedzi porównamy z bazą kolejek i zamienimy na procent dopasowania.",
+"Beantworte fünf kurze Fragen zum gewünschten Erlebnis. Deine Antworten werden mit der Achterbahn-Datenbank verglichen und in einen Trefferwert umgerechnet.",
+"Odpověz na pět krátkých otázek o zážitku, který chceš. Odpovědi porovnáme s databází drah a převedeme na procento shody.",
+"Odpovedz na päť krátkych otázok o zážitku, ktorý chceš. Odpovede porovnáme s databázou dráh a prevedieme na percento zhody."
+],
+"Dial in your ride.": [
+"Ustaw swoją przejażdżkę.",
+"Stell deine Fahrt ein.",
+"Nastav svou jízdu.",
+"Nastav svoju jazdu."
+],
+"Choose one answer in each category. You can change anything and press the button again to recalculate your match.": [
+"Wybierz jedną odpowiedź w każdej kategorii. Możesz coś zmienić i ponownie kliknąć przycisk, by przeliczyć dopasowanie.",
+"Wähle in jeder Kategorie eine Antwort. Du kannst alles ändern und den Button erneut drücken, um den Treffer neu zu berechnen.",
+"Vyber jednu odpověď v každé kategorii. Cokoli můžeš změnit a tlačítkem znovu přepočítat shodu.",
+"Vyber jednu odpoveď v každej kategórii. Môžeš čokoľvek zmeniť a tlačidlom znovu prepočítať zhodu."
+],
+"How intense?": [
+"Jak intensywnie?",
+"Wie intensiv?",
+"Jak intenzivní?",
+"Ako intenzívne?"
+],
+"Do you like inversions?": [
+"Lubisz inwersje?",
+"Magst du Inversionen?",
+"Máš rád inverze?",
+"Máš rád inverzie?"
+],
+"Yes": [
+"Tak",
+"Ja",
+"Ano",
+"Áno"
+],
+"No": [
+"Nie",
+"Nein",
+"Ne",
+"Nie"
+],
+"Don't care": [
+"Obojętne",
+"Egal",
+"Je mi to jedno",
+"Je mi to jedno"
+],
+"Height preference?": [
+"Preferowana wysokość?",
+"Bevorzugte Höhe?",
+"Preferovaná výška?",
+"Preferovaná výška?"
+],
+"Low": [
+"Niska",
+"Niedrig",
+"Nízká",
+"Nízka"
+],
+"Medium": [
+"Średnia",
+"Mittel",
+"Střední",
+"Stredná"
+],
+"High": [
+"Wysoka",
+"Hoch",
+"Vysoká",
+"Vysoká"
+],
+"Family friendly?": [
+"Przyjazna rodzinom?",
+"Familienfreundlich?",
+"Vhodná pro rodiny?",
+"Vhodná pre rodiny?"
+],
+"YOUR MATCH": [
+"TWOJE DOPASOWANIE",
+"DEIN TREFFER",
+"TVOJE SHODA",
+"TVOJA ZHODA"
+],
+"Your match": [
+"Twoje dopasowanie",
+"Dein Treffer",
+"Tvoje shoda",
+"Tvoja zhoda"
+],
+"View coaster profile": [
+"Zobacz profil kolejki",
+"Achterbahn-Profil ansehen",
+"Zobrazit profil dráhy",
+"Zobraziť profil dráhy"
+],
+"Other close matches": [
+"Inne bliskie dopasowania",
+"Weitere passende Treffer",
+"Další blízké shody",
+"Ďalšie blízke zhody"
+],
+"The percentage is a site-made compatibility score based on the five answers above, not an official Energylandia rating.": [
+"Procent to wynik zgodności stworzony na potrzeby strony, oparty na pięciu odpowiedziach powyżej — nie oficjalna ocena Energylandii.",
+"Der Prozentwert ist ein von dieser Seite berechneter Kompatibilitätswert auf Basis der fünf Antworten oben, keine offizielle Energylandia-Bewertung.",
+"Procento je skóre kompatibility vytvořené pro tento web na základě pěti odpovědí výše, nikoli oficiální hodnocení Energylandie.",
+"Percento je skóre kompatibility vytvorené pre tento web na základe piatich odpovedí vyššie, nie oficiálne hodnotenie Energylandie."
+],
+"Other tickets": [
+"Inne bilety",
+"Weitere Tickets",
+"Další vstupenky",
+"Ďalšie vstupenky"
+],
+"Chill": [
+"Spokojnie",
+"Entspannt",
+"Klidná",
+"Pokojná"
+],
+"Medium intensity": [
+"Średnio",
+"Mittel",
+"Střední",
+"Stredná"
+],
+"Intense": [
+"Intensywnie",
+"Intensiv",
+"Intenzivní",
+"Intenzívna"
+],
+"Extreme": [
+"Ekstremalnie",
+"Extrem",
+"Extrémní",
+"Extrémna"
+],
+"Launch or lift hill?": [
+"Launch czy lift hill?",
+"Launch oder Lift Hill?",
+"Launch, nebo lift hill?",
+"Launch, alebo lift hill?"
+],
+"Launch": [
+"Launch",
+"Launch",
+"Launch",
+"Launch"
+],
+"Lift hill": [
+"Lift hill",
+"Lift Hill",
+"Lift hill",
+"Lift hill"
+]
+};
 function collectI18n(){
-  i18nNodes=[];const uniq=[];
+  i18nNodes=[];
   $$(I18N_SCOPE).forEach(sec=>{
     const w=document.createTreeWalker(sec,NodeFilter.SHOW_TEXT);let n;
     while(n=w.nextNode()){
       const t=n.nodeValue.trim();
       if(!t||/^[\d\s.:–\-+%]+$/.test(t)||n.parentElement.closest(I18N_SKIP))continue;
-      if(DYN[t]){i18nNodes.push({n,orig:n.nodeValue,dyn:t});continue;}
-      let i=uniq.indexOf(t);if(i<0){uniq.push(t);i=uniq.length-1;}
-      i18nNodes.push({n,orig:n.nodeValue,i});
+      const key=n.parentElement.dataset.i18n||t;
+      if(!DYN[key]&&!I18N_MAP[key])console.warn('No translation for:',key);
+      i18nNodes.push({n,orig:n.nodeValue,key});
     }
   });
-  if(uniq.length!==I18N_ROWS.length)console.warn('i18n rows mismatch',uniq.length,I18N_ROWS.length);
 }
 function applyI18n(l){
   if(!i18nNodes)collectI18n();
   i18nNodes.forEach(o=>{
     if(l==='en'){o.n.nodeValue=o.orig;return;}
-    const k=LANG_IDX[l];
-    const t=o.dyn?tr(o.dyn):(I18N_ROWS[o.i]||[])[k];
+    const t=DYN[o.key]?tr(o.key):(I18N_MAP[o.key]||[])[LANG_IDX[l]];
     if(t==null)return;
     o.n.nodeValue=o.orig.match(/^\s*/)[0]+t+o.orig.match(/\s*$/)[0];
   });
 }
-const I18N_ROWS=[
-["Orientacja","Orientierung","Orientace","Orientácia"],
-["Mapa","Karte","Mapa","Mapa"],
-["parku.","des Parks.","parku.","parku."],
-["Harmonogram sezonu","Saisonkalender","Sezónní rozvrh","Sezónny rozvrh"],
-["Godziny","Tägliche","Otevírací","Otváracie"],
-["otwarcia.","Öffnungszeiten.","doba.","hodiny."],
-["Prosty przegląd okresów działania w 2026 roku. Dokładne daty i godziny wydarzeń specjalnych mogą się zmienić, dlatego ostatecznym źródłem jest oficjalny kalendarz Energylandii.","Ein einfacher Überblick über die Betriebszeiten 2026. Genaue Termine und Zeiten bei Sonderveranstaltungen können sich ändern – maßgeblich ist der offizielle Energylandia-Kalender.","Jednoduchý přehled provozních období v roce 2026. Přesná data a časy zvláštních akcí se mohou změnit, proto je rozhodující oficiální kalendář Energylandie.","Jednoduchý prehľad prevádzkových období v roku 2026. Presné dátumy a časy osobitných podujatí sa môžu zmeniť, preto je rozhodujúci oficiálny kalendár Energylandie."],
-["Wiosna i jesień","Frühling & Herbst","Jaro a podzim","Jar a jeseň"],
-["Standardowe godziny otwarcia w okresach niższego sezonu.","Reguläre Öffnungszeiten in den Nebensaison-Zeiträumen.","Běžná otevírací doba v obdobích nižší sezóny.","Bežné otváracie hodiny v obdobiach nižšej sezóny."],
-["Letni wysoki sezon","Sommer-Hauptsaison","Letní hlavní sezóna","Letná hlavná sezóna"],
-["Wydłużone godziny otwarcia w głównym sezonie letnim.","Verlängerte reguläre Öffnungszeiten in der Sommer-Hauptsaison.","Prodloužená běžná otevírací doba během hlavní letní sezóny.","Predĺžené bežné otváracie hodiny počas hlavnej letnej sezóny."],
-["Wybrane dni specjalne","Ausgewählte Sondertermine","Vybrané speciální dny","Vybrané špeciálne dni"],
-["W niektóre dni wydarzeń obowiązują wydłużone lub specjalne godziny otwarcia.","An manchen Veranstaltungstagen gelten verlängerte oder besondere Öffnungszeiten.","V některé dny akcí platí prodloužená nebo zvláštní otevírací doba.","V niektoré dni podujatí platí predĺžená alebo osobitná otváracia doba."],
-["Przed wizytą","Vor deinem Besuch","Před návštěvou","Pred návštevou"],
-["Sprawdź oficjalny kalendarz","Offiziellen Kalender prüfen","Zkontroluj oficiální kalendář","Skontroluj oficiálny kalendár"],
-["Skorzystaj z kalendarza Energylandii, aby poznać dokładną godzinę otwarcia w wybranym dniu.","Nutze den Kalender von Energylandia für die genaue Öffnungszeit an deinem Wunschtag.","Použij kalendář Energylandie a zjisti přesnou otevírací dobu ve vybraný den.","Použi kalendár Energylandie a zisti presný čas otvorenia vo vybraný deň."],
-["Oficjalny kalendarz","Offizieller Kalender","Oficiální kalendář","Oficiálny kalendár"],
-["Strategia wizyty","Besuchsstrategie","Strategie návštěvy","Stratégia návštevy"],
-["Zaplanuj to","Plane es","Naplánuj to","Naplánuj to"],
-["dobrze.","richtig.","správně.","správne."],
-["Jedna sekcja z trzema praktycznymi sprawami: kiedy przyjechać, jak zaplanować rodzinny dzień i co zabrać.","Ein Bereich mit den drei wichtigsten praktischen Themen: wann kommen, wie den Familientag planen und was einpacken.","Jedna sekce se třemi praktickými tématy: kdy přijet, jak naplánovat rodinný den a co si vzít.","Jedna sekcia s tromi praktickými témami: kedy prísť, ako naplánovať rodinný deň a čo si zbaliť."],
-["Najlepszy czas na wizytę","Beste Besuchszeit","Nejlepší čas návštěvy","Najlepší čas návštevy"],
-["Wybierz dzień na podstawie kalendarza otwarcia, a potem jeszcze raz sprawdź oficjalną stronę pod kątem godzin w dniach wydarzeń.","Wähle anhand des Öffnungskalenders einen passenden Tag und prüfe danach noch einmal die offizielle Seite auf Veranstaltungszeiten.","Vyber si den podle kalendáře otevírací doby a poté znovu zkontroluj oficiální web kvůli časům při akcích.","Vyber si deň podľa kalendára otváracích hodín a potom znovu skontroluj oficiálny web kvôli časom pri podujatiach."],
-["Najłatwiej planować wokół wczesnych godzin otwarcia.","Am einfachsten planst du rund um die frühen Öffnungszeiten.","Nejsnáze se plánuje kolem časné otevírací doby.","Najľahšie sa plánuje okolo skorých otváracích hodín."],
-["Dni powszednie poza szczytem wakacji to łatwiejszy dzień na kolejki.","Wochentage außerhalb der Ferienspitzen sind für einen Achterbahn-Tag oft entspannter.","Všední dny mimo prázdninové špičky bývají pro dráhový den snazší.","Pracovné dni mimo prázdninových špičiek bývajú pre dráhový deň jednoduchšie."],
-["Magic Nights i wydarzenia sezonowe mogą zmienić rytm dnia.","Magic Nights und saisonale Events können den Tagesablauf verändern.","Magic Nights a sezónní akce mohou změnit rytmus dne.","Magic Nights a sezónne podujatia môžu zmeniť rytmus dňa."],
-["Planowanie z rodziną","Familienplanung","Plánování s rodinou","Plánovanie s rodinou"],
-["Zacznij od atrakcji pasujących do limitów wzrostu w grupie, a potem przechodź strefa po strefie, zamiast wielokrotnie przemierzać park.","Beginne mit Attraktionen, die zu den Größenlimits deiner Gruppe passen, und arbeite dich Bereich für Bereich vor, statt ständig durch den Park zu laufen.","Začni atrakcemi, které odpovídají výškovým limitům skupiny, a pokračuj zónu po zóně, místo abys park opakovaně přecházel.","Začni atrakciami, ktoré zodpovedajú výškovým limitom skupiny, a pokračuj zónu po zóne, namiesto opakovaného prechádzania parkom."],
-["Przed kolejką sprawdź wymagania wzrostu największych atrakcji.","Prüfe vor dem Anstehen die Größenanforderungen der großen Fahrgeschäfte.","Před frontou zkontroluj výškové požadavky větších atrakcí.","Pred státím v rade skontroluj výškové požiadavky väčších atrakcií."],
-["Łącz większe kolejki z atrakcjami rodzinnymi i wodnymi dla łatwiejszego dnia.","Kombiniere große Achterbahnen mit Familien- und Wasserattraktionen für einen entspannteren Tag.","Kombinuj větší dráhy s rodinnými a vodními atrakcemi pro pohodlnější den.","Kombinuj väčšie dráhy s rodinnými a vodnými atrakciami pre pohodlnejší deň."],
-["Uwzględnij w planie posiłki, odpoczynek i cień – to nie dodatek.","Plane Essens-, Ruhe- und Schattenpausen fest ein, statt sie nebenbei zu behandeln.","Do plánu zahrň jídlo, odpočinek i stín, ne jako dodatek.","Do plánu zahrň jedlo, odpočinok aj tieň, nie ako dodatok."],
-["Co zabrać","Was mitbringen","Co si vzít","Čo si zbaliť"],
-["Spakuj się na długi dzień na zewnątrz: sucha strefa, atrakcje z wodą i zmienna pogoda.","Pack für einen langen Tag im Freien: trockene Bereiche, Wasserattraktionen und wechselhaftes Wetter.","Zabal si na dlouhý den venku: suchá část, vodní atrakce a proměnlivé počasí.","Zbaľ si na dlhý deň vonku: suchá časť, vodné atrakcie a premenlivé počasie."],
-["Wygodne buty i ubranie, w którym swobodnie się poruszasz cały dzień.","Bequeme Schuhe und Kleidung, in der du dich den ganzen Tag bewegen kannst.","Pohodlné boty a oblečení, ve kterém se můžeš celý den hýbat.","Pohodlné topánky a oblečenie, v ktorom sa môžeš celý deň hýbať."],
-["Ochrona przed słońcem, butelka wody i lekka warstwa przeciwdeszczowa.","Sonnenschutz, Wasserflasche und eine leichte Regenjacke.","Ochrana proti slunci, láhev s vodou a lehká vrstva do deště.","Ochrana pred slnkom, fľaša s vodou a ľahká vrstva do dažďa."],
-["Mała wodoodporna torba lub saszetka na cenne rzeczy przy atrakcjach wodnych.","Ein kleiner Trockenbeutel oder wasserdichtes Täschchen für Wertsachen bei Wasserattraktionen.","Malý nepromokavý vak nebo pouzdro na cennosti u vodních atrakcí.","Malý nepremokavý vak alebo puzdro na cennosti pri vodných atrakciách."],
-["Zaplanuj wizytę","Besuch planen","Naplánuj návštěvu","Naplánuj návštevu"],
-["Bilety","Tickets","Vstupenky","Vstupenky"],
-["Aktualne ceny e-biletów 2026, podzielone na niski i wysoki sezon, z kategorią ulgową dla gości do 140 cm i innych uprawnionych osób.","Aktuelle E-Ticket-Preise 2026, aufgeteilt in Neben- und Hauptsaison, mit ermäßigter Kategorie für Gäste bis 140 cm und weitere Berechtigte.","Aktuální ceny e-vstupenek 2026 rozdělené na nízkou a vysokou sezónu, se slevou pro hosty do 140 cm a další oprávněné návštěvníky.","Aktuálne ceny e-vstupeniek 2026 rozdelené na nízku a vysokú sezónu, so zľavou pre hostí do 140 cm a ďalších oprávnených návštevníkov."],
-["Niski sezon","Nebensaison","Nízká sezóna","Nízka sezóna"],
-["16 kwi – 26 cze i 1 wrz – 31 paź 2026","16. Apr – 26. Jun & 1. Sep – 31. Okt 2026","16. 4. – 26. 6. a 1. 9. – 31. 10. 2026","16. 4. – 26. 6. a 1. 9. – 31. 10. 2026"],
-["Kategoria ulgowa: do 140 cm, seniorzy 65+, osoby z niepełnosprawnościami i kobiety w ciąży, zgodnie z oficjalnym regulaminem biletów.","Ermäßigte Kategorie: bis 140 cm, Senioren 65+, Menschen mit Behinderung und Schwangere, gemäß den offiziellen Ticketbedingungen.","Zlevněná kategorie: do 140 cm, senioři 65+, osoby se zdravotním postižením a těhotné ženy dle oficiálních pravidel vstupenek.","Zľavnená kategória: do 140 cm, seniori 65+, osoby so zdravotným postihnutím a tehotné ženy podľa oficiálnych pravidiel vstupeniek."],
-["Wysoki sezon","Hauptsaison","Vysoká sezóna","Vysoká sezóna"],
-["27 cze – 31 sie 2026 • wysoki sezon (lato)","27. Jun – 31. Aug 2026 • Hauptsaison (Sommer)","27. 6. – 31. 8. 2026 • vysoká sezóna (léto)","27. 6. – 31. 8. 2026 • vysoká sezóna (leto)"],
-["Oficjalny cennik e-biletów obejmuje bilety ulgowe dla gości do 140 cm, seniorów 65+, osób z niepełnosprawnościami i kobiet w ciąży. Promocje na wybrane daty mogą zmienić cenę końcową.","Die offiziellen E-Ticket-Preise führen ermäßigte Tickets für Gäste bis 140 cm, Senioren 65+, Menschen mit Behinderung und Schwangere. Aktionen für bestimmte Tage können den Endpreis ändern.","Oficiální ceník e-vstupenek uvádí slevy pro hosty do 140 cm, seniory 65+, osoby se zdravotním postižením a těhotné ženy. Akce na konkrétní data mohou změnit konečnou cenu.","Oficiálny cenník e-vstupeniek uvádza zľavy pre hostí do 140 cm, seniorov 65+, osoby so zdravotným postihnutím a tehotné ženy. Akcie na konkrétne dátumy môžu zmeniť konečnú cenu."],
-["Inne bilety","Weitere Tickets","Další vstupenky","Ďalšie vstupenky"],
-["Parking","Parken","Parkování","Parkovanie"],
-["Roczny standardowy","Jahreskarte Standard","Roční standardní","Ročná štandardná"],
-["Roczny ulgowy","Jahreskarte ermäßigt","Roční zlevněná","Ročná zľavnená"],
-["Oficjalny sezon","Offizielle Saison","Oficiální sezóna","Oficiálna sezóna"],
-["16 kwi – 31 paź","16. Apr – 31. Okt","16. 4. – 31. 10.","16. 4. – 31. 10."],
-["Ceny w innych walutach są przybliżonymi przeliczeniami z PLN. Ostateczna cena jest pobierana w PLN.","Preise in anderen Währungen sind ungefähre Umrechnungen aus PLN. Der Endpreis wird in PLN berechnet.","Ceny v jiných měnách jsou přibližné přepočty z PLN. Konečná cena se účtuje v PLN.","Ceny v iných menách sú približné prepočty z PLN. Konečná cena sa účtuje v PLN."],
-["Kup bilety","Tickets kaufen","Koupit vstupenky","Kúpiť vstupenky"],
-["Zanim kupisz","Vor dem Kauf","Než koupíš","Skôr než kúpiš"],
-["Najważniejsze o biletach.","Ticket-Grundlagen.","Vstupenky v kostce.","Vstupenky v skratke."],
-["Wybierz datę","Datum wählen","Vyber datum","Vyber dátum"],
-["Ceny zależą od sezonu: tańsze okresy i letni wysoki sezon.","Die Preise unterscheiden sich zwischen den günstigeren Zeiträumen und der Sommer-Hauptsaison.","Ceny se dělí na levnější období a letní vysokou sezónu.","Ceny sa delia na lacnejšie obdobia a letnú vysokú sezónu."],
-["Sprawdź kategorię","Kategorie prüfen","Zkontroluj kategorii","Skontroluj kategóriu"],
-["Bilet ulgowy obejmuje uprawnionych gości, w tym dzieci do 140 cm.","Das ermäßigte Ticket gilt für berechtigte Gäste, darunter Kinder bis 140 cm.","Zlevněná vstupenka platí pro oprávněné hosty včetně dětí do 140 cm.","Zľavnená vstupenka platí pre oprávnených hostí vrátane detí do 140 cm."],
-["Kup online","Online kaufen","Kup online","Kúp online"],
-["Skorzystaj z oficjalnego systemu e-biletów Energylandii, aby zobaczyć aktualne ceny, zasady i dostępne terminy.","Nutze das offizielle E-Ticket-System von Energylandia für aktuelle Preise, Bedingungen und freie Termine.","Použij oficiální systém e-vstupenek Energylandie pro aktuální ceny, podmínky a volné termíny.","Použi oficiálny systém e-vstupeniek Energylandie pre aktuálne ceny, podmienky a voľné termíny."],
-["Sprawdź przed zakupem","Vor dem Kauf prüfen","Zkontroluj před nákupem","Skontroluj pred nákupom"],
-["Terminy wydarzeń, promocje i zasady mogą się zmienić, więc ostatecznym źródłem jest oficjalna strona.","Termine, Aktionen und Ticketbedingungen können sich ändern – maßgeblich ist die offizielle Seite.","Termíny akcí, slevy i podmínky se mohou změnit, proto je rozhodující oficiální stránka.","Termíny podujatí, akcie a podmienky sa môžu zmeniť, preto je rozhodujúca oficiálna stránka."],
-["Otwórz oficjalną stronę biletów","Offizielle Ticketseite öffnen","Otevřít oficiální stránku vstupenek","Otvoriť oficiálnu stránku vstupeniek"],
-["Interaktywny kreator","Interaktiver Finder","Interaktivní hledač","Interaktívny hľadač"],
-["Znajdź swoją","Finde deine","Najdi svou","Nájdi svoju"],
-["kolejkę.","Achterbahn.","dráhu.","dráhu."],
-["Odpowiedz na pięć krótkich pytań o wymarzone wrażenia. Odpowiedzi porównamy z bazą kolejek i zamienimy na procent dopasowania.","Beantworte fünf kurze Fragen zum gewünschten Erlebnis. Deine Antworten werden mit der Achterbahn-Datenbank verglichen und in einen Trefferwert umgerechnet.","Odpověz na pět krátkých otázek o zážitku, který chceš. Odpovědi porovnáme s databází drah a převedeme na procento shody.","Odpovedz na päť krátkych otázok o zážitku, ktorý chceš. Odpovede porovnáme s databázou dráh a prevedieme na percento zhody."],
-["Ustaw swoją przejażdżkę.","Stell deine Fahrt ein.","Nastav svou jízdu.","Nastav svoju jazdu."],
-["Wybierz jedną odpowiedź w każdej kategorii. Możesz coś zmienić i ponownie kliknąć przycisk, by przeliczyć dopasowanie.","Wähle in jeder Kategorie eine Antwort. Du kannst alles ändern und den Button erneut drücken, um den Treffer neu zu berechnen.","Vyber jednu odpověď v každé kategorii. Cokoli můžeš změnit a tlačítkem znovu přepočítat shodu.","Vyber jednu odpoveď v každej kategórii. Môžeš čokoľvek zmeniť a tlačidlom znovu prepočítať zhodu."],
-["Jak intensywnie?","Wie intensiv?","Jak intenzivní?","Ako intenzívne?"],
-["Spokojnie","Entspannt","Klidná","Pokojná"],
-["Średnio","Mittel","Střední","Stredná"],
-["Intensywnie","Intensiv","Intenzivní","Intenzívna"],
-["Ekstremalnie","Extrem","Extrémní","Extrémna"],
-["Lubisz inwersje?","Magst du Inversionen?","Máš rád inverze?","Máš rád inverzie?"],
-["Tak","Ja","Ano","Áno"],
-["Nie","Nein","Ne","Nie"],
-["Obojętne","Egal","Je mi to jedno","Je mi to jedno"],
-["Preferowana wysokość?","Bevorzugte Höhe?","Preferovaná výška?","Preferovaná výška?"],
-["Niska","Niedrig","Nízká","Nízka"],
-["Średnia","Mittel","Střední","Stredná"],
-["Wysoka","Hoch","Vysoká","Vysoká"],
-["Starty?","Launches?","Vystřelení?","Vystrelenia?"],
-["Przyjazna rodzinom?","Familienfreundlich?","Vhodná pro rodiny?","Vhodná pre rodiny?"],
-["TWOJE DOPASOWANIE","DEIN TREFFER","TVOJE SHODA","TVOJA ZHODA"],
-["Twoje dopasowanie","Dein Treffer","Tvoje shoda","Tvoja zhoda"],
-["Zobacz profil kolejki","Achterbahn-Profil ansehen","Zobrazit profil dráhy","Zobraziť profil dráhy"],
-["Inne bliskie dopasowania","Weitere passende Treffer","Další blízké shody","Ďalšie blízke zhody"],
-["Procent to wynik zgodności stworzony na potrzeby strony, oparty na pięciu odpowiedziach powyżej — nie oficjalna ocena Energylandii.","Der Prozentwert ist ein von dieser Seite berechneter Kompatibilitätswert auf Basis der fünf Antworten oben, keine offizielle Energylandia-Bewertung.","Procento je skóre kompatibility vytvořené pro tento web na základě pěti odpovědí výše, nikoli oficiální hodnocení Energylandie.","Percento je skóre kompatibility vytvorené pre tento web na základe piatich odpovedí vyššie, nie oficiálne hodnotenie Energylandie."]
-];
+
+// ===== Map lightbox (phones / tablets) =====
+(function(){
+  const frame=$('.map-frame'),lb=$('#mapLb');
+  if(!frame||!lb)return;
+  const close=()=>{lb.hidden=true;document.body.style.overflow='';};
+  frame.addEventListener('click',()=>{
+    if(!matchMedia('(max-width:900px)').matches)return;
+    $('#mapLbImg').src=frame.querySelector('img').src;
+    lb.hidden=false;document.body.style.overflow='hidden';
+  });
+  $('#mapLbClose').addEventListener('click',close);
+  lb.addEventListener('click',e=>{if(e.target===lb)close();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!lb.hidden)close();});
+})();
 
 // Initial setup
 renderRides();
