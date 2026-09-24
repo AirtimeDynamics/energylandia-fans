@@ -798,6 +798,13 @@ html:not([lang="en"]) .hero h1{line-height:1.1}
   #currentLangLabel .ln{display:none}
 }
 
+
+/* ===== v12: 3-option rows stay in one line on phones ===== */
+@media(max-width:760px){
+  .choice-grid.three{grid-template-columns:repeat(3,1fr);gap:5px}
+  .choice-grid.three .choice-pill span{min-height:38px;padding:0 3px;font-size:12px;letter-spacing:0;line-height:1.15;text-align:center}
+}
+
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
 }
@@ -868,10 +875,10 @@ html:not([lang="en"]) .hero h1{line-height:1.1}
         <span class="status"><span class="live-dot"></span> <span id="extremeLabel">Extreme</span></span>
       </div>
       <div class="hero-feature">
-        <img src="hyperion.jpg" alt="Hyperion">
+        <img id="featImg" src="hyperion.jpg" alt="Hyperion">
         <div>
-          <h3>Hyperion</h3>
-          <p>Intamin • Mega Coaster</p>
+          <h3 id="featName">Hyperion</h3>
+          <p id="featMeta">Intamin • Mega Coaster</p>
         </div>
       </div>
       <div class="feature-stats">
@@ -1448,7 +1455,7 @@ const povLinks = {
   "Formuła": "https://youtu.be/g42HC7DoTLY?si=VpK59hsuRhOFKpRw",
   "Roller Coaster Mayan": "https://youtu.be/wPcQnYQIwMQ?si=8Z4Djf0yMEkJIj7p",
   "Speed": "https://youtu.be/tBqG_A8yD7A?si=qrBBozshhAcOiBTZ",
-  "Dragon Roller Coaster": "https://youtu.be/Ljwu0YyhK44?si=V5PnBiLUj4Taxkwd",
+  "Dragon Roller Coaster": "https://youtu.be/BbgxKJjRjTM?si=8h_5sSmd7WuT6PFH",
   "Choco Chip Creek": "https://youtu.be/meBf4b44TrI?si=Wh9jtmI_1z3POvYp"
 };
 
@@ -1744,6 +1751,25 @@ function updateUnitMenuText(){
   unitBtn.setAttribute('aria-label', u.aria);
 }
 
+// ===== Featured coaster: a different one every time the page loads =====
+const FEATURED_POOL=['Hyperion','Zadra','Abyssus','Formuła','Roller Coaster Mayan'];
+const FEATURED_STYLE={'Hyperion':'Mega Coaster','Zadra':'Hybrid Coaster','Abyssus':'Multi-Launch Coaster','Formuła':'Launch Coaster','Roller Coaster Mayan':'Suspended Looping Coaster'};
+const featuredCoaster=(function(){
+  let last=-1; try{const v=parseInt(localStorage.getItem('featuredIdx'),10); if(!isNaN(v)) last=v;}catch(e){}
+  let i; do{ i=Math.floor(Math.random()*FEATURED_POOL.length); }while(i===last && FEATURED_POOL.length>1);
+  try{localStorage.setItem('featuredIdx',String(i));}catch(e){}
+  return coasters.find(c=>c.name===FEATURED_POOL[i]) || coasters[0];
+})();
+function renderFeatured(){
+  const c=featuredCoaster; if(!c) return;
+  const img=$('#featImg'); if(img){img.src=c.image; img.alt=c.name;}
+  $('#featName').textContent=c.name;
+  $('#featMeta').textContent=c.mfg+' • '+(FEATURED_STYLE[c.name]||typeLabel(c.type));
+  $('#featHeightVal').textContent=convUnits(c.height);
+  $('#featSpeedVal').textContent=convUnits(c.speed);
+  $('#featLenVal').textContent=convUnits(c.length);
+}
+
 // Switches every unit on the page between metric and imperial
 function applyUnits(){
   const imp = unitSystem === 'imperial';
@@ -1751,9 +1777,7 @@ function applyUnits(){
   const mph = v => Math.round(v * KMH_TO_MPH);
 
   // Hero panel
-  $('#featHeightVal').textContent = convUnits('77 m');
-  $('#featSpeedVal').textContent  = convUnits('142 km/h');
-  $('#featLenVal').textContent    = convUnits('1450 m');
+  renderFeatured();
 
   // Records
   const sub = '<span style="font-size:30px;color:#cbd6e8">';
@@ -2181,7 +2205,7 @@ const timelineTranslations = {
   pl: {
     t1: { badge: "Wielkie otwarcie", title: "Początek parku", desc: "Energylandia oficjalnie otwiera się w Zatorze z pierwszymi kolejkami rodzinnymi i dziecięcymi." },
     t2: { badge: "Pierwsze emocje", title: "Skok adrenaliny", desc: "Do parku dołączają Energuś, Dragon Roller Coaster oraz Roller Coaster Mayan." },
-    t3: { badge: "Rozbudowa", title: "Starty i shuttle", desc: "Pojawia się Formuła, a zaraz po niej Boomerang, Circus Coaster i Happy Loops." },
+    t3: { badge: "Rozbudowa", title: "Wystrzelenia i shuttle", desc: "Pojawia się Formuła, a zaraz po niej Boomerang, Circus Coaster i Happy Loops." },
     t4: { badge: "Megapark", title: "Hyperion i Speed", desc: "Park powiększa się o Hyperiona oraz potężny wodny coaster Speed." },
     t5: { badge: "Smoczy Gród", title: "Smoczy Gród i Zadra", desc: "Otwarcie średniowiecznej strefy Smoczy Gród z Zadrą, Fridą i Drakenem." },
     t6: { badge: "Aqualantis", title: "Zatopione miasto", desc: "Aqualantis debiutuje z potężnym Abyssusem oraz Light Explorers." },
@@ -2201,7 +2225,7 @@ const timelineTranslations = {
   cs: {
     t1: { badge: "Velké otevření", title: "Založení parku", desc: "Energylandia se oficiálně otevírá v Zatoru s počátečními rodinnými a dětskými drahami." },
     t2: { badge: "První vzrušení", title: "Skok adrenalinu", desc: "Energuś, Dragon Roller Coaster a Roller Coaster Mayan se připojují k parku." },
-    t3: { badge: "Expanze", title: "Starty a shuttle", desc: "Přichází Formuła, následovaná dráhami Boomerang, Circus Coaster a Happy Loops." },
+    t3: { badge: "Expanze", title: "Odpaly a shuttle", desc: "Přichází Formuła, následovaná dráhami Boomerang, Circus Coaster a Happy Loops." },
     t4: { badge: "Megapark", title: "Hyperion a Speed", desc: "Park přidává Hyperion a obří vodní coaster Speed." },
     t5: { badge: "Dračí zóna", title: "Smoczy Gród a Zadra", desc: "Otevírá se středověká Dračí zóna s drahami Zadra, Frida a Draken." },
     t6: { badge: "Aqualantis", title: "Potopené město", desc: "Aqualantis se otevírá s drahami Abyssus a Light Explorers." },
@@ -2211,7 +2235,7 @@ const timelineTranslations = {
   sk: {
     t1: { badge: "Veľké otvorenie", title: "Založenie parku", desc: "Energylandia sa oficiálne otvára v Zatore s počiatočnými rodinnými a detskými dráhami." },
     t2: { badge: "Prvé vzrušenie", title: "Skok adrenalínu", desc: "Energuś, Dragon Roller Coaster a Roller Coaster Mayan sa pripájajú k parku." },
-    t3: { badge: "Expanzia", title: "Štarty a shuttle", desc: "Prichádza Formuła, nasledovaná dráhami Boomerang, Circus Coaster a Happy Loops." },
+    t3: { badge: "Expanzia", title: "Odpaly a shuttle", desc: "Prichádza Formuła, nasledovaná dráhami Boomerang, Circus Coaster a Happy Loops." },
     t4: { badge: "Megapark", title: "Hyperion a Speed", desc: "Park pridáva Hyperion a obrí vodný coaster Speed." },
     t5: { badge: "Dračia zóna", title: "Smoczy Gród a Zadra", desc: "Otvára sa stredoveká Dračia zóna s dráhami Zadra, Frida a Draken." },
     t6: { badge: "Aqualantis", title: "Potopené mesto", desc: "Aqualantis sa otvára s dráhami Abyssus a Light Explorers." },
@@ -2442,12 +2466,12 @@ const unitUi = {
 const finderProfiles = {
   "Zadra":                {intensity:4, inversions:'yes',      height:'high',   launch:'no',       family:'no'},
   "Hyperion":             {intensity:4, inversions:'no',       height:'high',   launch:'no',       family:'no'},
-  "Abyssus":              {intensity:4, inversions:'yes',      height:'high',   launch:'yes',      family:'no'},
-  "Formuła":              {intensity:4, inversions:'yes',      height:'medium', launch:'yes',      family:'no'},
-  "Speed":                {intensity:4, inversions:'no',       height:'high',   launch:'no',       family:'no'},
-  "Roller Coaster Mayan": {intensity:4, inversions:'yes',      height:'medium', launch:'no',       family:'no'},
-  "Choco Chip Creek":     {intensity:3, inversions:'no',       height:'medium', launch:'no',       family:'yes'},
-  "Dragon Roller Coaster":{intensity:2, inversions:'no',       height:'medium', launch:'no',       family:'yes'},
+  "Abyssus":              {intensity:4, inversions:'yes',      height:'high',   launch:'yes',      family:'both'},
+  "Formuła":              {intensity:4, inversions:'yes',      height:'medium', launch:'yes',      family:'yes'},
+  "Speed":                {intensity:3, inversions:'no',       height:'high',   launch:'no',       family:'no'},
+  "Roller Coaster Mayan": {intensity:3, inversions:'yes',      height:'medium', launch:'no',       family:'no'},
+  "Choco Chip Creek":     {intensity:2, inversions:'no',       height:'medium', launch:'no',       family:'yes'},
+  "Dragon Roller Coaster":{intensity:3, inversions:'no',       height:'medium', launch:'no',       family:'yes'},
   "Energuś":              {intensity:2, inversions:'no',       height:'low',    launch:'no',       family:'yes'},
   "Light Explorers":      {intensity:2, inversions:'no',       height:'medium', launch:'no',       family:'yes'},
   "Frida":                {intensity:2, inversions:'no',       height:'low',    launch:'no',       family:'yes'},
@@ -2468,6 +2492,7 @@ function selectedFinderValue(name){
 
 function finderChoiceScore(actual, wanted, dontCareValue='dontcare'){
   if(wanted === dontCareValue) return 1;
+  if(actual === 'both') return 1;
   return actual === wanted ? 1 : 0;
 }
 
@@ -2480,7 +2505,7 @@ function finderScore(profile, answers){
   let score = 0;
   const targetIntensity = finderIntensityValue(answers.intensity);
 
-  score += weights.intensity * (1 - Math.min(3, Math.abs(profile.intensity-targetIntensity))/3);
+  score += weights.intensity * (1 - Math.min(2, Math.abs(profile.intensity-targetIntensity))/2);
   score += weights.inversions * finderChoiceScore(profile.inversions, answers.inversions);
   score += weights.height * finderChoiceScore(profile.height, answers.heightPref);
   score += weights.launch * finderChoiceScore(profile.launch, answers.launch);
@@ -2539,6 +2564,7 @@ function runCoasterFinder(silent){
 
   const scored = coasters
     .filter(c => c.rank !== "?" && finderProfiles[c.name])
+    .filter(c => { const p=finderProfiles[c.name].intensity, t=finderIntensityValue(answers.intensity); return t>=3 ? p>=3 : Math.abs(p-t)<=1; })
     .map(c => ({coaster:c, score:finderScore(finderProfiles[c.name], answers)}))
     const ext = c => (c.heightNum||0)*(c.speedNum||0);
   const wantBig = finderIntensityValue(answers.intensity) >= 3;
@@ -3239,6 +3265,7 @@ function applyI18n(l){
 renderRides();
 fillCompare();
 renderPrices();
+renderFeatured();
 
 
 if($('#findButton')) $('#findButton').addEventListener('click', (event) => { event.preventDefault(); runCoasterFinder(); });
