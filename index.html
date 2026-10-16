@@ -304,11 +304,14 @@ html:not([lang="en"]) .hero h1{line-height:1.1}
 .ride:hover .ride-image img{transform:scale(1.07)}
 .ride-rank{position:absolute;top:12px;left:12px;width:39px;height:39px;border-radius:12px;display:grid;place-items:center;background:rgba(2,5,11,.78);backdrop-filter:blur(12px);font-family:Oswald;font-size:18px;border:1px solid rgba(255,255,255,.14)}
 .ride-type{position:absolute;right:12px;top:12px;padding:7px 9px;border-radius:9px;background:rgba(2,5,11,.76);backdrop-filter:blur(12px);font-size:12px;letter-spacing:1px;text-transform:uppercase;font-weight:900;border:1px solid rgba(255,255,255,.13)}
-.ride-body{padding:18px}
+.ride{display:flex;flex-direction:column}
+.ride-body{padding:18px;display:flex;flex-direction:column;flex:1 1 auto}
+.ride-body .ride-stats{margin-bottom:12px}
+.ride-body .view-btn{margin-top:auto;flex:0 0 auto}
 .manufacturer{color:var(--blue);font-size:12px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase}
 .ride h3{font-family:Oswald;font-size:25px;text-transform:uppercase;line-height:1;margin:5px 0 13px}
 .ride-desc{font-size:12px;color:#8d99aa;line-height:1.55;min-height:52px}
-.ride-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:16px}
+.ride-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:26px}
 .ride-stat{padding:9px;background:#080d15;border:1px solid rgba(255,255,255,.06);border-radius:10px}
 .ride-stat span{display:block;color:#657286;font-size:12px;text-transform:uppercase;letter-spacing:.7px}
 .ride-stat b{display:block;color:#eef3f8;font-size:12px;margin-top:3px}
@@ -466,7 +469,7 @@ html:not([lang="en"]) .hero h1{line-height:1.1}
 .uc-ride .ride-body{padding:22px}
 .uc-ride .ride-body h3{font-size:32px}
 .uc-ride .ride-desc{max-width:720px;min-height:0}
-.uc-ride .view-btn{margin-top:16px}
+.uc-ride .ride-body .view-btn{margin-top:auto}
 
 .find-shell{grid-template-columns:minmax(360px,410px) minmax(0,1fr);align-items:stretch;overflow:hidden}
 .find-controls{position:relative;z-index:2;min-width:0}
@@ -993,20 +996,20 @@ html:not([lang="en"]) .hero h1{line-height:1.1}
         <span id="ucNote" style="font-size: 12px; color: var(--muted); font-weight: 600;">Upcoming Future Project</span>
       </div>
       <div class="uc-feature-shell">
-        <article class="ride uc-ride" onclick="openRideModal('B&M Wing Coaster')">
+        <article class="ride uc-ride" onclick="openRideModal('Rokan')">
           <div class="ride-image">
-            <img src="bm_wing.jpg" alt="B&M Wing Coaster" loading="lazy" onerror="this.style.opacity='.25'">
+            <img src="bm_wing.jpg" alt="Rokan" loading="lazy" onerror="this.style.opacity='.25'">
             <span class="ride-rank">#?</span>
             <span class="ride-type" id="ucType">extreme</span>
           </div>
           <div class="ride-body">
             <span class="manufacturer">Bolliger & Mabillard</span>
-            <h3>B&M Wing Coaster</h3>
-            <p class="ride-desc" id="ucDesc">A major new coaster under construction at Energylandia. Featuring B&M's signature wing-seater trains hanging outside the track, massive inversions, and near-miss elements.</p>
+            <h3>Rokan</h3>
+            <p class="ride-desc" id="ucDesc">Tallest and longest B&M Wing Coaster in the world, opening spring 2027 as the centrepiece of Energylandia's new Volana zone. Riders sit on both sides of the track with legs dangling free for a 141-second flight at up to 115 km/h, named after a dragon awakening from long sleep.</p>
             <div class="ride-stats">
-              <div class="ride-stat"><span id="ucH">Height</span><b id="ucHVal">~50-65m</b></div>
-              <div class="ride-stat"><span id="ucS">Speed</span><b id="ucSVal">~100-125km/h</b></div>
-              <div class="ride-stat"><span id="ucL">Length</span><b id="ucLVal">~1100-1400m</b></div>
+              <div class="ride-stat"><span id="ucH">Height</span><b id="ucHVal">62 m</b></div>
+              <div class="ride-stat"><span id="ucS">Speed</span><b id="ucSVal">115 km/h</b></div>
+              <div class="ride-stat"><span id="ucL">Length</span><b id="ucLVal">1215 m</b></div>
             </div>
             <button class="view-btn" id="ucBtn">View Profile <i class="fa-solid fa-arrow-right"></i></button>
           </div>
@@ -1373,7 +1376,7 @@ html:not([lang="en"]) .hero h1{line-height:1.1}
     <article class="time-item reveal"><div class="time-card"><span class="time-year">2019</span><span class="time-badge" data-t-badge="t5Badge">Dragon Zone</span><h3 data-t-h3="t5Title">Smoczy Gród & Zadra</h3><p data-t-p="t5Desc">The medieval Dragon Zone opens with Zadra, Frida and Draken.</p></div></article>
     <article class="time-item reveal"><div class="time-card"><span class="time-year">2021</span><span class="time-badge" data-t-badge="t6Badge">Aqualantis</span><h3 data-t-h3="t6Title">Sunken city launch</h3><p data-t-p="t6Desc">Aqualantis opens with Abyssus and Light Explorers.</p></div></article>
     <article class="time-item reveal"><div class="time-card"><span class="time-year">2024</span><span class="time-badge" data-t-badge="t7Badge">Sweet Valley</span><h3 data-t-h3="t7Title">Immersive expansion</h3><p data-t-p="t7Desc">Sweet Valley debuts with Choco Chip Creek and Honey Harbour.</p></div></article>
-    <article class="time-item reveal"><div class="time-card"><span class="time-year">2027</span><span class="time-badge" data-t-badge="t8Badge">Next Gen</span><h3 data-t-h3="t8Title">B&M Wing Coaster</h3><p data-t-p="t8Desc">A brand new state-of-the-art Bolliger & Mabillard Wing Coaster joins the extreme lineup.</p></div></article>
+    <article class="time-item reveal"><div class="time-card"><span class="time-year">2027</span><span class="time-badge" data-t-badge="t8Badge">Next Gen</span><h3 data-t-h3="t8Title">Rokan</h3><p data-t-p="t8Desc">Rokan, Europe's tallest and longest Wing Coaster, opens in the new Volana zone.</p></div></article>
   </div>
 </section>
 </div>
@@ -1464,7 +1467,7 @@ const coasters = [
   { name: "Frutti Loop Coaster", rank: 17, year: 2014, type: "Kiddie", mfg: "SBF Visa Group", height: "3.7 m", heightNum: 3.7, speed: "20 km/h", speedNum: 20, length: "90 m", lengthNum: 90, image: "frutti_loop.jpg", desc: "A compact starter kiddie coaster by SBF Visa Group located in Bajtkolandia." },
   { name: "Circus Coaster", rank: 18, year: 2017, type: "Kiddie", mfg: "Visa Rides", height: "—", heightNum: 0, speed: "12 km/h", speedNum: 12, length: "32 m", lengthNum: 32, image: "circus_coaster.jpg", desc: "Powered circuit experience tailored for younger children." },
   { name: "Happy Loops", rank: 19, year: 2017, type: "Family", mfg: "SBF Visa Group", height: "7 m", heightNum: 7, speed: "30 km/h", speedNum: 30, length: "90 m", lengthNum: 90, image: "happy_loops.jpg", desc: "Spinning track layout packed with joyful layout switches." },
-  { name: "B&M Wing Coaster", rank: "?", year: "2027", type: "Extreme", mfg: "Bolliger & Mabillard", height: "~50-65m", heightNum: 57.5, speed: "~100-125km/h", speedNum: 112.5, length: "~1100-1400m", lengthNum: 1250, image: "bm_wing.jpg", desc: "A major new coaster under construction at Energylandia. Featuring B&M's signature wing-seater trains hanging outside the track, massive inversions, and near-miss elements." }
+  { name: "Rokan", rank: "?", year: "2027", type: "Extreme", mfg: "Bolliger & Mabillard", height: "62 m", heightNum: 62, speed: "115 km/h", speedNum: 115, length: "1215 m", lengthNum: 1215, image: "bm_wing.jpg", desc: "Tallest and longest B&M Wing Coaster in the world, opening spring 2027 as the centrepiece of Energylandia's new Volana zone. Riders sit on both sides of the track with legs dangling free for a 141-second flight at up to 115 km/h, named after a dragon awakening from long sleep." }
 ];
 
 const povLinks = {
@@ -1500,7 +1503,7 @@ let currentRide = null;
 
 const M_TO_FT = 3.28084, KMH_TO_MPH = 0.621371, HA_TO_AC = 2.47105;
 
-// Converts any metric text like "63.8 m", "121.0 km/h" or "~50-65m" to imperial (only when imperial is on)
+// Converts any metric text like "63.8 m", "121.0 km/h" or "62m" to imperial (only when imperial is on)
 function convUnits(str){
   if(unitSystem !== 'imperial' || typeof str !== 'string') return str;
   return str.replace(/(\d+(?:\.\d+)?)(?:(\s*[-–]\s*)(\d+(?:\.\d+)?))?(\s*)(km\/h|m)\b/g, (all, a, sep, b, sp, u) => {
@@ -1816,7 +1819,7 @@ function applyUnits(){
   $('#statHectares').textContent = imp ? (unitUi[getLang()] || unitUi.en).acres : t.statHectares;
 
   // Under construction card
-  const bm = coasters.find(c => c.name === 'B&M Wing Coaster');
+  const bm = coasters.find(c => c.name === 'Rokan');
   if(bm){
     $('#ucHVal').textContent = convUnits(bm.height);
     $('#ucSVal').textContent = convUnits(bm.speed);
@@ -1935,7 +1938,7 @@ function applyLanguage(lang){
     txt('#ucBadge',x.ucBadge);
     txt('#ucNote',x.ucNote);
     txt('#ucType',typeLabel('Extreme'));
-    const bm=coasters.find(c=>c.name==='B&M Wing Coaster');
+    const bm=coasters.find(c=>c.name==='Rokan');
     if(bm) txt('#ucDesc',rideCopy(bm).desc);
     txt('#ucH',ui.height); txt('#ucS',ui.speed); txt('#ucL',ui.length);
     html('#ucBtn',`${copyUi.profile} <i class="fa-solid fa-arrow-right"></i>`);
@@ -2220,7 +2223,7 @@ const timelineTranslations = {
     t5: { badge: "Dragon Zone", title: "Smoczy Gród & Zadra", desc: "The medieval Dragon Zone opens with Zadra, Frida and Draken." },
     t6: { badge: "Aqualantis", title: "Sunken city launch", desc: "Aqualantis opens with Abyssus and Light Explorers." },
     t7: { badge: "Sweet Valley", title: "Immersive expansion", desc: "Sweet Valley debuts with Choco Chip Creek and Honey Harbour." },
-    t8: { badge: "Next Gen", title: "B&M Wing Coaster", desc: "A brand new state-of-the-art Bolliger & Mabillard Wing Coaster will join the extreme lineup." }
+    t8: { badge: "Next Gen", title: "Rokan", desc: "Rokan, Europe's tallest and longest Wing Coaster, will open in the new Volana zone." }
   },
   pl: {
     t1: { badge: "Wielkie otwarcie", title: "Początek parku", desc: "Energylandia oficjalnie otwiera się w Zatorze z pierwszymi kolejkami rodzinnymi i dziecięcymi." },
@@ -2230,7 +2233,7 @@ const timelineTranslations = {
     t5: { badge: "Smoczy Gród", title: "Smoczy Gród i Zadra", desc: "Otwarcie średniowiecznej strefy Smoczy Gród z Zadrą, Fridą i Drakenem." },
     t6: { badge: "Aqualantis", title: "Zatopione miasto", desc: "Aqualantis debiutuje z potężnym Abyssusem oraz Light Explorers." },
     t7: { badge: "Sweet Valley", title: "Słodka rozbudowa", desc: "Sweet Valley debiutuje z Choco Chip Creek oraz Honey Harbour." },
-    t8: { badge: "Next Gen", title: "B&M Wing Coaster", desc: "Zupełnie nowa, najnowocześniejsza kolejka Wing Coaster firmy Bolliger & Mabillard wzbogaci ofertę ekstremalnych atrakcji." }
+    t8: { badge: "Next Gen", title: "Rokan", desc: "Rokan, najwyższy i najdłuższy wing coaster w Europie, otworzy się w nowej strefie Volana." }
   },
   de: {
     t1: { badge: "Große Eröffnung", title: "Parkgründung", desc: "Energylandia öffnet offiziell in Zator mit ersten Familien- und Kinderachterbahnen." },
@@ -2240,7 +2243,7 @@ const timelineTranslations = {
     t5: { badge: "Drachenzone", title: "Smoczy Gród & Zadra", desc: "Die mittelalterliche Drachenzone eröffnet mit Zadra, Frida und Draken." },
     t6: { badge: "Aqualantis", title: "Versunkene Stadt", desc: "Aqualantis öffnet mit Abyssus und Light Explorers." },
     t7: { badge: "Sweet Valley", title: "Themen-Erweiterung", desc: "Sweet Valley debütiert mit Choco Chip Creek und Honey Harbour." },
-    t8: { badge: "Next Gen", title: "B&M Wing Coaster", desc: "Ein brandneuer, hochmoderner Wing Coaster von Bolliger & Mabillard wird das Extrem-Angebot ergänzen." }
+    t8: { badge: "Next Gen", title: "Rokan", desc: "Rokan, Europas höchster und längster Wing Coaster, eröffnet in der neuen Zone Volana." }
   },
   cs: {
     t1: { badge: "Velké otevření", title: "Založení parku", desc: "Energylandia se oficiálně otevírá v Zatoru s počátečními rodinnými a dětskými drahami." },
@@ -2250,7 +2253,7 @@ const timelineTranslations = {
     t5: { badge: "Dračí zóna", title: "Smoczy Gród a Zadra", desc: "Otevírá se středověká Dračí zóna s drahami Zadra, Frida a Draken." },
     t6: { badge: "Aqualantis", title: "Potopené město", desc: "Aqualantis se otevírá s drahami Abyssus a Light Explorers." },
     t7: { badge: "Sweet Valley", title: "Sladké rozšíření", desc: "Sweet Valley debutuje s drahami Choco Chip Creek a Honey Harbour." },
-    t8: { badge: "Next Gen", title: "B&M Wing Coaster", desc: "Zcela nová špičková dráha Wing Coaster od Bolliger & Mabillard posílí nabídku extrémních atrakcí." }
+    t8: { badge: "Next Gen", title: "Rokan", desc: "Rokan, nejvyšší a nejdelší Wing Coaster v Evropě, se otevře v nové zóně Volana." }
   },
   sk: {
     t1: { badge: "Veľké otvorenie", title: "Založenie parku", desc: "Energylandia sa oficiálne otvára v Zatore s počiatočnými rodinnými a detskými dráhami." },
@@ -2260,7 +2263,7 @@ const timelineTranslations = {
     t5: { badge: "Dračia zóna", title: "Smoczy Gród a Zadra", desc: "Otvára sa stredoveká Dračia zóna s dráhami Zadra, Frida a Draken." },
     t6: { badge: "Aqualantis", title: "Potopené mesto", desc: "Aqualantis sa otvára s dráhami Abyssus a Light Explorers." },
     t7: { badge: "Sweet Valley", title: "Sladké rozšírenie", desc: "Sweet Valley debutuje s dráhami Choco Chip Creek a Honey Harbour." },
-    t8: { badge: "Next Gen", title: "B&M Wing Coaster", desc: "Úplne nová špičková dráha Wing Coaster od Bolliger & Mabillard posilní ponuku extrémnych atrakcií." }
+    t8: { badge: "Next Gen", title: "Rokan", desc: "Rokan, najvyššia a najdlhšia Wing Coaster v Európe, sa otvorí v novej zóne Volana." }
   }
 };
 
@@ -2342,7 +2345,7 @@ const rideTranslations = {
     "Frutti Loop Coaster": { desc: "Kompaktowa kolejka dla najmłodszych od SBF Visa Group, znajdująca się w Bajtkolandii." },
     "Circus Coaster": { desc: "Kolejka z napędem, stworzona z myślą o najmłodszych dzieciach." },
     "Happy Loops": { desc: "Wirujący układ toru pełen radosnych zmian kierunku." },
-    "B&M Wing Coaster": { desc: "Duża nowa kolejka budowana w Energylandii. Charakterystyczne dla B&M pociągi typu wing z miejscami po bokach toru, ogromne inwersje i efekty near-miss." }
+    "Rokan": { desc: "Najwyższy i najdłuższy wing coaster B&M na świecie, który wiosną 2027 roku otworzy się jako serce nowej strefy Volana w Energylandii. Pasażerowie siedzą po obu stronach toru z swobodnie zwisającymi nogami i przez 141 sekund pędzą z prędkością do 115 km/h. Nazwa nawiązuje do smoka budzącego się po latach snu." }
   },
   de: {
     "Zadra": { desc: "Hybrid-Achterbahn von RMC der Weltklasse mit imposanter Holzstruktur, extrem steilen Stahlschienen und Inversionen." },
@@ -2364,7 +2367,7 @@ const rideTranslations = {
     "Frutti Loop Coaster": { desc: "Kompakte Einsteiger-Kinderachterbahn von SBF Visa Group in Bajtkolandia." },
     "Circus Coaster": { desc: "Motorbetriebene Runde, zugeschnitten auf die jüngsten Kinder." },
     "Happy Loops": { desc: "Drehendes Streckenlayout voller fröhlicher Richtungswechsel." },
-    "B&M Wing Coaster": { desc: "Eine große neue Achterbahn im Bau bei Energylandia. Mit den typischen Wing-Zügen von B&M, deren Sitze seitlich der Schiene hängen, gewaltigen Inversionen und Beinahe-Kollisionen." }
+    "Rokan": { desc: "Der höchste und längste B&M Wing Coaster der Welt eröffnet im Frühjahr 2027 als Herzstück der neuen Zone Volana in Energylandia. Die Fahrgäste sitzen beidseits der Schiene mit frei baumelnden Beinen und fliegen 141 Sekunden lang mit bis zu 115 km/h. Der Name verweist auf einen Drachen, der nach langem Schlaf erwacht." }
   },
   cs: {
     "Zadra": { desc: "Hybridní horská dráha RMC světové úrovně s mohutnou dřevěnou konstrukcí, extrémně strmou ocelovou tratí a inverzemi." },
@@ -2386,7 +2389,7 @@ const rideTranslations = {
     "Frutti Loop Coaster": { desc: "Kompaktní startovací dětská dráha od SBF Visa Group v části Bajtkolandia." },
     "Circus Coaster": { desc: "Motorová dráha přizpůsobená nejmenším dětem." },
     "Happy Loops": { desc: "Točivé uspořádání trati plné veselých změn směru." },
-    "B&M Wing Coaster": { desc: "Velká nová dráha ve výstavbě v Energylandii. Nabídne typické vlaky B&M Wing se sedadly po stranách trati, obří inverze a průlety těsně kolem překážek." }
+    "Rokan": { desc: "Nejvyšší a nejdelší Wing Coaster od B&M na světě se na jaře 2027 otevře jako srdce nové zóny Volana v Energylandii. Jezdci sedí po obou stranách trati s volně visícíma nohama a 141 sekund se řítí rychlostí až 115 km/h. Název odkazuje na draka probouzejícího se po dlouhém spánku." }
   },
   sk: {
     "Zadra": { desc: "Hybridná horská dráha RMC svetovej úrovne s mohutnou drevenou konštrukciou, extrémne strmou oceľovou traťou a inverziami." },
@@ -2408,7 +2411,7 @@ const rideTranslations = {
     "Frutti Loop Coaster": { desc: "Kompaktná štartovacia detská dráha od SBF Visa Group v časti Bajtkolandia." },
     "Circus Coaster": { desc: "Motorová dráha prispôsobená najmenším deťom." },
     "Happy Loops": { desc: "Točivé usporiadanie trate plné veselých zmien smeru." },
-    "B&M Wing Coaster": { desc: "Veľká nová dráha vo výstavbe v Energylandii. Ponúkne typické vlaky B&M Wing so sedadlami po stranách trate, obrovské inverzie a prelety tesne popri prekážkach." }
+    "Rokan": { desc: "Najvyšší a najdlhší Wing Coaster od B&M na svete sa na jar 2027 otvorí ako srdce novej zóny Volana v Energylandii. Jazdci sedia po oboch stranách trate s voľne visiacimi nohami a 141 sekúnd sa rútia rýchlosťou až 115 km/h. Názov odkazuje na draka prebúdzajúceho sa po dlhom spánku." }
   }
 };
 
