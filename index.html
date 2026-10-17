@@ -839,7 +839,7 @@ html:not([lang="en"]) .hero h1{line-height:1.1}
 /* Adjust image 23 only on mobile */
 @media (max-width: 768px) {
     .hero img.hero-image-23 {
-        object-position: 80% center;
+        object-position: 100% center;
     }
 }
 </style>
@@ -3336,13 +3336,46 @@ const heroImages = [
     "hero_main26.jpg"
 ];
 
-const randomImage =
-    heroImages[Math.floor(Math.random() * heroImages.length)];
+// Images excluded on phones
+const mobileExcludedImages = [
+    "hero_main2.jpg",
+    "hero_main4.jpg",
+    "hero_main8.jpg",
+    "hero_main9.jpg",
+    "hero_main13.jpg",
+    "hero_main14.jpg",
+    "hero_main25.jpg"
+];
+
+// Image selection weights
+const imageWeights = {
+    "hero_main.jpg": 3,
+    "hero_main22.jpg": 5,
+    "hero_main17.jpg": 3,
+    "hero_main26.jpg": 3,
+    "hero_main12.jpg": 3,
+    "hero_main25.jpg": 3
+};
+
+const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+const availableImages = isMobile
+    ? heroImages.filter(img => !mobileExcludedImages.includes(img))
+    : heroImages;
+
+const weightedImages = availableImages.flatMap(img =>
+    Array(imageWeights[img] || 1).fill(img)
+);
+
+const randomImage = weightedImages[
+    Math.floor(Math.random() * weightedImages.length)
+];
 
 const heroImg = document.querySelector(".hero img");
 
 heroImg.src = randomImage;
 
+// Special crop for image 23 on phones
 if (randomImage === "hero_main23.jpg") {
     heroImg.classList.add("hero-image-23");
 }
