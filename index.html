@@ -842,6 +842,34 @@ html:not([lang="en"]) .hero h1{line-height:1.1}
         object-position: 100% center;
     }
 }
+
+/* ===== v12: Volana zone, shorter zone cards, stable modal close button, wider match button ===== */
+.modal-box{position:relative}
+.match-hero .view-btn{min-width:250px;padding:0 26px;white-space:nowrap}
+@media(min-width:761px){
+  .zone-card[data-zone]{height:285px}
+  .zone-card[data-zone=z8]{grid-column:span 12}
+}
+@media(min-width:1360px){
+  .split .zone-card[data-zone]{height:222px}
+  .split .zone-card[data-zone=z1],.split .zone-card[data-zone=z8]{height:272px}
+}
+
+/* ===== v13: unified close button, flush columns, no scroll jump on language switch ===== */
+html{overflow-anchor:none}
+.close{display:grid;place-items:center;padding:0;line-height:1;font-size:18px;cursor:pointer;z-index:20}
+.close i{display:block;line-height:1;pointer-events:none}
+.zone-card img{position:absolute;inset:0}
+@media(min-width:1360px){
+  main.split:first-of-type{align-items:stretch}
+  main.split:first-of-type>.col{display:flex;flex-direction:column}
+  #rides,#zones{flex:1 1 auto;display:flex;flex-direction:column}
+  #rides .db-shell{flex:1 1 auto;display:flex;flex-direction:column}
+  #rides .db-shell>div:last-child{margin-top:auto}
+  #zones .zone-grid{flex:1 1 auto;min-height:0;grid-template-rows:1.25fr repeat(3,1fr) 1.25fr}
+  .split .zone-card[data-zone]{height:auto;min-height:222px}
+  .split .zone-card[data-zone=z1],.split .zone-card[data-zone=z8]{height:auto;min-height:272px}
+}
 </style>
 </head>
 
@@ -1064,7 +1092,7 @@ html:not([lang="en"]) .hero h1{line-height:1.1}
   <div class="section-head reveal">
     <div>
       <div class="section-kicker" id="zonesKicker">Explore the park</div>
-      <h2 id="zonesTitle">Seven worlds.<br>One <span style="color:var(--blue)">park.</span></h2>
+      <h2 id="zonesTitle">Eight worlds.<br>One <span style="color:var(--blue)">park.</span></h2>
     </div>
     <p class="section-intro" id="zonesIntro">From medieval dragons to a submerged ancient city, Energylandia is built around radically different environments. Click a zone for its highlights.</p>
   </div>
@@ -1097,6 +1125,10 @@ html:not([lang="en"]) .hero h1{line-height:1.1}
 <article class="zone-card reveal" onclick="openZoneModal('z6')" data-zone="z6">
       <img src="little_kids_zone.jpg" alt="Little Kids Zone">
       <div class="zone-info"><span class="tag" id="z6Tag">Bajtkolandia</span><h3 id="z6Name">Little Kids</h3><p id="z6Desc">A colorful fairytale playground for younger guests.</p></div><span class="zone-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+    </article>
+<article class="zone-card reveal" onclick="openZoneModal('z8')" data-zone="z8">
+      <img src="volana.jpg" alt="Volana Zone">
+      <div class="zone-info"><span class="tag" id="z8Tag">Opening 2027</span><h3 id="z8Name">Volana</h3><p id="z8Desc">A brand-new zone opening spring 2027, built around the record-breaking Rokan Wing Coaster.</p></div><span class="zone-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
     </article>
                               </div>
 </section>
@@ -1422,7 +1454,7 @@ html:not([lang="en"]) .hero h1{line-height:1.1}
 
 <div class="modal" id="rideModal" role="dialog" aria-modal="true">
   <div class="modal-box">
-    <button class="close" onclick="closeModal()" aria-label="Close">&times;</button>
+    <button class="close" type="button" onclick="closeModal()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
     <div class="modal-hero"><img id="modalImg" src="" alt=""></div>
     <div class="modal-content">
       <span class="modal-kicker" id="modalKicker"></span>
@@ -1434,14 +1466,14 @@ html:not([lang="en"]) .hero h1{line-height:1.1}
         <div class="modal-stat"><span id="mStatL">Length</span><b id="modalLength">—</b></div>
         <div class="modal-stat"><span id="mStatO">Opened</span><b id="modalYear">—</b></div>
       </div>
-      <a id="modalPov" class="pov-link" href="#" target="_blank" rel="noopener">Watch POV <i class="fa-brands fa-youtube"></i></a>
+      <a id="modalPov" class="pov-link" href="#" target="_blank" rel="noopener"><span id="modalPovLabel">Watch POV</span> <i class="fa-brands fa-youtube"></i></a>
     </div>
   </div>
 </div>
 
 <div class="modal" id="zoneModal" role="dialog" aria-modal="true">
   <div class="modal-box">
-    <button class="close" onclick="closeZoneModal()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <button class="close" type="button" onclick="closeZoneModal()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
     <div class="modal-content" style="padding-top:38px;margin-top:0">
       <span class="modal-kicker" id="zoneModalKicker">Themed area</span>
       <h2 id="zoneTitle"></h2>
@@ -1482,6 +1514,10 @@ const coasters = [
   { name: "Rokan", rank: "?", year: "2027", type: "Extreme", mfg: "Bolliger & Mabillard", height: "62 m", heightNum: 62, speed: "115 km/h", speedNum: 115, length: "1215 m", lengthNum: 1215, image: "bm_wing.jpg", desc: "Tallest and longest B&M Wing Coaster in the world, opening spring 2027 as the centrepiece of Energylandia's new Volana zone. Riders sit on both sides of the track with legs dangling free for a 141-second flight at up to 115 km/h, named after a dragon awakening from long sleep." }
 ];
 
+const ROKAN_TRAILER = {
+  pl: "https://youtu.be/M_GAkMPdJrU?si=ZBIG3mztVVy6rCnd",
+  other: "https://youtu.be/DYJIAgWJqpA?si=9hxlkif2Yp8G_Lod"
+};
 const povLinks = {
   "Zadra": "https://youtu.be/Ivhq4v8ttYo?si=C49Jh95ngWWsfJBh",
   "Hyperion": "https://youtu.be/j6T-HY1GnNM?si=Y7tqyy0GNQPEB7Kn",
@@ -1500,7 +1536,8 @@ const zoneData = {
   'z4': { rides: ['Choco Chip Creek', 'Honey Harbour'] },
   'z5': { rides: ['Energuś', 'Boomerang'] },
   'z6': { rides: ['Frutti Loop Coaster', 'Mars', 'Circus Coaster', 'Happy Loops'] },
-  'z7': { rides: ['Big Shark', 'Tropical Splash', 'Aloha Beach'] }
+  'z7': { rides: ['Big Shark', 'Tropical Splash', 'Aloha Beach'] },
+  'z8': { rides: ['Rokan'] }
 };
 
 const $ = s => document.querySelector(s);
@@ -1609,8 +1646,13 @@ function openRideModal(name){
   $('#mStatS').textContent=ui.speed;
   $('#mStatL').textContent=ui.length;
   $('#mStatO').textContent=copyUi.opened;
-  const pov = povLinks[c.name];
+  const isTrailer = c.name === 'Rokan';
+  const pov = isTrailer
+    ? (document.documentElement.lang === 'pl' ? ROKAN_TRAILER.pl : ROKAN_TRAILER.other)
+    : povLinks[c.name];
   const povBtn = $('#modalPov');
+  const povLabel = $('#modalPovLabel');
+  if(povLabel) povLabel.textContent = tr(isTrailer ? 'Watch trailer' : 'Watch POV');
   if(pov && povBtn){
     povBtn.href = pov;
     povBtn.classList.add('show');
@@ -1910,7 +1952,7 @@ function applyLanguage(lang){
     html('#zonesTitle',t.zonesTitle);
     txt('#zonesIntro',t.zonesIntro);
     const zSet=zoneTranslations[lang]||zoneTranslations.en;
-    for(let i=1;i<=7;i++){
+    for(let i=1;i<=8;i++){
       const zInfo=zSet['z'+i]||zoneTranslations.en['z'+i];
       if(zInfo){
         txt('#z'+i+'Tag',zInfo.tag);
@@ -2016,7 +2058,7 @@ const translations={
     statHectares:'Hectares',
     statOpened:'Opened',
     zonesKicker:'Explore the park',
-    zonesTitle:'Seven worlds.<br>One <span style="color:var(--blue)">park.</span>',
+    zonesTitle:'Eight worlds.<br>One <span style="color:var(--blue)">park.</span>',
     zonesIntro:'From medieval dragons to a submerged ancient city, Energylandia is built around radically different environments. Click a zone for its highlights.',
     recordsKicker:'Numbers that matter',
     recordsTitle:'Park <span style="color:var(--red)">records.</span>',
@@ -2061,7 +2103,7 @@ const translations={
     statHectares:'Hektary',
     statOpened:'Otwarcie',
     zonesKicker:'Poznaj park',
-    zonesTitle:'Siedem światów.<br>Jeden <span style="color:var(--blue)">park.</span>',
+    zonesTitle:'Osiem światów.<br>Jeden <span style="color:var(--blue)">park.</span>',
     zonesIntro:'Od średniowiecznych smoków po zatopione starożytne miasto — Energylandia oferuje zupełnie różne środowiska. Kliknij strefę, aby poznać jej atrakcje.',
     recordsKicker:'Liczby, które mają znaczenie',
     recordsTitle:'Rekordy <span style="color:var(--red)">parku.</span>',
@@ -2106,7 +2148,7 @@ const translations={
     statHectares:'Hektar',
     statOpened:'Eröffnet',
     zonesKicker:'Den Park entdecken',
-    zonesTitle:'Sieben Welten.<br>Ein <span style="color:var(--blue)">Park.</span>',
+    zonesTitle:'Acht Welten.<br>Ein <span style="color:var(--blue)">Park.</span>',
     zonesIntro:'Von mittelalterlichen Drachen bis zu einer versunkenen antiken Stadt bietet Energylandia völlig unterschiedliche Welten. Klicke auf einen Bereich für die Highlights.',
     recordsKicker:'Zahlen, die zählen',
     recordsTitle:'Park-<span style="color:var(--red)">rekorde.</span>',
@@ -2151,7 +2193,7 @@ const translations={
     statHectares:'Hektarů',
     statOpened:'Otevřeno',
     zonesKicker:'Prozkoumej park',
-    zonesTitle:'Sedm světů.<br>Jeden <span style="color:var(--blue)">park.</span>',
+    zonesTitle:'Osm světů.<br>Jeden <span style="color:var(--blue)">park.</span>',
     zonesIntro:'Od středověkých draků po potopené starověké město — Energylandia nabízí zcela odlišná prostředí. Klikni na zónu a prohlédni si její zajímavosti.',
     recordsKicker:'Čísla, na kterých záleží',
     recordsTitle:'Rekordy <span style="color:var(--red)">parku.</span>',
@@ -2196,7 +2238,7 @@ const translations={
     statHectares:'Hektárov',
     statOpened:'Otvorené',
     zonesKicker:'Preskúmaj park',
-    zonesTitle:'Sedem svetov.<br>Jeden <span style="color:var(--blue)">park.</span>',
+    zonesTitle:'Osem svetov.<br>Jeden <span style="color:var(--blue)">park.</span>',
     zonesIntro:'Od stredovekých drakov po potopené starobylé mesto — Energylandia ponúka úplne odlišné prostredia. Klikni na zónu a pozri si jej atrakcie.',
     recordsKicker:'Čísla, na ktorých záleží',
     recordsTitle:'Parkové <span style="color:var(--red)">rekordy.</span>',
@@ -2287,7 +2329,8 @@ const zoneTranslations = {
     z4: { tag: "Candy themed", title: "Sweet Valley", desc: "Bright colors, family rides and Choco Chip Creek.", modalDesc: "A colorful candy wonderland designed for families and kids.", exp: "Features smooth family coasters themed around treats and chocolate." },
     z5: { tag: "All ages", title: "Family Zone", desc: "Gentler experiences for the whole crew.", modalDesc: "Fun and accessible rides suitable for parents and children.", exp: "A balanced mix of classic family coasters and gentle thrill rides." },
     z6: { tag: "Zone for the smallest children", title: "Little Kids zone", desc: "A colorful fairytale playground for younger guests.", modalDesc: "Dedicated zone for toddlers and young children.", exp: "Gentle kiddie coasters and colorful interactive attractions." },
-    z7: { tag: "Tropical oasis", title: "Water Park", desc: "Slides, splash zones, pools and places to slow down.", modalDesc: "Massive outdoor water park area with pools and slides.", exp: "Dozens of water slides, wave pools, and relaxation areas." }
+    z7: { tag: "Tropical oasis", title: "Water Park", desc: "Slides, splash zones, pools and places to slow down.", modalDesc: "Massive outdoor water park area with pools and slides.", exp: "Dozens of water slides, wave pools, and relaxation areas." },
+    z8: { tag: "Opening 2027", title: "Volana", desc: "A brand-new zone opening spring 2027, built around the record-breaking Rokan Wing Coaster.", modalDesc: "Energylandia's newest zone, opening in spring 2027 and themed around a dragon awakening from long sleep.", exp: "Home to Rokan, the tallest and longest B&M Wing Coaster in the world: 62 m high, up to 115 km/h, 1 215 m of track and a 141-second flight with your legs dangling free." }
   },
   pl: {
     z1: { tag: "Adrenalina 5/5", title: "Strefa Ekstremalna", desc: "Dom Hyperiona, Speeda i najbardziej intensywnych atrakcji.", modalDesc: "Strefa stworzona dla poszukiwaczy mocnych wrażeń.", exp: "Niezapomniane przeciążenia, potężne spadki i wielkie prędkości." },
@@ -2296,7 +2339,8 @@ const zoneTranslations = {
     z4: { tag: "Słodki świat", title: "Sweet Valley", desc: "Jaskrawe kolory, atrakcje rodzinne i Choco Chip Creek.", modalDesc: "Kolorowa kraina słodyczy stworzona dla rodzin.", exp: "Płynne kolejki rodzinne w klimacie łakoci." },
     z5: { tag: "Dla każdego", title: "Strefa Rodzinna", desc: "Łagodniejsze wrażenia dla całej rodziny.", modalDesc: "Radość i dostępność dla rodziców z dziećmi.", exp: "Zbalansowany miks klasycznych i rodzinnych atrakcji." },
     z6: { tag: "Dla Najmłodszych", title: "Bajkolandia", desc: "Baśniowy plac zabaw Bajkolandia gości.", modalDesc: "Strefa dedykowana maluchom.", exp: "Łagodne kolejki dziecięce i kolorowe atrakcje." },
-    z7: { tag: "Tropikalna oaza", title: "Park Wodny", desc: "Zjeżdżalnie, strefy basenowe i relaks.", modalDesc: "Potężna strefa wodna z basenami i zjeżdżalniami.", exp: "Dziesiątki zjeżdżalni, basen z falami i strefy wypoczynku." }
+    z7: { tag: "Tropikalna oaza", title: "Park Wodny", desc: "Zjeżdżalnie, strefy basenowe i relaks.", modalDesc: "Potężna strefa wodna z basenami i zjeżdżalniami.", exp: "Dziesiątki zjeżdżalni, basen z falami i strefy wypoczynku." },
+    z8: { tag: "Otwarcie 2027", title: "Volana", desc: "Zupełnie nowa strefa otwierana wiosną 2027, zbudowana wokół rekordowego wing coastera Rokan.", modalDesc: "Najnowsza strefa Energylandii, która otworzy się wiosną 2027 i nawiązuje do smoka budzącego się po długim śnie.", exp: "Dom Rokana, najwyższego i najdłuższego wing coastera B&M na świecie: 62 m wysokości, do 115 km/h, 1 215 m toru i 141 sekund lotu z swobodnie zwisającymi nogami." }
   },
   de: {
     z1: { tag: "Adrenalin 5/5", title: "Extrem-Bereich", desc: "Zuhause von Hyperion, Speed und extremen Rides.", modalDesc: "Für alle, die den absoluten Nervenkitzel suchen.", exp: "Hohe G-Kräfte, steile Drops und Höchstgeschwindigkeiten." },
@@ -2305,7 +2349,8 @@ const zoneTranslations = {
     z4: { tag: "Süßigkeiten-Thema", title: "Sweet Valley", desc: "Bunte Farben und Choco Chip Creek.", modalDesc: "Ein buntes Wunderland für die ganze Familie.", exp: "Sanfte Familienachterbahnen im Schokoladen-Design." },
     z5: { tag: "Für alle Altersgruppen", title: "Familienbereich", desc: "Sanftere Erlebnisse für die ganze Familie.", modalDesc: "Zugänglicher Spaß für Groß und Klein.", exp: "Ausgewogene Mischung aus Familienbahnen." },
     z6: { tag: "Bajtkolandia", title: "Kinderwelt", desc: "Ein märchenhafter Spielplatz für die Kleinsten.", modalDesc: "Spezieller Bereich für Kleinkinder.", exp: "Sanfte Kinderachterbahnen und bunte Karussells." },
-    z7: { tag: "Tropische Oase", title: "Wasserpark", desc: "Rutschen, Pools und Erholung.", modalDesc: "Riesiger Outdoor-Wasserpark.", exp: "Zahlreiche Wasserrutschen und Wellenbecken." }
+    z7: { tag: "Tropische Oase", title: "Wasserpark", desc: "Rutschen, Pools und Erholung.", modalDesc: "Riesiger Outdoor-Wasserpark.", exp: "Zahlreiche Wasserrutschen und Wellenbecken." },
+    z8: { tag: "Eröffnung 2027", title: "Volana", desc: "Eine brandneue Zone, die im Frühjahr 2027 eröffnet und um den rekordbrechenden Wing Coaster Rokan herum gebaut ist.", modalDesc: "Die neueste Zone von Energylandia eröffnet im Frühjahr 2027 und ist einem Drachen gewidmet, der nach langem Schlaf erwacht.", exp: "Heimat von Rokan, dem höchsten und längsten B&M Wing Coaster der Welt: 62 m hoch, bis zu 115 km/h, 1 215 m Strecke und ein 141-Sekunden-Flug mit frei baumelnden Beinen." }
   },
   cs: {
     z1: { tag: "Adrenalin 5/5", title: "Extrémní zóna", desc: "Domov Hyperionu, Speedu a nejintenzivnějších atrakcí.", modalDesc: "Zóna stvořená pro milovníky adrenalinu.", exp: "Vysoké přetížení, masivní drops a vysoké rychlosti." },
@@ -2314,7 +2359,8 @@ const zoneTranslations = {
     z4: { tag: "Sladký svět", title: "Sweet Valley", desc: "Pestré barvy, rodinné jízdy a Choco Chip Creek.", modalDesc: "Pestrobarevný svět sladkostí pro rodiny.", exp: "Plynulé rodinné dráhy v tématu sladkostí." },
     z5: { tag: "Pro všechny věkové kategorie", title: "Rodinná zóna", desc: "Jemnější zážitky pro celou rodinu.", modalDesc: "Zábava vhodná pro rodiče s dětmi.", exp: "Vyvážený mix klasických rodinných drah." },
     z6: { tag: "Zóna pro nejmenší děti", title: "Pro Nejmladší", desc: "Pohádkové hřiště pro nejmenší návštěvníky.", modalDesc: "Zóna vyhrazená malým dětem.", exp: "Jemné dětské dráhy a barevné atrakce." },
-    z7: { tag: "Tropická oáza", title: "Aquapark", desc: "Tobogány, bazény a relaxace.", modalDesc: "Velký vodní park s bazény a tobogány.", exp: "Desítky tobogánů, bazén s vlnobitím a odpočinkové zóny." }
+    z7: { tag: "Tropická oáza", title: "Aquapark", desc: "Tobogány, bazény a relaxace.", modalDesc: "Velký vodní park s bazény a tobogány.", exp: "Desítky tobogánů, bazén s vlnobitím a odpočinkové zóny." },
+    z8: { tag: "Otevření 2027", title: "Volana", desc: "Zcela nová zóna, která se otevře na jaře 2027 a vznikla kolem rekordního Wing Coasteru Rokan.", modalDesc: "Nejnovější zóna Energylandie se otevře na jaře 2027 a je laděná do příběhu draka probouzejícího se po dlouhém spánku.", exp: "Domov Rokanu, nejvyššího a nejdelšího Wing Coasteru od B&M na světě: výška 62 m, rychlost až 115 km/h, 1 215 m trati a 141 sekund letu s volně visícíma nohama." }
   },
   sk: {
     z1: { tag: "Adrenalín 5/5", title: "Extrémna zóna", desc: "Domov Hyperionu, Speedu a najintenzívnejších atrakcií.", modalDesc: "Zóna vytvorená pre milovníkov adrenalínu.", exp: "Vysoké preťaženie, masívne spadnutia a vysoké rýchlosti." },
@@ -2323,7 +2369,8 @@ const zoneTranslations = {
     z4: { tag: "Sladký svet", title: "Sweet Valley", desc: "Pestré farby, rodinné jazdy a Choco Chip Creek.", modalDesc: "Pestrofarebný svet sladkostí pre rodiny.", exp: "Plynulé rodinné dráhy v téme sladkostí." },
     z5: { tag: "Pre všetky vekové kategórie", title: "Rodinná zóna", desc: "Jemnejšie zážitky pre celú rodinu.", modalDesc: "Zábava vhodná pre rodičov s deťmi.", exp: "Vyvážený mix klasických rodinných dráh." },
     z6: { tag: "Bajtkolandia", title: "Pre najmenších", desc: "Rozprávkové ihrisko pre najmenších návštevníkov.", modalDesc: "Zóna vyhradená malým deťom.", exp: "Jemné detské dráhy a farebné atrakcie." },
-    z7: { tag: "Tropická oáza", title: "Aquapark", desc: "Tobogany, bazény a relaxácia.", modalDesc: "Veľký vodný park s bazénmi a toboganmi.", exp: "Desiatky toboganov, bazén s vlnobitím a odpočinkové zóny." }
+    z7: { tag: "Tropická oáza", title: "Aquapark", desc: "Tobogany, bazény a relaxácia.", modalDesc: "Veľký vodný park s bazénmi a toboganmi.", exp: "Desiatky toboganov, bazén s vlnobitím a odpočinkové zóny." },
+    z8: { tag: "Otvorenie 2027", title: "Volana", desc: "Celkom nová zóna, ktorá sa otvorí na jar 2027 a vznikla okolo rekordného Wing Coastera Rokan.", modalDesc: "Najnovšia zóna Energylandie sa otvorí na jar 2027 a je ladená do príbehu draka prebúdzajúceho sa po dlhom spánku.", exp: "Domov Rokanu, najvyššieho a najdlhšieho Wing Coastera od B&M na svete: výška 62 m, rýchlosť až 115 km/h, 1 215 m trate a 141 sekúnd letu s voľne visiacimi nohami." }
   }
 };
 
@@ -2660,7 +2707,8 @@ const DYN={
  'Family friendly':['Rodzinna','Familienfreundlich','Rodinná','Rodinná'],
  'MATCH':['DOPASOWANIA','TREFFER','SHODA','ZHODA'],
  'match':['dopasowania','Treffer','shoda','zhoda'],
- 'Watch POV':['Zobacz POV','POV ansehen','Zobrazit POV','Zobraziť POV']
+ 'Watch POV':['Zobacz POV','POV ansehen','Zobrazit POV','Zobraziť POV'],
+ 'Watch trailer':['Zobacz zwiastun','Trailer ansehen','Zobrazit trailer','Zobraziť trailer']
 };
 const getLangSafe=()=>document.documentElement.lang||'en';
 function tr(k){const l=getLangSafe();return l==='en'?k:((DYN[k]||[])[LANG_IDX[l]]||k);}
@@ -2677,7 +2725,7 @@ function dayLabel(code){
 const FX={
   eur:{r:.235,sym:'€',pos:'after',step:1},
   czk:{r:5.7, sym:'CZK',pos:'after',step:10},
-  eurEn:{r:.235,sym:'€',pos:'before',step:1},
+  eurEn:{r:.235,sym:'€',pos:'after',step:1},
   usd:{r:.27, sym:'$',pos:'before',step:1}
 };
 function currencyFor(l){
