@@ -951,17 +951,9 @@ button.tl-future .tl-pill:hover,.tl-future button.tl-pill:hover{background:var(-
 /* ===== v15: mobile experience ===== */
 .m-chips,.m-bar,.to-top,.m-more{display:none}
 @media(max-width:760px){
-  body{padding-bottom:88px}
+  body{padding-bottom:94px}
   .section{scroll-margin-top:124px}
 
-  /* swipe carousels */
-  .rides-grid,.zone-grid,.records{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;padding:2px 2px 10px;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-  .rides-grid::-webkit-scrollbar,.zone-grid::-webkit-scrollbar,.records::-webkit-scrollbar,.m-chips::-webkit-scrollbar{display:none}
-  .rides-grid>*{flex:0 0 84%;min-width:0;scroll-snap-align:start}
-  .zone-grid>.zone-card[data-zone]{flex:0 0 80%;height:300px;scroll-snap-align:start;grid-column:auto}
-  .records>.record-card{flex:0 0 76%;scroll-snap-align:start;min-height:0}
-  .rides-grid .reveal,.zone-grid .reveal,.records .reveal{opacity:1!important;transform:none!important}
-  #recordsIntro{display:none}
   .zone-uc .zone-card[data-zone=z8]{height:280px}
 
   /* collapsible sections */
@@ -980,15 +972,15 @@ button.tl-future .tl-pill:hover,.tl-future button.tl-pill:hover{background:var(-
   .m-chips a.active{background:var(--blue);border-color:var(--blue);color:#001018}
 
   /* bottom quick bar */
-  .m-bar{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:8px;right:8px;bottom:calc(8px + env(safe-area-inset-bottom,0px));z-index:480;height:64px;border-radius:20px;background:rgba(8,12,20,.92);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.12);box-shadow:0 14px 40px rgba(0,0,0,.55)}
-  .m-bar a,.m-bar button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:0;min-height:48px;padding:0 2px;border:0;background:none;color:#8fa0b8;font:800 9.5px Inter,sans-serif;letter-spacing:.5px;text-transform:uppercase}
-  .m-bar span{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .m-bar{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:8px;right:8px;bottom:calc(8px + env(safe-area-inset-bottom,0px));z-index:480;height:70px;border-radius:20px;background:rgba(8,12,20,.92);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.12);box-shadow:0 14px 40px rgba(0,0,0,.55)}
+  .m-bar a,.m-bar button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:0;min-height:48px;padding:0 3px;border:0;background:none;color:#8fa0b8;font:800 10px Inter,sans-serif;letter-spacing:.5px;text-transform:uppercase}
+  .m-bar span{max-width:100%;white-space:normal;text-align:center;line-height:1.15;overflow-wrap:anywhere}
   .m-bar i{font-size:18px}
   .m-bar a.active{color:var(--blue)}
   .m-bar a.active i{filter:drop-shadow(0 0 8px rgba(25,211,255,.7))}
 
   /* back to top */
-  .to-top{display:grid;place-items:center;position:fixed;right:14px;bottom:calc(86px + env(safe-area-inset-bottom,0px));width:48px;height:48px;border-radius:15px;border:1px solid rgba(255,255,255,.18);background:rgba(8,12,20,.92);backdrop-filter:blur(12px);color:#fff;font-size:17px;z-index:470;opacity:0;transform:translateY(12px);pointer-events:none;transition:.25s}
+  .to-top{display:grid;place-items:center;position:fixed;right:14px;bottom:calc(92px + env(safe-area-inset-bottom,0px));width:48px;height:48px;border-radius:15px;border:1px solid rgba(255,255,255,.18);background:rgba(8,12,20,.92);backdrop-filter:blur(12px);color:#fff;font-size:17px;z-index:470;opacity:0;transform:translateY(12px);pointer-events:none;transition:.25s}
   .to-top.show{opacity:1;transform:none;pointer-events:auto}
 
   /* bigger tap targets */
@@ -1730,7 +1722,7 @@ button.tl-future .tl-pill:hover,.tl-future button.tl-pill:hover{background:var(-
 <!-- Mobile helpers -->
 <div class="m-chips" id="mChips" aria-label="Sections"></div>
 <nav class="m-bar" id="mBar" aria-label="Quick navigation">
-  <a href="#rides" data-bar="rides"><i class="fa-solid fa-rollercoaster"></i><span></span></a>
+  <a href="#rides" data-bar="rides"><i class="fa-solid fa-gauge-high"></i><span></span></a>
   <a href="#zones" data-bar="zones"><i class="fa-solid fa-compass"></i><span></span></a>
   <a href="#find-coaster" data-bar="find-coaster"><i class="fa-solid fa-magnifying-glass"></i><span></span></a>
   <a href="#map" data-bar="map"><i class="fa-solid fa-map"></i><span></span></a>
