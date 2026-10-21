@@ -1171,6 +1171,33 @@ body.gs-open{overflow:hidden}
   .m-bar a{font-size:11px;gap:6px}
   .m-bar i{font-size:19px}
 }
+
+/* ===== v21: all zones stretch together; redesigned ride stats ===== */
+@media(min-width:1360px){
+  /* Extreme + Volana stay taller by default; extra height (after "Load more") is shared by every zone row */
+  #zones .zone-grid{flex:4 1 auto;min-height:0;grid-template-rows:none;grid-auto-rows:auto;align-content:stretch}
+  .split .zone-card[data-zone]{height:auto;min-height:180px}
+  .split .zone-card[data-zone=z1]{height:auto;min-height:260px}
+  .zone-uc{flex:1 1 auto;display:flex;flex-direction:column}
+  .split .zone-uc .zone-card[data-zone=z8]{flex:1 1 auto;height:auto;min-height:260px}
+}
+/* Ride stats: one compact panel, value on top, label below. Switches to rows when the card is narrow. */
+.ride-body{container-type:inline-size}
+.ride .ride-stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:18px;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:#080d15;overflow:hidden}
+.ride .ride-stats .ride-stat{display:flex;flex-direction:column;gap:4px;min-width:0;padding:11px 4px 10px;border:0;border-radius:0;background:none;text-align:center}
+.ride .ride-stats .ride-stat+.ride-stat{border-left:1px solid rgba(255,255,255,.07)}
+.ride .ride-stats .ride-stat b{order:-1;margin:0;font:600 18px/1.1 Oswald,sans-serif;letter-spacing:.2px;white-space:nowrap;color:#eef3f8}
+.ride .ride-stats .ride-stat b em{margin-left:3px;font:700 11px Inter,sans-serif;font-style:normal;color:#8a99ae;letter-spacing:0}
+.ride .ride-stats .ride-stat span{font-size:10.5px;letter-spacing:.9px;color:#7d8aa0;white-space:nowrap}
+@container (max-width:300px){
+  .ride .ride-stats .ride-stat b{font-size:16px}
+}
+@container (max-width:239px){
+  .ride .ride-stats{grid-template-columns:1fr}
+  .ride .ride-stats .ride-stat{flex-direction:row;align-items:baseline;justify-content:space-between;gap:12px;padding:10px 14px;text-align:left}
+  .ride .ride-stats .ride-stat+.ride-stat{border-left:0;border-top:1px solid rgba(255,255,255,.07)}
+  .ride .ride-stats .ride-stat b{order:0;font-size:17px}
+}
 </style>
 </head>
 
@@ -1351,9 +1378,9 @@ body.gs-open{overflow:hidden}
             <h3>Rokan</h3>
             <p class="ride-desc" id="ucDesc">Tallest and longest B&M Wing Coaster in the world, opening spring 2027 as the centrepiece of Energylandia's new Volana zone. Riders sit on both sides of the track with legs dangling free for a 141-second flight at up to 115 km/h, named after a dragon awakening from long sleep.</p>
             <div class="ride-stats">
-              <div class="ride-stat"><span id="ucH">Height</span><b id="ucHVal">62 m</b></div>
-              <div class="ride-stat"><span id="ucS">Speed</span><b id="ucSVal">115 km/h</b></div>
-              <div class="ride-stat"><span id="ucL">Length</span><b id="ucLVal">1215 m</b></div>
+              <div class="ride-stat"><span id="ucH">Height</span><b id="ucHVal">62<em>m</em></b></div>
+              <div class="ride-stat"><span id="ucS">Speed</span><b id="ucSVal">115<em>km/h</em></b></div>
+              <div class="ride-stat"><span id="ucL">Length</span><b id="ucLVal">1215<em>m</em></b></div>
             </div>
             <button class="view-btn" id="ucBtn">View Profile <i class="fa-solid fa-arrow-right"></i></button>
           </div>
@@ -2056,6 +2083,7 @@ function rideCopy(c){
   return {desc:loc.desc||c.desc, type:typeLabel(c.type)};
 }
 
+const statVal=v=>{const t=String(convUnits(v));const m=t.match(/^(.*?)\s*(km\/h|mph|m|ft)$/);return m?`${m[1]}<em>${m[2]}</em>`:t;};
 function renderRides(){
   const ui=translations[document.documentElement.lang]||translations.en;
   const copyUi=rideUiTranslations[document.documentElement.lang]||rideUiTranslations.en;
@@ -2102,9 +2130,9 @@ function renderRides(){
         <h3>${c.name}</h3>
         <p class="ride-desc">${rideCopy(c).desc}</p>
         <div class="ride-stats">
-          <div class="ride-stat"><span>${ui.height}</span><b>${convUnits(c.height)}</b></div>
-          <div class="ride-stat"><span>${ui.speed}</span><b>${convUnits(c.speed)}</b></div>
-          <div class="ride-stat"><span>${ui.length}</span><b>${convUnits(c.length)}</b></div>
+          <div class="ride-stat"><span>${ui.height}</span><b>${statVal(c.height)}</b></div>
+          <div class="ride-stat"><span>${ui.speed}</span><b>${statVal(c.speed)}</b></div>
+          <div class="ride-stat"><span>${ui.length}</span><b>${statVal(c.length)}</b></div>
         </div>
         <button class="view-btn">${copyUi.profile} <i class="fa-solid fa-arrow-right"></i></button>
       </div>
@@ -2361,9 +2389,9 @@ function applyUnits(){
   // Under construction card
   const bm = coasters.find(c => c.name === 'Rokan');
   if(bm){
-    $('#ucHVal').textContent = convUnits(bm.height);
-    $('#ucSVal').textContent = convUnits(bm.speed);
-    $('#ucLVal').textContent = convUnits(bm.length);
+    $('#ucHVal').innerHTML = statVal(bm.height);
+    $('#ucSVal').innerHTML = statVal(bm.speed);
+    $('#ucLVal').innerHTML = statVal(bm.length);
   }
 
   updateUnitMenuText();
