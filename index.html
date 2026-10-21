@@ -993,6 +993,172 @@ button.tl-future .tl-pill:hover,.tl-future button.tl-pill:hover{background:var(-
   .choice-grid.three .choice-pill span{min-height:44px}
   .tl-pill{min-height:36px}
 }
+
+/* ===== v16: profiles, manufacturer filter, credits, search, construction watch ===== */
+.mfg-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.mfg-label{font-size:11px;font-weight:900;letter-spacing:1.6px;text-transform:uppercase;color:#66748a;margin-right:4px}
+.mpill{height:38px;padding:0 13px;border-radius:11px;border:1px solid var(--line);background:rgba(255,255,255,.035);color:#aab5c6;font:900 11px Inter,sans-serif;letter-spacing:.7px;text-transform:uppercase;transition:.2s;display:inline-flex;align-items:center;gap:7px;cursor:pointer}
+.mpill small{opacity:.6;font-size:10px;font-weight:800}
+.mpill:hover,.mpill.active{background:var(--blue);color:#021018;border-color:var(--blue)}
+.credit-bar{margin-top:14px;padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.03)}
+.credit-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.credit-title{font-size:12px;letter-spacing:1.4px;text-transform:uppercase;color:#cbd6e8;font-weight:900}
+.credit-title i{color:#34d399;margin-right:4px}
+.credit-count{font:700 22px Oswald,sans-serif;letter-spacing:.5px}
+.credit-track{height:8px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden}
+.credit-track i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#34d399,var(--blue));transition:width .6s cubic-bezier(.2,.7,.2,1)}
+.credit-filters{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.credit-btn{position:absolute;right:12px;bottom:12px;z-index:3;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,255,255,.28);background:rgba(5,7,13,.72);backdrop-filter:blur(8px);color:rgba(255,255,255,.55);font-size:16px;cursor:pointer;transition:.25s}
+.credit-btn:hover{border-color:#34d399;color:#34d399}
+.credit-btn.on{background:#34d399;border-color:#34d399;color:#04140d;box-shadow:0 0 0 4px rgba(52,211,153,.18)}
+.ride-image{position:relative}
+
+/* profile */
+.m-facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px;margin-top:14px}
+.m-fact{padding:12px 14px;border-radius:12px;background:#070c14;border:1px solid var(--line)}
+.m-fact span{display:block;color:#66748a;font-size:10.5px;text-transform:uppercase;letter-spacing:1px;font-weight:800}
+.m-fact b{display:block;font-size:13.5px;margin-top:4px;line-height:1.35;color:#e8eef8}
+.m-block{margin-top:18px}
+.m-block h4{font-size:11px;letter-spacing:1.6px;text-transform:uppercase;color:#66748a;margin:0 0 9px;font-weight:900}
+.m-ranks,.m-similar{display:flex;flex-wrap:wrap;gap:8px}
+.m-rank{padding:9px 14px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.03);font-size:12px;color:#aab5c6}
+.m-rank b{font:700 18px Oswald,sans-serif;color:var(--blue);margin-left:6px}
+.m-rank i{font-style:normal;opacity:.55;font-size:11px}
+.m-sim{padding:9px 14px;border-radius:12px;border:1px solid rgba(25,211,255,.25);background:rgba(25,211,255,.06);color:#bfefff;font:800 12px Inter,sans-serif;cursor:pointer;transition:.2s}
+.m-sim:hover{background:var(--blue);color:#001018;border-color:var(--blue)}
+.credit-modal-btn{display:inline-flex;align-items:center;gap:9px;margin:20px 10px 0 0;height:46px;padding:0 20px;border-radius:13px;border:1px solid rgba(52,211,153,.45);background:rgba(52,211,153,.08);color:#7ff0c3;font:900 12px Inter,sans-serif;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:.2s;vertical-align:top}
+.credit-modal-btn.on{background:#34d399;color:#04140d;border-color:#34d399}
+.credit-modal-btn[hidden]{display:none}
+
+/* global search */
+.gs{position:fixed;inset:0;z-index:2500;display:grid;justify-items:center;align-items:start;padding:min(14vh,110px) 14px 14px}
+.gs[hidden]{display:none}
+.gs-back{position:absolute;inset:0;background:rgba(2,4,9,.72);backdrop-filter:blur(8px)}
+.gs-box{position:relative;width:min(640px,100%);max-height:min(70vh,640px);display:flex;flex-direction:column;border-radius:22px;border:1px solid rgba(255,255,255,.14);background:#0a111c;box-shadow:0 40px 120px rgba(0,0,0,.7);overflow:hidden}
+.gs-input{display:flex;align-items:center;gap:12px;padding:0 14px 0 20px;height:64px;border-bottom:1px solid var(--line)}
+.gs-input>i{color:var(--blue)}
+.gs-input input{flex:1;height:100%;border:0;outline:0;background:none;color:#fff;font:600 16px Inter,sans-serif;min-width:0}
+.gs-input button{width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:#fff;cursor:pointer}
+.gs-results{overflow:auto;padding:8px}
+.gs-group{padding:12px 12px 6px;font-size:10.5px;letter-spacing:1.6px;text-transform:uppercase;color:#66748a;font-weight:900}
+.gs-item{display:flex;align-items:center;gap:12px;width:100%;padding:10px 12px;border-radius:13px;border:0;background:none;color:#fff;text-align:left;cursor:pointer;min-height:56px}
+.gs-item:hover,.gs-item.sel{background:rgba(25,211,255,.1)}
+.gs-item img{width:52px;height:40px;object-fit:cover;border-radius:9px;background:#121c2e;flex:0 0 auto}
+.gs-item .gs-ico{width:52px;height:40px;border-radius:9px;display:grid;place-items:center;background:#121c2e;color:var(--blue);flex:0 0 auto}
+.gs-item b{display:block;font-size:14.5px}
+.gs-item small{display:block;color:#7f8da3;font-size:11.5px;margin-top:2px}
+.gs-empty{padding:30px;text-align:center;color:#7f8da3}
+.gs-foot{padding:9px 16px;border-top:1px solid var(--line);font-size:11px;color:#66748a;text-align:right}
+body.gs-open{overflow:hidden}
+
+/* construction watch */
+.con-panel{margin-top:18px;padding:18px;border-radius:20px;border:1px dashed rgba(255,200,87,.4);background:linear-gradient(145deg,rgba(255,200,87,.05),rgba(255,255,255,.02))}
+.con-title{font-size:12px;letter-spacing:1.6px;text-transform:uppercase;color:var(--yellow);font-weight:900;margin-bottom:14px}
+.con-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
+.con-photo{position:relative;margin:0;border-radius:16px;overflow:hidden;min-height:240px;background:radial-gradient(circle at 30% 25%,rgba(255,200,87,.14),transparent 60%),#0d1420;border:1px solid var(--line);display:flex;flex-direction:column;justify-content:flex-end}
+.con-ph{position:absolute;inset:0;display:grid;place-items:center;font-size:40px;color:rgba(255,255,255,.07)}
+.con-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.con-photo figcaption{position:relative;z-index:2;padding:30px 14px 12px;font-size:11px;color:#dbe4f0;background:linear-gradient(transparent,rgba(5,7,13,.9))}
+.con-photo figcaption b{color:var(--yellow)}
+.con-info{display:flex;flex-direction:column;gap:14px;min-width:0}
+.con-open span{display:block;font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:#7f8da3;font-weight:800}
+.con-open b{display:block;font:700 34px Oswald,sans-serif;letter-spacing:1px;color:var(--yellow);margin-top:2px}
+.con-count{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.con-count>div{padding:11px 4px;border-radius:12px;background:#070c14;border:1px solid var(--line);text-align:center}
+.con-count b{display:block;font:700 28px Oswald,sans-serif;letter-spacing:1px;font-variant-numeric:tabular-nums}
+.con-count span{display:block;font-size:9.5px;letter-spacing:1.2px;text-transform:uppercase;color:#7f8da3;margin-top:2px;font-weight:800}
+.con-open-done{font:700 30px Oswald,sans-serif;color:#34d399;text-transform:uppercase}
+.con-open-done[hidden]{display:none}
+.con-list{list-style:none;margin:0;padding:0 0 0 16px;border-left:2px solid rgba(255,200,87,.25);display:flex;flex-direction:column;gap:12px}
+.con-list li{position:relative;font-size:12.5px;line-height:1.55;color:#9aa7ba}
+.con-list li::before{content:"";position:absolute;left:-22px;top:5px;width:10px;height:10px;border-radius:50%;background:#0b111b;border:2px solid var(--yellow)}
+.con-list li b{display:block;font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--yellow);margin-bottom:2px}
+@container (max-width:560px){.x{}}
+@media(max-width:760px){
+  .con-grid{grid-template-columns:1fr}
+  .con-photo{min-height:210px}
+  .mpill{height:44px}
+  .credit-btn{width:46px;height:46px}
+}
+@media(max-width:1100px){.con-grid{grid-template-columns:1fr}}
+
+/* ===== v17 ===== */
+.ride-stat span{font-size:10.5px;letter-spacing:.9px}
+.ride-stat b{font-size:17px;font-weight:800;margin-top:4px;line-height:1.2}
+.split .ride-stat b{font-size:16px}
+.mfg-row{padding:14px 18px 4px;margin-top:0}
+.db-meta{padding:12px 18px 18px}
+.cr-shell{padding:26px;border-radius:30px;border:1px solid var(--line);background:rgba(10,15,24,.72);box-shadow:var(--shadow)}
+.cr-top{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-bottom:22px}
+.cr-count{font:700 56px Oswald,sans-serif;line-height:1;white-space:nowrap}
+.cr-count b:first-child{color:var(--blue)}
+.cr-count span{font-size:36px;color:#8795ab;margin:0 4px}
+.cr-count b#crTotal{color:#8795ab}
+.cr-bar{flex:1 1 220px;height:12px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden}
+.cr-bar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--blue),#34d399);transition:width .6s cubic-bezier(.2,.7,.2,1)}
+.cr-actions{display:flex;gap:10px;flex-wrap:wrap}
+.cr-btn{height:52px;padding:0 22px;border-radius:14px;border:1px solid rgba(25,211,255,.3);background:rgba(25,211,255,.08);color:#bff0ff;font:900 12px Inter,sans-serif;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:.2s}
+.cr-btn:hover{background:var(--blue);color:#001018;border-color:var(--blue)}
+.cr-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.cr-item{display:flex;align-items:center;gap:14px;padding:12px 16px 12px 12px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.025);color:#fff;text-align:left;cursor:pointer;min-height:70px;transition:.25s}
+.cr-item img{width:54px;height:54px;border-radius:12px;object-fit:cover;filter:grayscale(1) brightness(.7);transition:.3s;flex:0 0 auto;background:#121c2e}
+.cr-name{flex:1;min-width:0;font:800 14px Inter,sans-serif;overflow:hidden;text-overflow:ellipsis}
+.cr-check{width:32px;height:32px;border-radius:50%;border:2px solid #36425a;display:grid;place-items:center;flex:0 0 auto;font-size:14px;color:#04140d;transition:.25s}
+.cr-item:hover{border-color:rgba(25,211,255,.35)}
+.cr-item.on{border-color:rgba(52,211,153,.5);background:rgba(52,211,153,.08)}
+.cr-item.on img{filter:none}
+.cr-item.on .cr-check{background:#34d399;border-color:#34d399}
+.cr-item.locked .cr-check{border-style:dashed;color:#66748a;font-size:12px}
+.cr-item.shake{animation:crShake .5s}
+@keyframes crShake{0%,100%{transform:none}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-6px)}80%{transform:translateX(6px)}}
+.cr-liar{position:fixed;inset:0;display:grid;place-items:center;pointer-events:none;z-index:3000;font:700 clamp(80px,24vw,240px) Oswald,sans-serif;letter-spacing:4px;color:#ff3b5c;text-shadow:0 0 70px rgba(255,59,92,.65);text-transform:uppercase}
+.cr-liar[hidden]{display:none}
+.cr-liar.go{animation:liarPop 1.5s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes liarPop{0%{opacity:0;transform:scale(.4) rotate(-10deg)}15%{opacity:1;transform:scale(1.08) rotate(-6deg)}80%{opacity:1;transform:scale(1) rotate(-6deg)}100%{opacity:0;transform:scale(1.1) rotate(-6deg)}}
+@media(max-width:1000px){.cr-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.cr-grid{grid-template-columns:1fr}.cr-count{font-size:44px}.cr-btn{height:48px;flex:1}.cr-actions{width:100%}.cr-shell{padding:18px}}
+
+/* ===== v18: shorter zones, page-ordered nav, construction section, credits collapse ===== */
+.nav-links a[data-nav="home"]{order:1}.nav-links a[data-nav="records"]{order:2}.nav-links a[data-nav="zones"]{order:3}
+.nav-links a[data-nav="rides"]{order:4}.nav-links a[data-nav="credits"]{order:5}.nav-links a[data-nav="tickets"]{order:6}
+.nav-links a[data-nav="map"]{order:7}.nav-links a[data-nav="hours"]{order:8}.nav-links a[data-nav="find-coaster"]{order:9}
+.nav-links a[data-nav="compare"]{order:10}.nav-links a[data-nav="plan"]{order:11}.nav-links a[data-nav="history"]{order:12}
+.cr-more{display:flex;align-items:center;justify-content:center;gap:10px;margin:18px auto 0}
+.con-sec{padding-top:0}
+.con-sec .con-panel{margin-top:0}
+@media(min-width:761px){
+  .zone-card[data-zone]{height:215px}
+  .zone-card[data-zone=z1]{height:255px}
+  .zone-uc .zone-card[data-zone=z8]{height:255px}
+}
+@media(min-width:1360px){
+  #zones{flex:0 0 auto}
+  #zones .zone-grid{flex:0 0 auto;grid-template-rows:none}
+  .split .zone-card[data-zone]{height:178px;min-height:0}
+  .split .zone-card[data-zone=z1]{height:228px;min-height:0}
+  .split .zone-uc .zone-card[data-zone=z8]{height:228px;min-height:0}
+  #records{flex:1 1 auto;display:flex;flex-direction:column}
+  #records .records{flex:1 1 auto;grid-auto-rows:1fr}
+  .split .record-card{display:flex;flex-direction:column;justify-content:center}
+}
+@media(max-width:760px){
+  .zone-grid>.zone-card[data-zone]{height:210px}
+  .zone-grid>.zone-card[data-zone=z1]{height:250px}
+  .zone-uc .zone-card[data-zone=z8]{height:250px}
+}
+
+/* ===== v19: construction watch under Rokan; Extreme + Volana absorb the height ===== */
+@media(min-width:1360px){
+  #records{flex:0 0 auto}
+  #records .records{flex:0 0 auto;grid-auto-rows:auto}
+  .split .record-card{display:block}
+  #zones{flex:1 1 auto;display:flex;flex-direction:column}
+  #zones .zone-grid{flex:1 1 auto;min-height:0;grid-template-rows:minmax(228px,1fr) 178px 178px 178px}
+  .split .zone-card[data-zone=z1]{height:auto;min-height:228px}
+  .zone-uc{flex:1 1 auto;display:flex;flex-direction:column}
+  .zone-uc-inner{flex:1 1 auto;display:flex;flex-direction:column}
+  .split .zone-uc .zone-card[data-zone=z8]{flex:1 1 auto;height:auto;min-height:228px}
+}
 </style>
 </head>
 
@@ -1015,8 +1181,10 @@ button.tl-future .tl-pill:hover,.tl-future button.tl-pill:hover{background:var(-
       <a href="#compare" data-nav="compare">Compare</a>
       <a href="#plan" data-nav="plan">Plan</a>
       <a href="#history" data-nav="history">History</a>
+      <a href="#credits" data-nav="credits">Credits</a>
     </div>
     <div class="nav-right">
+      <button class="icon-btn" id="gsOpen" type="button" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
       <div class="custom-lang-dropdown" id="langDropdown">
         <button class="lang-btn" id="langBtn" aria-expanded="false"><span id="currentLangLabel"><span class="fl">🇬🇧</span><span class="ln"> English</span></span> <i class="fa-solid fa-chevron-down"></i></button>
         <div class="lang-menu" id="langMenu">
@@ -1144,6 +1312,7 @@ button.tl-future .tl-pill:hover,.tl-future button.tl-pill:hover{background:var(-
         <option value="newest">Year: newest</option>
       </select>
     </div>
+    <div class="mfg-row" id="mfgRow"><span class="mfg-label" id="mfgLabel">Manufacturer</span></div>
     <div class="db-meta" id="dbMeta"></div>
     <div class="rides-grid" id="ridesGrid"></div>
     
@@ -1178,6 +1347,27 @@ button.tl-future .tl-pill:hover,.tl-future button.tl-pill:hover{background:var(-
           </div>
         </article>
       </div>
+      <div class="con-panel" id="conPanel">
+        <div class="con-title"><i class="fa-solid fa-hammer"></i> <b id="conTitle">Construction watch</b></div>
+        <div class="con-grid">
+          <figure class="con-photo">
+            <i class="fa-solid fa-camera con-ph" aria-hidden="true"></i>
+            <img id="conImg" alt="Rokan construction" loading="lazy" onerror="this.remove()">
+            <figcaption><span id="conPhotoLbl">Latest construction photo</span> · <span id="conUpdatedLbl">Updated</span> <b id="conUpdated"></b></figcaption>
+          </figure>
+          <div class="con-info">
+            <div class="con-open"><span id="conOpenLbl">Opening date</span><b id="conOpenVal">XX. XX. 2027</b></div>
+            <div class="con-count" id="conCount">
+              <div><b data-u="d">??</b><span id="cuD">Days</span></div>
+              <div><b data-u="h">??</b><span id="cuH">Hours</span></div>
+              <div><b data-u="m">??</b><span id="cuM">Min</span></div>
+              <div><b data-u="s">??</b><span id="cuS">Sec</span></div>
+            </div>
+            <div class="con-open-done" id="conDone" hidden>Now open!</div>
+            <ol class="con-list" id="conList"></ol>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1201,7 +1391,7 @@ button.tl-future .tl-pill:hover,.tl-future button.tl-pill:hover{background:var(-
     </article>
     <article class="record-card reveal delay-2">
       <div class="record-top"><span class="record-label" id="recLbl3">Tallest hybrid coaster in the world</span><span class="record-icon"><i class="fa-solid fa-tree"></i></span></div>
-      <h3>Zadra</h3><div class="record-value" id="recZadVal">63.8 <small>m</small></div>
+      <h3>Zadra</h3><div class="record-value" id="recZadVal">62.8 <small>m</small></div>
       <div class="record-foot"><span id="recMfgLbl">Manufacturer</span><b>RMC</b></div>
     </article>
     <article class="record-card red reveal delay-3">
@@ -1276,6 +1466,25 @@ button.tl-future .tl-pill:hover,.tl-future button.tl-pill:hover{background:var(-
     </div>
   </div>
 </section>
+<section class="section credits-sec" id="credits">
+  <div class="section-head reveal">
+    <div><div class="section-kicker" id="crKicker">Coaster counter</div><h2 id="crTitle">My <span style="color:var(--blue)">credits.</span></h2></div>
+    <p class="section-intro" id="crIntro">Tick every coaster you have ridden. Your progress is saved on this device, and you can share it as an image.</p>
+  </div>
+  <div class="cr-shell reveal">
+    <div class="cr-top">
+      <div class="cr-count"><b id="crN">0</b> <span id="crOf">of</span> <b id="crTotal">19</b></div>
+      <div class="cr-bar"><i id="crFill"></i></div>
+      <div class="cr-actions">
+        <button type="button" id="crShare" class="cr-btn"><i class="fa-solid fa-share-nodes"></i> <span>Share image</span></button>
+        <button type="button" id="crReset" class="cr-btn"><span>Reset</span></button>
+      </div>
+    </div>
+    <div class="cr-grid" id="crGrid"></div>
+    <button type="button" id="crMore" class="cr-btn cr-more"><span></span> <i class="fa-solid fa-chevron-down"></i></button>
+  </div>
+</section>
+<div class="cr-liar" id="crLiar" hidden>LIAR!</div>
 <main class="split">
 <div class="col">
 <section class="section section-alt" id="tickets">
@@ -1643,7 +1852,7 @@ button.tl-future .tl-pill:hover,.tl-future button.tl-pill:hover{background:var(-
         <div class="tl-body">
           <span class="tl-ghost" aria-hidden="true">2027</span>
           <div class="tl-headline"><span class="time-year">2027</span><span class="time-badge" data-t-badge="t8Badge">Next Gen</span><span class="tl-uc tl-uc-badge">Under Construction</span></div>
-          <h3 data-t-h3="t8Title">Rokan</h3>
+          <h3 data-t-h3="t8Title">Hyper Wing Coaster</h3>
           <p data-t-p="t8Desc">Rokan, Europe's tallest and longest Wing Coaster, will open in the new Volana zone.</p>
           <div class="tl-pills" data-rides="Rokan"></div>
         </div>
@@ -1694,6 +1903,10 @@ button.tl-future .tl-pill:hover,.tl-future button.tl-pill:hover{background:var(-
         <div class="modal-stat"><span id="mStatL">Length</span><b id="modalLength">—</b></div>
         <div class="modal-stat"><span id="mStatO">Opened</span><b id="modalYear">—</b></div>
       </div>
+      <div class="m-facts" id="modalFacts"></div>
+      <div class="m-block" id="modalRanksWrap"><h4 id="modalRanksTitle">Park rankings</h4><div class="m-ranks" id="modalRanks"></div></div>
+      <div class="m-block" id="modalSimilarWrap"><h4 id="modalSimilarTitle">Similar coasters</h4><div class="m-similar" id="modalSimilar"></div></div>
+      <button type="button" class="credit-modal-btn" id="modalCredit"><i class="fa-solid fa-check"></i> <span></span></button>
       <a id="modalPov" class="pov-link" href="#" target="_blank" rel="noopener"><span id="modalPovLabel">Watch POV</span> <i class="fa-brands fa-youtube"></i></a>
     </div>
   </div>
@@ -1719,35 +1932,44 @@ button.tl-future .tl-pill:hover,.tl-future button.tl-pill:hover{background:var(-
   <div class="map-lb-inner"><img id="mapLbImg" alt="Energylandia park map"></div>
 </div>
 
+
+<div class="gs" id="gs" hidden>
+  <div class="gs-back" id="gsBack"></div>
+  <div class="gs-box" role="dialog" aria-modal="true">
+    <div class="gs-input"><i class="fa-solid fa-magnifying-glass"></i><input id="gsInput" type="search" autocomplete="off" placeholder="Search coasters, zones, manufacturers…"><button type="button" id="gsClose" aria-label="Close"><i class="fa-solid fa-xmark"></i></button></div>
+    <div class="gs-results" id="gsResults"></div>
+    <div class="gs-foot"><span id="gsHint">Esc to close</span></div>
+  </div>
+</div>
 <!-- Mobile helpers -->
 <div class="m-chips" id="mChips" aria-label="Sections"></div>
 <nav class="m-bar" id="mBar" aria-label="Quick navigation">
-  <a href="#rides" data-bar="rides"><i class="fa-solid fa-gauge-high"></i><span></span></a>
   <a href="#zones" data-bar="zones"><i class="fa-solid fa-compass"></i><span></span></a>
-  <a href="#find-coaster" data-bar="find-coaster"><i class="fa-solid fa-magnifying-glass"></i><span></span></a>
+  <a href="#rides" data-bar="rides"><i class="fa-solid fa-gauge-high"></i><span></span></a>
   <a href="#map" data-bar="map"><i class="fa-solid fa-map"></i><span></span></a>
+  <a href="#find-coaster" data-bar="find-coaster"><i class="fa-solid fa-magnifying-glass"></i><span></span></a>
   <button type="button" id="mBarMenu" aria-label="Menu"><i class="fa-solid fa-bars"></i><span>Menu</span></button>
 </nav>
 <button type="button" class="to-top" id="toTopBtn" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
 <script>
 const coasters = [
-  { name: "Zadra", rank: 1, year: 2019, type: "Extreme", mfg: "RMC", height: "63.8 m", heightNum: 63.8, speed: "121.0 km/h", speedNum: 121.0, length: "1316 m", lengthNum: 1316, image: "zadra.jpg", desc: "World-class RMC hybrid coaster featuring massive wooden structure look with hyper-steep steel tracking and inversions." },
+  { name: "Zadra", rank: 1, year: 2019, type: "Extreme", mfg: "RMC", height: "62.8 m", heightNum: 62.8, speed: "121.0 km/h", speedNum: 121.0, length: "1316 m", lengthNum: 1316, image: "zadra.jpg", desc: "World-class RMC hybrid coaster featuring massive wooden structure look with hyper-steep steel tracking and inversions." },
   { name: "Hyperion", rank: 2, year: 2018, type: "Extreme", mfg: "Intamin", height: "77.0 m", heightNum: 77.0, speed: "142.0 km/h", speedNum: 142.0, length: "1450 m", lengthNum: 1450, image: "hyperion.jpg", desc: "The crown jewel mega-coaster featuring staggering drops, high-speed airtime hills, and extreme velocity." },
   { name: "Abyssus", rank: 3, year: 2021, type: "Extreme", mfg: "Vekoma", height: "38.5 m", heightNum: 38.5, speed: "100.0 km/h", speedNum: 100.0, length: "1316 m", lengthNum: 1316, image: "abyssus.jpg", desc: "Powerful Vekoma multi-launch coaster loaded with airtime, inversions, and lightning-fast transitions." },
-  { name: "Formuła", rank: 4, year: 2016, type: "Extreme", mfg: "Vekoma", height: "24.7 m", heightNum: 24.7, speed: "78 km/h", speedNum: 78, length: "560 m", lengthNum: 560, image: "formula.jpg", desc: "Acceleration-packed launched coaster model Space Warp with multiple inversions." },
-  { name: "Speed", rank: 5, year: 2018, type: "Extreme", mfg: "Intamin", height: "60 m", heightNum: 60, speed: "110 km/h", speedNum: 110, length: "687 m", lengthNum: 687, image: "speed.jpg", desc: "Massive Intamin water coaster featuring a giant towering lift and massive splashdown." },
+  { name: "Formuła", rank: 4, year: 2016, type: "Extreme", mfg: "Vekoma", height: "24.7 m", heightNum: 24.7, speed: "79.2 km/h", speedNum: 79.2, length: "560 m", lengthNum: 560, image: "formula.jpg", desc: "Acceleration-packed launched coaster model Space Warp with multiple inversions." },
+  { name: "Speed", rank: 5, year: 2018, type: "Extreme", mfg: "Intamin", height: "50 m", heightNum: 50, speed: "101.1 km/h", speedNum: 101.1, length: "687 m", lengthNum: 687, image: "speed.jpg", desc: "Massive Intamin water coaster featuring a giant towering lift and massive splashdown." },
   { name: "Roller Coaster Mayan", rank: 6, year: 2015, type: "Extreme", mfg: "Vekoma", height: "33.3 m", heightNum: 33.3, speed: "80.0 km/h", speedNum: 80.0, length: "689 m", lengthNum: 689, image: "mayan.jpg", desc: "Vekoma Suspended Looping Coaster (SLC) delivering intense inversions and g-forces." },
   { name: "Choco Chip Creek", rank: 7, year: 2024, type: "Thrill", mfg: "Vekoma", height: "16.5 m", heightNum: 16.5, speed: "55.0 km/h", speedNum: 55.0, length: "1200 m", lengthNum: 1200, image: "choco_chip.jpg", desc: "Thematic modern mine train adventure adding immersive family fun in Sweet Valley." },
-  { name: "Dragon Roller Coaster", rank: 8, year: 2015, type: "Family", mfg: "Vekoma", height: "20 m", heightNum: 20, speed: "75.6 km/h", speedNum: 75.6, length: "453 m", lengthNum: 453, image: "dragon_roller_coaster.jpg", desc: "Suspended family coaster taking riders through tight helices and near-ground drops." },
-  { name: "Energuś", rank: 9, year: 2015, type: "Family", mfg: "Vekoma", height: "13.0 m", heightNum: 13.0, speed: "45 km/h", speedNum: 45, length: "335 m", lengthNum: 335, image: "ergus.jpg", desc: "Popular custom junior coaster smoothly navigating quick turns for families." },
+  { name: "Dragon Roller Coaster", rank: 8, year: 2015, type: "Family", mfg: "Vekoma", height: "19.3 m", heightNum: 19.3, speed: "75.6 km/h", speedNum: 75.6, length: "453 m", lengthNum: 453, image: "dragon_roller_coaster.jpg", desc: "Suspended family coaster taking riders through tight helices and near-ground drops." },
+  { name: "Energuś", rank: 9, year: 2015, type: "Family", mfg: "Vekoma", height: "13.0 m", heightNum: 13.0, speed: "45.9 km/h", speedNum: 45.9, length: "335 m", lengthNum: 335, image: "ergus.jpg", desc: "Popular custom junior coaster smoothly navigating quick turns for families." },
   { name: "Light Explorers", rank: 10, year: 2021, type: "Family", mfg: "Vekoma", height: "24.2 m", heightNum: 24.2, speed: "60.0 km/h", speedNum: 60.0, length: "238 m", lengthNum: 238, image: "light_explorers.jpg", desc: "Exciting family shuttle layout with multiple forward and backward direction passes." },
   { name: "Frida", rank: 11, year: 2019, type: "Family", mfg: "Vekoma", height: "13.0 m", heightNum: 13.0, speed: "44.6 km/h", speedNum: 44.6, length: "247 m", lengthNum: 247, image: "frida.jpg", desc: "Smooth family junior coaster layout nestled in the Dragon Zone." },
-  { name: "Boomerang", rank: 12, year: 2018, type: "Family", mfg: "Vekoma", height: "25 m", heightNum: 25, speed: "70 km/h", speedNum: 70, length: "200 m", lengthNum: 200, image: "boomerang.jpg", desc: "Junior Boomerang model that travels forward and backward through the layout." },
+  { name: "Boomerang", rank: 12, year: 2017, type: "Family", mfg: "Vekoma", height: "23 m", heightNum: 23, speed: "60 km/h", speedNum: 60, length: "200 m", lengthNum: 200, image: "boomerang.jpg", desc: "Junior Boomerang model that travels forward and backward through the layout." },
   { name: "Honey Harbour", rank: 13, year: 2024, type: "Family", mfg: "Vekoma", height: "11.7 m", heightNum: 11.7, speed: "46.0 km/h", speedNum: 46.0, length: "254 m", lengthNum: 254, image: "honey_harbour.jpg", desc: "Sweet-themed family coaster providing smooth dynamic turns in Sweet Valley." },
   { name: "Draken", rank: 14, year: 2019, type: "Family", mfg: "Preston & Barbieri", height: "7.3 m", heightNum: 7.3, speed: "34.5 km/h", speedNum: 34.5, length: "140 m", lengthNum: 140, image: "draken.jpg", desc: "Charming family coaster nestled in Smoczy Gród." },
-  { name: "Viking Roller Coaster", rank: 15, year: 2014, type: "Thrill", mfg: "SBF Visa Group", height: "13 m", heightNum: 13, speed: "43 km/h", speedNum: 43, length: "320 m", lengthNum: 320, image: "viking.jpg", desc: "Spinning wild mouse style coaster offering erratic rotations and family thrills." },
+  { name: "Viking Roller Coaster", rank: 15, year: 2014, type: "Thrill", mfg: "SBF Visa Group", height: "11 m", heightNum: 11, speed: "43 km/h", speedNum: 43, length: "320 m", lengthNum: 320, image: "viking.jpg", desc: "Spinning wild mouse style coaster offering erratic rotations and family thrills." },
   { name: "Mars", rank: 16, year: 2014, type: "Family", mfg: "SBF Visa Group", height: "6.0 m", heightNum: 6.0, speed: "24.7 km/h", speedNum: 24.7, length: "150 m", lengthNum: 150, image: "mars.jpg", desc: "Early junior model built for family entertainment and younger visitors." },
-  { name: "Frutti Loop Coaster", rank: 17, year: 2014, type: "Kiddie", mfg: "SBF Visa Group", height: "3.7 m", heightNum: 3.7, speed: "20 km/h", speedNum: 20, length: "90 m", lengthNum: 90, image: "frutti_loop.jpg", desc: "A compact starter kiddie coaster by SBF Visa Group located in Bajtkolandia." },
+  { name: "Frutti Loop Coaster", rank: 17, year: 2014, type: "Kiddie", mfg: "SBF Visa Group", height: "3.7 m", heightNum: 3.7, speed: "21.6 km/h", speedNum: 21.6, length: "90 m", lengthNum: 90, image: "frutti_loop.jpg", desc: "A compact starter kiddie coaster by SBF Visa Group located in Bajtkolandia." },
   { name: "Circus Coaster", rank: 18, year: 2017, type: "Kiddie", mfg: "Visa Rides", height: "—", heightNum: 0, speed: "12 km/h", speedNum: 12, length: "32 m", lengthNum: 32, image: "circus_coaster.jpg", desc: "Powered circuit experience tailored for younger children." },
   { name: "Happy Loops", rank: 19, year: 2017, type: "Family", mfg: "SBF Visa Group", height: "7 m", heightNum: 7, speed: "30 km/h", speedNum: 30, length: "90 m", lengthNum: 90, image: "happy_loops.jpg", desc: "Spinning track layout packed with joyful layout switches." },
   { name: "Rokan", rank: "?", year: "2027", type: "Extreme", mfg: "Bolliger & Mabillard", height: "62 m", heightNum: 62, speed: "115 km/h", speedNum: 115, length: "1215 m", lengthNum: 1215, image: "bm_wing.jpg", desc: "Tallest and longest B&M Wing Coaster in the world, opening spring 2027 as the centrepiece of Energylandia's new Volana zone. Riders sit on both sides of the track with legs dangling free for a 141-second flight at up to 115 km/h, named after a dragon awakening from long sleep." }
@@ -1784,6 +2006,20 @@ const $$ = s => [...document.querySelectorAll(s)];
 
 let activeFilter = 'all';
 let searchTerm = '';
+let activeMfg = 'all';
+let creditView = 'all';
+let crExpanded = false;
+function norm(t){return String(t||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/ł/gi,'l').toLowerCase();}
+function mk(c){return /visa/i.test(c.mfg)?'SBF Visa Group':c.mfg;}
+function loadCredits(){try{return new Set(JSON.parse(localStorage.getItem('el-credits')||'[]'));}catch(e){return new Set();}}
+function saveCredits(){try{localStorage.setItem('el-credits',JSON.stringify([...credits]));}catch(e){}}
+let credits = loadCredits();
+function matchExtra(c){
+  if(activeMfg!=='all' && mk(c)!==activeMfg) return false;
+  if(creditView==='done' && !credits.has(c.name)) return false;
+  if(creditView==='todo' && credits.has(c.name)) return false;
+  return true;
+}
 let sortBy = 'best';
 let visibleCount=8;
 let unitSystem = 'metric';   // 'metric' | 'imperial'
@@ -1818,8 +2054,9 @@ function renderRides(){
     if(c.rank === "?") return false; // Rendered separately in the Under Construction section
     const f = activeFilter === 'all' || c.type === activeFilter;
     const q = searchTerm.toLowerCase();
-    const s = !q || c.name.toLowerCase().includes(q) || c.mfg.toLowerCase().includes(q);
-    return f && s;
+    const nq = norm(q);
+    const s = !nq || norm(c.name).includes(nq) || norm(c.mfg).includes(nq) || norm(c.type).includes(nq) || String(c.year)===nq;
+    return f && s && matchExtra(c);
   });
 
   list.sort((a,b)=>{
@@ -2100,7 +2337,7 @@ function applyUnits(){
   $('#recHypVal').innerHTML = imp
     ? `${mph(142)} <small>mph</small> ${sub}• ${ft(77)} <small>ft</small></span>`
     : `142 <small>km/h</small> ${sub}• 77 <small>m</small></span>`;
-  $('#recZadVal').innerHTML = imp ? `${ft(63.8)} <small>ft</small>` : `63.8 <small>m</small>`;
+  $('#recZadVal').innerHTML = imp ? `${ft(62.8)} <small>ft</small>` : `62.8 <small>m</small>`;
 
   // Park area: hectares <-> acres
   const area = $('#areaCounter');
@@ -2518,7 +2755,7 @@ const timelineTranslations = {
     t5: { badge: "Dragon Zone", title: "Smoczy Gród & Zadra", desc: "The medieval Dragon Zone opens with Zadra, Frida and Draken." },
     t6: { badge: "Aqualantis", title: "Sunken city launch", desc: "Aqualantis opens with Abyssus and Light Explorers." },
     t7: { badge: "Sweet Valley", title: "Immersive expansion", desc: "Sweet Valley debuts with Choco Chip Creek and Honey Harbour." },
-    t8: { badge: "Next Gen", title: "Rokan", desc: "Rokan, Europe's tallest and longest Wing Coaster, will open in the new Volana zone." }
+    t8: { badge: "Next Gen", title: "Hyper Wing Coaster", desc: "Rokan, Europe's tallest and longest Wing Coaster, will open in the new Volana zone." }
   },
   pl: {
     t1: { badge: "Wielkie otwarcie", title: "Początek parku", desc: "Energylandia oficjalnie otwiera się w Zatorze z pierwszymi kolejkami rodzinnymi i dziecięcymi." },
@@ -2528,7 +2765,7 @@ const timelineTranslations = {
     t5: { badge: "Smoczy Gród", title: "Smoczy Gród i Zadra", desc: "Otwarcie średniowiecznej strefy Smoczy Gród z Zadrą, Fridą i Drakenem." },
     t6: { badge: "Aqualantis", title: "Zatopione miasto", desc: "Aqualantis debiutuje z potężnym Abyssusem oraz Light Explorers." },
     t7: { badge: "Sweet Valley", title: "Słodka rozbudowa", desc: "Sweet Valley debiutuje z Choco Chip Creek oraz Honey Harbour." },
-    t8: { badge: "Next Gen", title: "Rokan", desc: "Rokan, najwyższy i najdłuższy wing coaster w Europie, otworzy się w nowej strefie Volana." }
+    t8: { badge: "Next Gen", title: "Hyper Wing Coaster", desc: "Rokan, najwyższy i najdłuższy wing coaster w Europie, otworzy się w nowej strefie Volana." }
   },
   de: {
     t1: { badge: "Große Eröffnung", title: "Parkgründung", desc: "Energylandia öffnet offiziell in Zator mit ersten Familien- und Kinderachterbahnen." },
@@ -2538,7 +2775,7 @@ const timelineTranslations = {
     t5: { badge: "Drachenzone", title: "Smoczy Gród & Zadra", desc: "Die mittelalterliche Drachenzone eröffnet mit Zadra, Frida und Draken." },
     t6: { badge: "Aqualantis", title: "Versunkene Stadt", desc: "Aqualantis öffnet mit Abyssus und Light Explorers." },
     t7: { badge: "Sweet Valley", title: "Themen-Erweiterung", desc: "Sweet Valley debütiert mit Choco Chip Creek und Honey Harbour." },
-    t8: { badge: "Next Gen", title: "Rokan", desc: "Rokan, Europas höchster und längster Wing Coaster, eröffnet in der neuen Zone Volana." }
+    t8: { badge: "Next Gen", title: "Hyper Wing Coaster", desc: "Rokan, Europas höchster und längster Wing Coaster, eröffnet in der neuen Zone Volana." }
   },
   cs: {
     t1: { badge: "Velké otevření", title: "Založení parku", desc: "Energylandia se oficiálně otevírá v Zatoru s počátečními rodinnými a dětskými drahami." },
@@ -2548,7 +2785,7 @@ const timelineTranslations = {
     t5: { badge: "Dračí zóna", title: "Smoczy Gród a Zadra", desc: "Otevírá se středověká Dračí zóna s drahami Zadra, Frida a Draken." },
     t6: { badge: "Aqualantis", title: "Potopené město", desc: "Aqualantis se otevírá s drahami Abyssus a Light Explorers." },
     t7: { badge: "Sweet Valley", title: "Sladké rozšíření", desc: "Sweet Valley debutuje s drahami Choco Chip Creek a Honey Harbour." },
-    t8: { badge: "Next Gen", title: "Rokan", desc: "Rokan, nejvyšší a nejdelší Wing Coaster v Evropě, se otevře v nové zóně Volana." }
+    t8: { badge: "Next Gen", title: "Hyper Wing Coaster", desc: "Rokan, nejvyšší a nejdelší Wing Coaster v Evropě, se otevře v nové zóně Volana." }
   },
   sk: {
     t1: { badge: "Veľké otvorenie", title: "Založenie parku", desc: "Energylandia sa oficiálne otvára v Zatore s počiatočnými rodinnými a detskými dráhami." },
@@ -2558,7 +2795,7 @@ const timelineTranslations = {
     t5: { badge: "Dračia zóna", title: "Smoczy Gród a Zadra", desc: "Otvára sa stredoveká Dračia zóna s dráhami Zadra, Frida a Draken." },
     t6: { badge: "Aqualantis", title: "Potopené mesto", desc: "Aqualantis sa otvára s dráhami Abyssus a Light Explorers." },
     t7: { badge: "Sweet Valley", title: "Sladké rozšírenie", desc: "Sweet Valley debutuje s dráhami Choco Chip Creek a Honey Harbour." },
-    t8: { badge: "Next Gen", title: "Rokan", desc: "Rokan, najvyššia a najdlhšia Wing Coaster v Európe, sa otvorí v novej zóne Volana." }
+    t8: { badge: "Next Gen", title: "Hyper Wing Coaster", desc: "Rokan, najvyššia a najdlhšia Wing Coaster v Európe, sa otvorí v novej zóne Volana." }
   }
 };
 
@@ -3723,7 +3960,7 @@ document.querySelector(".hero img").src = randomImage;
     cs:{more:'Zobrazit více',less:'Zobrazit méně'},
     sk:{more:'Zobraziť viac',less:'Zobraziť menej'}
   };
-  const order=['records','zones','rides','tickets','map','hours','find-coaster','compare','plan','history'];
+  const order=['records','zones','rides','credits','tickets','map','hours','find-coaster','compare','plan','history'];
   const chips=document.getElementById('mChips');
   const bar=document.getElementById('mBar');
   const toTop=document.getElementById('toTopBtn');
@@ -3804,6 +4041,334 @@ document.querySelector(".hero img").src = randomImage;
   window.addEventListener('resize',update);
   sync(); update();
 })();
+
+
+
+// ============ v16 features: profiles, manufacturer filter, credits, search, construction watch ============
+// >>> ROKAN SETTINGS – edit these when you have news <<<
+const ROKAN_CONFIG = {
+  openingDate: null,                 // e.g. '2027-04-24T10:00:00' (local time). null = not announced yet
+  photo: 'rokan-construction.jpg',   // latest construction photo (put the file next to index.html)
+  photoUpdated: '20. 10. 2026'       // date shown under the photo – change it whenever you replace the photo
+};
+
+const FI = {
+  en:{mfgLabel:'Manufacturer',allMakers:'All',credits:'My credits',all:'All',ridden:'Ridden',toRide:'To ride',mark:'Mark as ridden',marked:'Ridden',
+    fModel:'Model',fOpened:'Opened',fInv:'Inversions',fLift:'Lift / launch',fDrop:'First drop',fRide:'Ride time',fMin:'Min. height',fZone:'Zone',
+    rankTitle:'Park rankings',tallest:'Tallest',fastest:'Fastest',longest:'Longest',similar:'Similar coasters',
+    lsm:'LSM launch',lsm2:'Two LSM launches',booster:'Booster wheel lift',spring:'Spring 2027',
+    searchPh:'Search coasters, zones, manufacturers…',sCoasters:'Coasters',sZones:'Zones',noRes:'No results',hint:'Esc to close',searchAria:'Search',
+    conTitle:'Construction watch',openLbl:'Opening date',dD:'Days',dH:'Hours',dM:'Min',dS:'Sec',photoLbl:'Latest construction photo',updated:'Updated',nowOpen:'Now open!',
+    ms:[['Q1 2026','Foundations appear behind Dragon Zone and Aqualantis as work on the new area begins.'],['Oct 2026','Rokan is revealed: 62 m tall, 1 215 m long and 115 km/h, the tallest and longest B&M Wing Coaster in the world.'],['Spring 2027','Planned opening in the new Volana zone.']]},
+  pl:{mfgLabel:'Producent',allMakers:'Wszyscy',credits:'Moje creditsy',all:'Wszystkie',ridden:'Przejechane',toRide:'Do przejechania',mark:'Oznacz jako przejechaną',marked:'Przejechana',
+    fModel:'Model',fOpened:'Otwarcie',fInv:'Inwersje',fLift:'Wjazd / start',fDrop:'Pierwszy spadek',fRide:'Czas przejazdu',fMin:'Min. wzrost',fZone:'Strefa',
+    rankTitle:'Rankingi parku',tallest:'Najwyższa',fastest:'Najszybsza',longest:'Najdłuższa',similar:'Podobne kolejki',
+    lsm:'Start LSM',lsm2:'Dwa starty LSM',booster:'Wciągarka z kołami',spring:'Wiosna 2027',
+    searchPh:'Szukaj kolejek, stref, producentów…',sCoasters:'Kolejki',sZones:'Strefy',noRes:'Brak wyników',hint:'Esc, aby zamknąć',searchAria:'Szukaj',
+    conTitle:'Postęp budowy',openLbl:'Data otwarcia',dD:'Dni',dH:'Godz.',dM:'Min',dS:'Sek',photoLbl:'Najnowsze zdjęcie z budowy',updated:'Aktualizacja',nowOpen:'Już otwarta!',
+    ms:[['I kw. 2026','Za Smoczym Grodem i Aqualantis pojawiają się fundamenty – zaczyna się budowa nowej części parku.'],['Paź 2026','Odsłonięto Rokan: 62 m wysokości, 1 215 m długości i 115 km/h – najwyższy i najdłuższy wing coaster B&M na świecie.'],['Wiosna 2027','Planowane otwarcie w nowej strefie Volana.']]},
+  de:{mfgLabel:'Hersteller',allMakers:'Alle',credits:'Meine Credits',all:'Alle',ridden:'Gefahren',toRide:'Noch offen',mark:'Als gefahren markieren',marked:'Gefahren',
+    fModel:'Modell',fOpened:'Eröffnet',fInv:'Inversionen',fLift:'Lift / Start',fDrop:'Erste Abfahrt',fRide:'Fahrzeit',fMin:'Mindestgröße',fZone:'Bereich',
+    rankTitle:'Park-Rankings',tallest:'Höchste',fastest:'Schnellste',longest:'Längste',similar:'Ähnliche Bahnen',
+    lsm:'LSM-Start',lsm2:'Zwei LSM-Starts',booster:'Reifenlift',spring:'Frühjahr 2027',
+    searchPh:'Bahnen, Bereiche, Hersteller suchen…',sCoasters:'Achterbahnen',sZones:'Bereiche',noRes:'Keine Ergebnisse',hint:'Esc zum Schließen',searchAria:'Suche',
+    conTitle:'Baufortschritt',openLbl:'Eröffnungsdatum',dD:'Tage',dH:'Std.',dM:'Min',dS:'Sek',photoLbl:'Aktuelles Baufoto',updated:'Aktualisiert',nowOpen:'Jetzt geöffnet!',
+    ms:[['Q1 2026','Hinter Dragon Zone und Aqualantis tauchen Fundamente auf – der Bau des neuen Parkbereichs beginnt.'],['Okt 2026','Rokan wird enthüllt: 62 m hoch, 1 215 m lang und 115 km/h – der höchste und längste B&M Wing Coaster der Welt.'],['Frühjahr 2027','Geplante Eröffnung im neuen Bereich Volana.']]},
+  cs:{mfgLabel:'Výrobce',allMakers:'Všichni',credits:'Moje credity',all:'Vše',ridden:'Projeté',toRide:'K projetí',mark:'Označit jako projetou',marked:'Projetá',
+    fModel:'Model',fOpened:'Otevřeno',fInv:'Inverze',fLift:'Výtah / start',fDrop:'První pád',fRide:'Doba jízdy',fMin:'Min. výška',fZone:'Zóna',
+    rankTitle:'Žebříčky parku',tallest:'Nejvyšší',fastest:'Nejrychlejší',longest:'Nejdelší',similar:'Podobné dráhy',
+    lsm:'Start LSM',lsm2:'Dva starty LSM',booster:'Kolečkový výtah',spring:'Jaro 2027',
+    searchPh:'Hledat dráhy, zóny, výrobce…',sCoasters:'Horské dráhy',sZones:'Zóny',noRes:'Nic nenalezeno',hint:'Esc pro zavření',searchAria:'Hledat',
+    conTitle:'Průběh stavby',openLbl:'Datum otevření',dD:'Dny',dH:'Hod.',dM:'Min',dS:'Sek',photoLbl:'Nejnovější foto ze stavby',updated:'Aktualizováno',nowOpen:'Už otevřeno!',
+    ms:[['1. čtvrtletí 2026','Za Dragon Zone a Aqualantis se objevují základy – začíná stavba nové části parku.'],['Říj 2026','Odhalen Rokan: 62 m vysoký, 1 215 m dlouhý a 115 km/h – nejvyšší a nejdelší Wing Coaster od B&M na světě.'],['Jaro 2027','Plánované otevření v nové zóně Volana.']]},
+  sk:{mfgLabel:'Výrobca',allMakers:'Všetci',credits:'Moje credity',all:'Všetko',ridden:'Prejdené',toRide:'Na prejdenie',mark:'Označiť ako prejdenú',marked:'Prejdená',
+    fModel:'Model',fOpened:'Otvorené',fInv:'Inverzie',fLift:'Výťah / štart',fDrop:'Prvý pád',fRide:'Čas jazdy',fMin:'Min. výška',fZone:'Zóna',
+    rankTitle:'Rebríčky parku',tallest:'Najvyššia',fastest:'Najrýchlejšia',longest:'Najdlhšia',similar:'Podobné dráhy',
+    lsm:'Štart LSM',lsm2:'Dva štarty LSM',booster:'Kolesový výťah',spring:'Jar 2027',
+    searchPh:'Hľadať dráhy, zóny, výrobcov…',sCoasters:'Horské dráhy',sZones:'Zóny',noRes:'Nič sa nenašlo',hint:'Esc na zatvorenie',searchAria:'Hľadať',
+    conTitle:'Priebeh stavby',openLbl:'Dátum otvorenia',dD:'Dni',dH:'Hod.',dM:'Min',dS:'Sek',photoLbl:'Najnovšia fotka zo stavby',updated:'Aktualizované',nowOpen:'Už otvorené!',
+    ms:[['1. štvrťrok 2026','Za Dragon Zone a Aqualantis sa objavujú základy – začína stavba novej časti parku.'],['Okt 2026','Odhalený Rokan: 62 m vysoký, 1 215 m dlhý a 115 km/h – najvyšší a najdlhší Wing Coaster od B&M na svete.'],['Jar 2027','Plánované otvorenie v novej zóne Volana.']]}
+};
+function L(){return Object.assign({},FI.en,FI[getLang()]||{});}
+
+Object.assign(FI.en,{showAll:'Show all',showLess:'Show less',fProp:'Propulsion',launch:'Launch (LSM)',launch2:'Two launches (LSM)',chain:'Chain lift',chain3:'3 chain lift hills',booster:'Booster wheel lift hill',elevator:'Elevator lift',powered:'Powered (motorised)',tba:'To be announced',arguable:'Arguable',
+  crKicker:'Coaster counter',crA:'My',crB:'credits.',crIntro:'Tick every coaster you have ridden. Your progress is saved on this device, and you can share it as an image.',crOf:'of',crShare:'Share image',crReset:'Reset',crConfirm:'Reset all credits?',liar:'LIAR!',navCredits:'Credits'});
+Object.assign(FI.pl,{showAll:'Pokaż wszystkie',showLess:'Pokaż mniej',fProp:'Napęd',launch:'Start LSM',launch2:'Dwa starty LSM',chain:'Wyciąg łańcuchowy',chain3:'3 wyciągi łańcuchowe',booster:'Wciągarka z kołami',elevator:'Winda',powered:'Napęd silnikowy',tba:'Do ogłoszenia',arguable:'Dyskusyjne',
+  crKicker:'Licznik kolejek',crA:'Moje',crB:'creditsy.',crIntro:'Zaznacz każdą przejechaną kolejkę. Postęp zapisuje się na tym urządzeniu, a możesz go udostępnić jako obraz.',crOf:'z',crShare:'Udostępnij obraz',crReset:'Resetuj',crConfirm:'Zresetować wszystkie creditsy?',liar:'KŁAMCA!',navCredits:'Creditsy'});
+Object.assign(FI.de,{showAll:'Alle anzeigen',showLess:'Weniger anzeigen',fProp:'Antrieb',launch:'LSM-Start',launch2:'Zwei LSM-Starts',chain:'Kettenlift',chain3:'3 Kettenlifte',booster:'Reifenlift',elevator:'Aufzuglift',powered:'Motorisiert',tba:'Noch offen',arguable:'Strittig',
+  crKicker:'Achterbahn-Zähler',crA:'Meine',crB:'Credits.',crIntro:'Hake jede Achterbahn ab, die du gefahren bist. Dein Fortschritt wird auf diesem Gerät gespeichert und lässt sich als Bild teilen.',crOf:'von',crShare:'Bild teilen',crReset:'Zurücksetzen',crConfirm:'Alle Credits zurücksetzen?',liar:'LÜGNER!',navCredits:'Credits'});
+Object.assign(FI.cs,{showAll:'Zobrazit vše',showLess:'Zobrazit méně',fProp:'Pohon',launch:'Start LSM',launch2:'Dva starty LSM',chain:'Řetězový výtah',chain3:'3 řetězové výtahy',booster:'Kolečkový výtah',elevator:'Výtah (elevátor)',powered:'Motorový pohon',tba:'Bude upřesněno',arguable:'Sporné',
+  crKicker:'Počítadlo drah',crA:'Moje',crB:'credity.',crIntro:'Odškrtni každou projetou dráhu. Postup se ukládá v tomto zařízení a můžeš ho sdílet jako obrázek.',crOf:'z',crShare:'Sdílet obrázek',crReset:'Resetovat',crConfirm:'Resetovat všechny credity?',liar:'LHÁŘ!',navCredits:'Credity'});
+Object.assign(FI.sk,{showAll:'Zobraziť všetko',showLess:'Zobraziť menej',fProp:'Pohon',launch:'Štart LSM',launch2:'Dva štarty LSM',chain:'Reťazový výťah',chain3:'3 reťazové výťahy',booster:'Kolesový výťah',elevator:'Výťah (elevátor)',powered:'Motorový pohon',tba:'Bude upresnené',arguable:'Sporné',
+  crKicker:'Počítadlo dráh',crA:'Moje',crB:'credity.',crIntro:'Zaškrtni každú prejdenú dráhu. Postup sa ukladá v tomto zariadení a môžeš ho zdieľať ako obrázok.',crOf:'z',crShare:'Zdieľať obrázok',crReset:'Resetovať',crConfirm:'Resetovať všetky credity?',liar:'LUHÁR!',navCredits:'Credity'});
+const SIMILAR={'Zadra':['Hyperion'],'Hyperion':['Zadra'],'Abyssus':['Formuła'],'Formuła':['Abyssus'],
+  'Roller Coaster Mayan':['Dragon Roller Coaster'],'Dragon Roller Coaster':['Roller Coaster Mayan'],
+  'Energuś':['Frida'],'Frida':['Energuś','Draken'],'Draken':['Frida'],
+  'Boomerang':['Light Explorers'],'Light Explorers':['Boomerang'],
+  'Choco Chip Creek':['Honey Harbour'],'Honey Harbour':['Choco Chip Creek'],
+  'Viking Roller Coaster':['Happy Loops'],'Happy Loops':['Viking Roller Coaster'],
+  'Mars':['Frutti Loop Coaster'],'Frutti Loop Coaster':['Mars','Circus Coaster'],'Circus Coaster':['Frutti Loop Coaster']};
+
+
+// Verified profile data (sources: RCDB / Wikipedia). Only facts we are sure about are listed.
+const PROFILE = {
+  'Zadra':{model:'RMC hybrid · custom I-Box track',date:'2019-08-22',prop:'chain',inv:3},
+  'Hyperion':{model:'Intamin Mega Coaster',date:'2018-07-14',prop:'chain',inv:'arguable'},
+  'Abyssus':{model:'Vekoma Shockwave double-launch coaster',date:'2021-07-14',prop:'launch2',inv:4},
+  'Formuła':{model:'Vekoma Space Warp (560 m LSM)',date:'2016-06-25',prop:'launch',inv:3},
+  'Speed':{model:'Intamin water coaster',date:'2018-04-02',prop:'elevator',inv:0},
+  'Roller Coaster Mayan':{model:'Vekoma Suspended Looping Coaster (689 m)',date:'2015-09-12',prop:'chain',inv:5},
+  'Choco Chip Creek':{model:'Vekoma mine train coaster',date:'2024-04-27',prop:'chain3',inv:0},
+  'Dragon Roller Coaster':{model:'Vekoma Suspended Family Coaster (453 m)',date:'2015-06-04',prop:'booster',inv:0},
+  'Energuś':{model:'Vekoma Junior Coaster',date:'2015-05',inv:0},
+  'Light Explorers':{model:'Vekoma Family Boomerang (shuttle)',date:'2021-07-14',inv:0},
+  'Frida':{model:'Vekoma Junior Coaster (247 m)',date:'2019-07-20',prop:'booster',inv:0},
+  'Boomerang':{model:'Vekoma Junior Boomerang (shuttle)',date:'2017-04-29',inv:0},
+  'Honey Harbour':{model:'Vekoma family coaster',date:'2024-04-27',inv:0},
+  'Draken':{model:'Preston & Barbieri junior coaster',date:'2019-07-20',prop:'booster',inv:0},
+  'Viking Roller Coaster':{model:'SBF Visa spinning wild mouse (MX52)',date:'2014-07-14',inv:0},
+  'Mars':{model:'SBF Visa junior coaster',date:'2014',inv:0},
+  'Frutti Loop Coaster':{model:'SBF Visa Wacky Worm',date:'2014-08',inv:0},
+  'Circus Coaster':{model:'SBF Visa Dragoon Coaster (MX600/D)',date:'2017-06',prop:'powered',inv:0},
+  'Happy Loops':{model:'SBF Visa compact spinning coaster (3 loops)',date:'2017-06'},
+  'Rokan':{model:'Bolliger & Mabillard Wing Coaster',date:'spring',prop:'chain',inv:2}
+};
+const LOCALES={en:'en-GB',pl:'pl-PL',de:'de-DE',cs:'cs-CZ',sk:'sk-SK'};
+function fmtDate(d){
+  if(d==='spring') return L().spring;
+  const p=d.split('-').map(Number), loc=LOCALES[getLang()]||'en-GB';
+  if(p.length===3) return new Date(p[0],p[1]-1,p[2]).toLocaleDateString(loc,{day:'numeric',month:'long',year:'numeric'});
+  if(p.length===2) return new Date(p[0],p[1]-1,1).toLocaleDateString(loc,{month:'long',year:'numeric'});
+  return String(p[0]);
+}
+
+// ----- credits -----
+function toggleCredit(name){
+  if(credits.has(name)) credits.delete(name); else credits.add(name);
+  saveCredits(); renderRides(); renderCreditModalBtn();
+}
+function creditTotal(){return coasters.filter(c=>c.rank!=='?').length;}
+function updateCreditUi(){
+  const t=L(), total=creditTotal();
+  const n=[...credits].filter(x=>coasters.some(c=>c.name===x&&c.rank!=='?')).length;
+  const set=(id,v)=>{const e=document.getElementById(id); if(e) e.textContent=v;};
+  set('mfgLabel',t.mfgLabel);
+  set('crKicker',t.crKicker); set('crIntro',t.crIntro); set('crOf',t.crOf);
+  const ti=document.getElementById('crTitle'); if(ti) ti.innerHTML=t.crA+' <span style="color:var(--blue)">'+t.crB+'</span>';
+  const sh=document.querySelector('#crShare span'); if(sh) sh.textContent=t.crShare;
+  const rs=document.querySelector('#crReset span'); if(rs) rs.textContent=t.crReset;
+  set('crN',n); set('crTotal',total);
+  const f=document.getElementById('crFill'); if(f) f.style.width=(total?n/total*100:0)+'%';
+  const nl=document.querySelector('.nav-links [data-nav="credits"]'); if(nl) nl.textContent=t.navCredits;
+  const grid=document.getElementById('crGrid');
+  if(grid){
+    const full=coasters.slice().sort((a,b)=>((a.rank==='?')-(b.rank==='?'))||(a.rank-b.rank));
+    const list=crExpanded?full:full.slice(0,8);
+    const mb=document.getElementById('crMore');
+    if(mb){mb.querySelector('span').textContent=crExpanded?t.showLess:t.showAll+' ('+full.length+')';mb.querySelector('i').style.transform=crExpanded?'rotate(180deg)':'';}
+    grid.innerHTML=list.map(c=>{
+      const locked=c.rank==='?', on=!locked&&credits.has(c.name);
+      return '<button type="button" class="cr-item'+(on?' on':'')+(locked?' locked':'')+'" data-name="'+c.name+'" aria-pressed="'+on+'"><img src="'+c.image+'" alt="" loading="lazy" onerror="this.style.visibility=\'hidden\'"><b class="cr-name">'+c.name+'</b><span class="cr-check">'+(locked?'<i class="fa-solid fa-lock"></i>':(on?'<i class="fa-solid fa-check"></i>':''))+'</span></button>';
+    }).join('');
+  }
+}
+function crLiar(el){
+  const o=document.getElementById('crLiar'); if(!o) return;
+  o.textContent=L().liar; o.hidden=false; o.classList.remove('go'); void o.offsetWidth; o.classList.add('go');
+  if(el){el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake');}
+  clearTimeout(crLiar.t); crLiar.t=setTimeout(()=>{o.hidden=true;},1500);
+}
+function shareCreditsImage(){
+  const t=L(), list=coasters.filter(c=>c.rank!=='?').sort((a,b)=>a.rank-b.rank);
+  const n=list.filter(c=>credits.has(c.name)).length;
+  const W=1080, rows=Math.ceil(list.length/2), H=330+rows*64+90;
+  const cv=document.createElement('canvas'); cv.width=W; cv.height=H; const g=cv.getContext('2d');
+  const bg=g.createLinearGradient(0,0,W,H); bg.addColorStop(0,'#0a111c'); bg.addColorStop(1,'#05070d'); g.fillStyle=bg; g.fillRect(0,0,W,H);
+  g.fillStyle='#19d3ff'; g.font='800 26px Inter, Arial, sans-serif'; g.fillText('ENERGYLANDIA',60,86);
+  g.fillStyle='#fff'; g.font='700 78px Oswald, Impact, Arial, sans-serif'; g.fillText((t.crA+' '+t.crB).toUpperCase(),60,170);
+  g.font='700 70px Oswald, Impact, Arial, sans-serif'; g.fillStyle='#19d3ff'; g.fillText(String(n),60,262);
+  const nw=g.measureText(String(n)).width; g.fillStyle='#8795ab'; g.fillText(' '+t.crOf+' '+list.length,60+nw,262);
+  g.fillStyle='rgba(255,255,255,.08)'; g.fillRect(60,288,W-120,14);
+  const pg=g.createLinearGradient(60,0,W-60,0); pg.addColorStop(0,'#19d3ff'); pg.addColorStop(1,'#34d399'); g.fillStyle=pg; g.fillRect(60,288,(W-120)*n/list.length,14);
+  list.forEach((c,i)=>{
+    const col=i%2, row=Math.floor(i/2), x=60+col*500, y=350+row*64, on=credits.has(c.name);
+    g.fillStyle=on?'rgba(52,211,153,.12)':'rgba(255,255,255,.035)'; g.fillRect(x,y,470,52);
+    g.beginPath(); g.arc(x+28,y+26,13,0,Math.PI*2); g.fillStyle=on?'#34d399':'transparent'; g.fill(); g.lineWidth=2; g.strokeStyle=on?'#34d399':'#36425a'; g.stroke();
+    if(on){g.strokeStyle='#04140d'; g.lineWidth=3; g.beginPath(); g.moveTo(x+21,y+26); g.lineTo(x+26,y+31); g.lineTo(x+35,y+20); g.stroke();}
+    g.fillStyle=on?'#fff':'#8795ab'; g.font='700 22px Inter, Arial, sans-serif'; g.fillText(c.name,x+56,y+33);
+  });
+  g.fillStyle='#66748a'; g.font='600 20px Inter, Arial, sans-serif'; g.fillText('Energylandia coaster database',60,H-36);
+  cv.toBlob(blob=>{
+    if(!blob) return;
+    const file=new File([blob],'my-energylandia-credits.png',{type:'image/png'});
+    if(navigator.canShare&&navigator.canShare({files:[file]})){navigator.share({files:[file]}).catch(()=>{});}
+    else{const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='my-energylandia-credits.png'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),2000);}
+  },'image/png');
+}
+document.getElementById('crGrid').addEventListener('click',e=>{
+  const b=e.target.closest('.cr-item'); if(!b) return;
+  if(b.classList.contains('locked')){crLiar(b);return;}
+  toggleCredit(b.dataset.name);
+});
+document.getElementById('crShare').addEventListener('click',shareCreditsImage);
+document.getElementById('crMore').addEventListener('click',()=>{crExpanded=!crExpanded;updateCreditUi();if(!crExpanded)document.getElementById('credits').scrollIntoView({behavior:'smooth',block:'start'});});
+document.getElementById('crReset').addEventListener('click',()=>{if(confirm(L().crConfirm)){credits.clear();saveCredits();renderRides();renderCreditModalBtn();}});
+(function(){
+  const _rr=renderRides;
+  renderRides=function(){_rr.apply(this,arguments);updateCreditUi();};
+  document.getElementById('ridesGrid').addEventListener('click',e=>{
+    const b=e.target.closest('.credit-btn'); if(!b) return;
+    e.stopPropagation(); e.preventDefault(); toggleCredit(b.dataset.credit);
+  },true);
+  })();
+
+// ----- manufacturer filter -----
+function buildMfgPills(){
+  const row=document.getElementById('mfgRow');
+  row.querySelectorAll('.mpill').forEach(x=>x.remove());
+  const counts={};
+  coasters.filter(c=>c.rank!=='?').forEach(c=>{counts[mk(c)]=(counts[mk(c)]||0)+1;});
+  const names=Object.keys(counts).sort((a,b)=>counts[b]-counts[a]||a.localeCompare(b));
+  const mk1=(val,label,cnt)=>{
+    const b=document.createElement('button'); b.type='button'; b.className='mpill'+(activeMfg===val?' active':'');
+    b.dataset.mfg=val; b.innerHTML='<span></span>'+(cnt?' <small>'+cnt+'</small>':'');
+    b.querySelector('span').textContent=label;
+    b.addEventListener('click',()=>{activeMfg=val;visibleCount=8;row.querySelectorAll('.mpill').forEach(x=>x.classList.toggle('active',x.dataset.mfg===val));renderRides();});
+    row.appendChild(b);
+  };
+  mk1('all',L().allMakers,0);
+  names.forEach(n=>mk1(n,n,counts[n]));
+}
+
+// ----- fuller profile in the coaster modal -----
+function ranksFor(c){
+  const pool=coasters.filter(x=>x.rank!=='?'||x.name===c.name);
+  const rk=(key)=>{
+    if(!(c[key]>0)) return null;
+    const vals=pool.filter(x=>x[key]>0);
+    return {n:1+vals.filter(x=>x[key]>c[key]).length,of:vals.length};
+  };
+  return {tallest:rk('heightNum'),fastest:rk('speedNum'),longest:rk('lengthNum')};
+}
+function zoneOf(name){
+  const k=Object.keys(zoneData).find(z=>(zoneData[z].rides||[]).includes(name));
+  const el=k&&document.getElementById(k+'Name');
+  return el?el.textContent:'';
+}
+function renderProfile(name){
+  const c=coasters.find(x=>x.name===name); if(!c) return;
+  const t=L(), P=PROFILE[name]||{}, facts=[];
+  const add=(label,val)=>{if(val!==undefined&&val!==null&&val!=='') facts.push('<div class="m-fact"><span>'+label+'</span><b>'+val+'</b></div>');};
+  const D='—';
+  add(t.fModel,P.model||D);
+  add(t.fZone,zoneOf(name)||D);
+  add(t.fProp,P.prop?t[P.prop]:D);
+  add(t.fInv,(P.inv===undefined||P.inv===null)?D:(typeof P.inv==='number'?P.inv:t[P.inv]));
+  document.getElementById('modalFacts').innerHTML=facts.join('');
+  // rankings
+  const r=ranksFor(c), items=[];
+  [['tallest',t.tallest],['fastest',t.fastest],['longest',t.longest]].forEach(([k,lbl])=>{
+    if(r[k]) items.push('<span class="m-rank">'+lbl+' <b>#'+r[k].n+'</b> <i>/ '+r[k].of+'</i></span>');
+  });
+  document.getElementById('modalRanks').innerHTML=items.join('');
+  document.getElementById('modalRanksWrap').hidden=!items.length;
+  document.getElementById('modalRanksTitle').textContent=t.rankTitle;
+  // similar
+  const sim=(SIMILAR[name]||[]).map(n=>coasters.find(x=>x.name===n)).filter(Boolean).map(x=>({x}));
+  const box=document.getElementById('modalSimilar'); box.innerHTML='';
+  sim.forEach(o=>{const b=document.createElement('button');b.type='button';b.className='m-sim';b.textContent=o.x.name;b.addEventListener('click',()=>openRideModal(o.x.name));box.appendChild(b);});
+  document.getElementById('modalSimilarWrap').hidden=!sim.length;
+  document.getElementById('modalSimilarTitle').textContent=t.similar;
+  renderCreditModalBtn();
+}
+function renderCreditModalBtn(){
+  const b=document.getElementById('modalCredit'); if(!b) return;
+  const c=coasters.find(x=>x.name===currentRide);
+  if(!c||c.rank==='?'){b.hidden=true;return;}
+  b.hidden=false;
+  const on=credits.has(c.name), t=L();
+  b.classList.toggle('on',on);
+  b.querySelector('span').textContent=on?t.marked:t.mark;
+}
+document.getElementById('modalCredit').addEventListener('click',()=>{if(currentRide) toggleCredit(currentRide);});
+(function(){
+  const _o=openRideModal;
+  openRideModal=function(name){_o(name);renderProfile(name);};
+})();
+
+// ----- global search -----
+(function(){
+  const gs=document.getElementById('gs'), inp=document.getElementById('gsInput'), res=document.getElementById('gsResults');
+  let sel=-1, items=[];
+  function open(){gs.hidden=false;document.body.classList.add('gs-open');applyText();inp.value='';render('');setTimeout(()=>inp.focus(),30);}
+  function close(){gs.hidden=true;document.body.classList.remove('gs-open');}
+  function applyText(){const t=L();inp.placeholder=t.searchPh;document.getElementById('gsHint').textContent=t.hint;document.getElementById('gsOpen').setAttribute('aria-label',t.searchAria);}
+  function zonesList(){const out=[];for(let i=1;i<=8;i++){const n=document.getElementById('z'+i+'Name'),d=document.getElementById('z'+i+'Desc');if(n)out.push({id:'z'+i,name:n.textContent,desc:d?d.textContent:''});}return out;}
+  function render(q){
+    const t=L(), nq=norm(q.trim()); let html='', idx=0; items=[];
+    let cs=coasters.filter(c=>!nq||norm(c.name).includes(nq)||norm(c.mfg).includes(nq)||norm(c.type).includes(nq)||String(c.year)===nq||norm((PROFILE[c.name]||{}).model).includes(nq));
+    if(!nq) cs=coasters.filter(c=>c.rank!=='?').slice(0,6);
+    cs=cs.slice(0,8);
+    let zs=zonesList().filter(z=>nq&&(norm(z.name).includes(nq)||norm(z.desc).includes(nq))).slice(0,4);
+    if(cs.length){html+='<div class="gs-group">'+t.sCoasters+'</div>';cs.forEach(c=>{html+='<button type="button" class="gs-item" data-i="'+idx+'"><img src="'+c.image+'" alt="" onerror="this.style.visibility=\'hidden\'"><span><b>'+c.name+'</b><small>'+c.mfg+' · '+c.year+'</small></span></button>';items.push({k:'c',v:c.name});idx++;});}
+    if(zs.length){html+='<div class="gs-group">'+t.sZones+'</div>';zs.forEach(z=>{html+='<button type="button" class="gs-item" data-i="'+idx+'"><span class="gs-ico"><i class="fa-solid fa-compass"></i></span><span><b>'+z.name+'</b><small>'+z.desc.slice(0,70)+'</small></span></button>';items.push({k:'z',v:z.id});idx++;});}
+    if(!items.length) html='<div class="gs-empty">'+t.noRes+'</div>';
+    res.innerHTML=html; sel=items.length?0:-1; mark();
+  }
+  function mark(){res.querySelectorAll('.gs-item').forEach((b,i)=>b.classList.toggle('sel',i===sel));const s=res.querySelector('.gs-item.sel');if(s)s.scrollIntoView({block:'nearest'});}
+  function choose(i){const it=items[i];if(!it)return;close();if(it.k==='c')openRideModal(it.v);else openZoneModal(it.v);}
+  inp.addEventListener('input',()=>render(inp.value));
+  inp.addEventListener('keydown',e=>{
+    if(e.key==='ArrowDown'){e.preventDefault();sel=Math.min(items.length-1,sel+1);mark();}
+    else if(e.key==='ArrowUp'){e.preventDefault();sel=Math.max(0,sel-1);mark();}
+    else if(e.key==='Enter'){e.preventDefault();choose(sel);}
+  });
+  res.addEventListener('click',e=>{const b=e.target.closest('.gs-item');if(b)choose(+b.dataset.i);});
+  document.getElementById('gsOpen').addEventListener('click',open);
+  document.getElementById('gsClose').addEventListener('click',close);
+  document.getElementById('gsBack').addEventListener('click',close);
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'&&!gs.hidden){close();return;}
+    const typing=/input|textarea|select/i.test((e.target.tagName||''));
+    if((e.key==='/'&&!typing)||((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k')){e.preventDefault();open();}
+  });
+})();
+
+// ----- Rokan construction watch + countdown -----
+function renderConstruction(){
+  const t=L(), cfg=ROKAN_CONFIG, set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
+  set('conTitle',t.conTitle);set('conOpenLbl',t.openLbl);set('conPhotoLbl',t.photoLbl);set('conUpdatedLbl',t.updated);set('conUpdated',cfg.photoUpdated);
+  set('cuD',t.dD);set('cuH',t.dH);set('cuM',t.dM);set('cuS',t.dS);set('conDone',t.nowOpen);
+  const img=document.getElementById('conImg'); if(img&&!img.getAttribute('src')) img.src=cfg.photo+'?v='+encodeURIComponent(cfg.photoUpdated);
+  document.getElementById('conList').innerHTML=t.ms.map(m=>'<li><b>'+m[0]+'</b>'+m[1]+'</li>').join('');
+  tickCountdown();
+}
+function tickCountdown(){
+  const cfg=ROKAN_CONFIG, box=document.getElementById('conCount'); if(!box) return;
+  const val=document.getElementById('conOpenVal'), done=document.getElementById('conDone');
+  const q=u=>box.querySelector('[data-u="'+u+'"]');
+  const target=cfg.openingDate?new Date(cfg.openingDate):null;
+  if(!target||isNaN(target)){val.textContent='XX. XX. 2027';['d','h','m','s'].forEach(u=>q(u).textContent='??');box.hidden=false;done.hidden=true;return;}
+  val.textContent=String(target.getDate()).padStart(2,'0')+'. '+String(target.getMonth()+1).padStart(2,'0')+'. '+target.getFullYear();
+  const diff=target-Date.now();
+  if(diff<=0){box.hidden=true;done.hidden=false;return;}
+  box.hidden=false;done.hidden=true;
+  const s=Math.floor(diff/1000);
+  q('d').textContent=String(Math.floor(s/86400)).padStart(2,'0');
+  q('h').textContent=String(Math.floor(s%86400/3600)).padStart(2,'0');
+  q('m').textContent=String(Math.floor(s%3600/60)).padStart(2,'0');
+  q('s').textContent=String(s%60).padStart(2,'0');
+}
+setInterval(tickCountdown,1000);
+
+// ----- keep everything translated -----
+function refreshFeatureUi(){buildMfgPills();updateCreditUi();renderConstruction();renderCreditModalBtn();}
+(function(){
+  const _al=applyLanguage;
+  applyLanguage=function(){const r=_al.apply(this,arguments);refreshFeatureUi();return r;};
+})();
+refreshFeatureUi();
+renderRides();
 
 </script>
 
