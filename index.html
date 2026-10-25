@@ -1198,7 +1198,7 @@ body.gs-open{overflow:hidden}
   .ride .ride-stats .ride-stat+.ride-stat{border-left:0;border-top:1px solid rgba(255,255,255,.07)}
   .ride .ride-stats .ride-stat b{order:0;font-size:17px}
 }
-  .zone-arrow{display:none}
+.zone-arrow{display:none}
 </style>
 </head>
 
@@ -4001,6 +4001,8 @@ document.querySelector(".hero img").src = randomImage;
   };
   const order=['records','zones','rides','credits','tickets','map','hours','find-coaster','compare','plan','history'];
   const chips=document.getElementById('mChips')||document.createElement('div');
+  chips.className='m-chips'; chips.id='mChips'; chips.setAttribute('aria-label','Sections');
+  if(!chips.parentNode) document.body.appendChild(chips);
   const bar=document.getElementById('mBar');
   const toTop=document.getElementById('toTopBtn');
   const nav=document.getElementById('nav');
@@ -4085,7 +4087,7 @@ document.querySelector(".hero img").src = randomImage;
 const ROKAN_CONFIG = {
   openingDate: null,                 // e.g. '2027-04-24T10:00:00' (local time). null = not announced yet
   photo: 'rokan-construction.jpg',   // latest construction photo (put the file next to index.html)
-  photoUpdated: '24. 10. 2026'       // date shown under the photo – change it whenever you replace the photo
+  photoUpdated: '22. 10. 2026'       // date shown under the photo – change it whenever you replace the photo
 };
 
 const FI = {
