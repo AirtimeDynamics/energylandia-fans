@@ -518,7 +518,7 @@ html:not([lang="en"]) .hero h1{line-height:1.1}
 .calendar-foot{padding:16px 18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:15px;align-items:center;flex-wrap:wrap;color:#6f7d90;font-size:12px;line-height:1.6}
 
 .map-shell{border:1px solid var(--line);border-radius:28px;overflow:hidden;background:#070c14;box-shadow:var(--shadow)}
-.map-frame{position:relative;aspect-ratio:16/9;min-height:0;background:#080d15}
+.map-frame{position:relative;aspect-ratio:var(--map-r,16/9);min-height:0;background:#080d15}
 .map-frame img{width:100%;height:100%;min-height:0;object-fit:cover}
 .map-overlay{
   position:absolute;left:18px;bottom:18px;right:18px;display:flex;justify-content:space-between;
@@ -745,8 +745,8 @@ html:not([lang="en"]) .hero h1{line-height:1.1}
   .split .zone-card[data-zone=z1]{height:310px}
   #map{max-width:1900px;padding:52px 32px 44px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
   #map .section-head{display:block}
-  #map .map-shell{width:min(100%,calc(92vh/1.15*16/9));margin:0 auto}
-  #map .map-frame{aspect-ratio:16/9;display:block}
+  #map .map-shell{width:min(100%,calc(92vh/1.15*var(--map-r,1.7778)));margin:0 auto}
+  #map .map-frame{aspect-ratio:var(--map-r,16/9);display:block}
   #map .map-frame img{width:100%;height:100%;object-fit:contain}
 }
 .ticket-price .approx{font:700 24px Inter,sans-serif;color:#a9b8cc;align-self:flex-start;position:relative;top:-3px;margin-right:2px}
@@ -1501,7 +1501,7 @@ body.gs-open{overflow:hidden}
   </div>
   <div class="map-shell reveal">
     <div class="map-frame">
-      <img src="park_map.jpg" alt="Energylandia park map" loading="lazy" onerror="this.style.opacity='.15'">
+      <img src="park_map.jpg" alt="Energylandia park map" loading="lazy" onerror="this.style.opacity='.15'" onload="if(this.naturalWidth&&this.naturalHeight)document.getElementById('map').style.setProperty('--map-r',(this.naturalWidth/this.naturalHeight).toFixed(4))">
       <span class="map-expand" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
     </div>
   </div>
@@ -4201,7 +4201,7 @@ function updateCreditUi(){
   const grid=document.getElementById('crGrid');
   if(grid){
     const full=coasters.slice().sort((a,b)=>((a.rank==='?')-(b.rank==='?'))||(a.rank-b.rank));
-    const list=crExpanded?full:full.slice(0,8);
+    const list=crExpanded?full:full.slice(0,9);
     const mb=document.getElementById('crMore');
     if(mb){mb.querySelector('span').textContent=crExpanded?t.showLess:t.showAll+' ('+full.length+')';mb.querySelector('i').style.transform=crExpanded?'rotate(180deg)':'';}
     grid.innerHTML=list.map(c=>{
