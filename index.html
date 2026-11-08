@@ -1199,6 +1199,21 @@ body.gs-open{overflow:hidden}
   .ride .ride-stats .ride-stat b{order:0;font-size:17px}
 }
 .zone-arrow{display:none}
+
+/* ===== Winter Kingdom 2026/27 ===== */
+.ticket-card.winter{grid-column:1/-1;border-color:rgba(140,215,255,.38);background:linear-gradient(145deg,#0f1c2e,#08111d);box-shadow:0 20px 60px rgba(120,200,255,.08)}
+.ticket-card.winter h3 i{color:#9fe0ff;font-size:.8em;margin-right:8px}
+.ticket-price-grid.cols4{grid-template-columns:repeat(4,1fr)}
+.ticket-price.afternoon b{color:#bfe9ff}
+@media(max-width:760px){.ticket-price-grid.cols4{grid-template-columns:1fr 1fr}}
+.hours-icon.ice{color:#9fe0ff;background:rgba(140,215,255,.09);border-color:rgba(140,215,255,.22)}
+.hours-grid .hours-official{grid-column:1/-1}
+.ride-winter{position:absolute;left:12px;bottom:12px;padding:7px 10px;border-radius:9px;background:rgba(8,22,38,.86);backdrop-filter:blur(12px);border:1px solid rgba(140,215,255,.4);color:#bfe9ff;font-size:11px;letter-spacing:.8px;text-transform:uppercase;font-weight:900;display:inline-flex;gap:6px;align-items:center;z-index:2}
+.ride.winter-closed .ride-image img{filter:saturate(.6) brightness(.85)}
+.winter-legend{margin:0 0 14px;padding:11px 14px;border-radius:12px;border:1px solid rgba(140,215,255,.22);background:rgba(140,215,255,.05);color:#a9c4d8;font-size:12px;line-height:1.6}
+.winter-legend i{color:#9fe0ff;margin-right:6px}
+.modal-winter{margin-top:14px;padding:11px 14px;border-radius:12px;border:1px solid rgba(140,215,255,.3);background:rgba(140,215,255,.07);color:#bfe9ff;font-size:13px;font-weight:700;line-height:1.5}
+.modal-winter i{margin-right:7px}
 </style>
 </head>
 
@@ -1354,6 +1369,7 @@ body.gs-open{overflow:hidden}
     </div>
     <div class="mfg-row" id="mfgRow"><span class="mfg-label" id="mfgLabel">Manufacturer</span></div>
     <div class="db-meta" id="dbMeta"></div>
+    <div class="winter-legend" id="winterLegend"></div>
     <div class="rides-grid" id="ridesGrid"></div>
     
     <div class="load-more-wrap" id="loadMoreWrap">
@@ -1529,10 +1545,22 @@ body.gs-open{overflow:hidden}
 <div class="col">
 <section class="section section-alt" id="tickets">
   <div class="section-head reveal">
-    <div><div class="section-kicker">Plan your visit</div><h2>Tickets <span style="color:var(--red)">2026.</span></h2></div>
-    <p class="section-intro">Current 2026 e-ticket prices, split into low and high season, with the discounted category for guests up to 140 cm and other eligible visitors.</p>
+    <div><div class="section-kicker">Plan your visit</div><h2>Tickets <span style="color:var(--red)">2026/27.</span></h2></div>
+    <p class="section-intro">Current e-ticket prices for 2026 and Winter Kingdom 2026/27, split into low season, high season and the winter event, with the discounted category for guests up to 140 cm and other eligible visitors.</p>
   </div>
   <div class="ticket-grid">
+    <article class="ticket-card winter reveal">
+      <h3><i class="fa-solid fa-snowflake"></i>Winter Kingdom</h3>
+      <span class="ticket-season">28 Nov 2026 – 31 Jan 2027 • winter event</span>
+      <div class="ticket-price-grid cols4">
+        <div class="ticket-price"><span data-dl="1s">1 day • standard</span><b data-pln="149">149 <small>PLN</small></b></div>
+        <div class="ticket-price"><span data-dl="1d">1 day • discounted</span><b data-pln="129">129 <small>PLN</small></b></div>
+        <div class="ticket-price afternoon"><span>Afternoon • standard</span><b data-pln="84">84 <small>PLN</small></b></div>
+        <div class="ticket-price afternoon"><span>Afternoon • discounted</span><b data-pln="74">74 <small>PLN</small></b></div>
+      </div>
+      <p class="ticket-note">Afternoon tickets are valid from 15:00. Discounted category: up to 140 cm and seniors 65+, subject to the official ticket rules. Winter Kingdom runs on selected days only, so check the official calendar before you buy. Promotion: second Winter Kingdom ticket −50% when bought 6–27 Nov 2026.</p>
+    </article>
+
     <article class="ticket-card featured reveal">
       <h3>Low season</h3>
       <span class="ticket-season">16 Apr – 26 Jun &amp; 1 Sep – 31 Oct 2026</span>
@@ -1561,6 +1589,7 @@ body.gs-open{overflow:hidden}
       <p class="ticket-note">Official e-ticket pricing currently lists discounted tickets for guests up to 140 cm, seniors 65+, people with disabilities and pregnant women. Date-specific promotions can change the final price.</p>
     </article>
 
+
     <aside class="ticket-side reveal delay-2">
       <h4>Other tickets</h4>
       <div class="ticket-bullets">
@@ -1568,6 +1597,7 @@ body.gs-open{overflow:hidden}
         <div><span>Standard annual</span><b data-pln="999">999 PLN</b></div>
         <div><span>Discounted annual</span><b data-pln="849">849 PLN</b></div>
         <div><span>Official season</span><b>16 Apr – 31 Oct</b></div>
+        <div><span>Winter Kingdom</span><b>28 Nov – 31 Jan</b></div>
       </div>
       <p class="ticket-note fx-note" id="fxNote" hidden>Prices in other currencies are approximate conversions from PLN. The final price is charged in PLN.</p>
       <div class="ticket-cta">
@@ -1584,7 +1614,7 @@ body.gs-open{overflow:hidden}
         <i class="fa-solid fa-ticket ticket-wide-icon"></i>
       </div>
       <div class="ticket-essentials">
-        <div class="ticket-essential"><span>01</span><b>Choose your date</b><p>Season pricing is split between the lower-priced periods and the summer high season.</p></div>
+        <div class="ticket-essential"><span>01</span><b>Choose your date</b><p>Season pricing is split between the lower-priced periods, the summer high season and the Winter Kingdom event.</p></div>
         <div class="ticket-essential"><span>02</span><b>Check the category</b><p>The discounted ticket covers eligible guests including children up to 140 cm.</p></div>
         <div class="ticket-essential"><span>03</span><b>Buy online</b><p>Use Energylandia's official e-ticket system for the current prices, terms and available dates.</p></div>
         <div class="ticket-essential"><span>04</span><b>Re-check before purchase</b><p>Event dates, promotions and ticket terms can change, so use the official page as the final reference.</p></div>
@@ -1598,7 +1628,7 @@ body.gs-open{overflow:hidden}
 <section class="section" id="hours">
   <div class="section-head reveal">
     <div><div class="section-kicker">Season schedule</div><h2>Opening <span style="color:var(--blue)">hours.</span></h2></div>
-    <p class="section-intro">A simple overview of the 2026 operating periods. Exact dates and special-event times can change, so the official Energylandia calendar remains the final reference.</p>
+    <p class="section-intro">A simple overview of the 2026 operating periods and Winter Kingdom 2026/27. Exact dates and special-event times can change, so the official Energylandia calendar remains the final reference.</p>
   </div>
 
   <div class="hours-grid">
@@ -1624,6 +1654,14 @@ body.gs-open{overflow:hidden}
         <span class="hours-kicker">Selected special dates</span>
         <h3>10:00–19:00+</h3>
         <p>Some event dates use extended or special operating hours.</p>
+      </div>
+    </article>
+    <article class="hours-card reveal delay-2">
+      <div class="hours-icon ice"><i class="fa-solid fa-snowflake"></i></div>
+      <div>
+        <span class="hours-kicker">Winter Kingdom</span>
+        <h3>11:30–18:30</h3>
+        <p>28 Nov 2026 – 31 Jan 2027, on selected days only. Water attractions are closed and part of the ride line-up is reduced.</p>
       </div>
     </article>
     <article class="hours-card hours-official reveal delay-3">
@@ -1937,6 +1975,7 @@ body.gs-open{overflow:hidden}
       <span class="modal-kicker" id="modalKicker"></span>
       <h2 id="modalName"></h2>
       <p id="modalDesc"></p>
+      <div class="modal-winter" id="modalWinter" hidden></div>
       <div class="modal-stats">
         <div class="modal-stat"><span id="mStatH">Height</span><b id="modalHeight">—</b></div>
         <div class="modal-stat"><span id="mStatS">Speed</span><b id="modalSpeed">—</b></div>
@@ -1993,23 +2032,23 @@ body.gs-open{overflow:hidden}
 const coasters = [
   { name: "Zadra", rank: 1, year: 2019, type: "Extreme", mfg: "RMC", height: "62.8 m", heightNum: 62.8, speed: "121.0 km/h", speedNum: 121.0, length: "1316 m", lengthNum: 1316, image: "zadra.jpg", desc: "World-class RMC hybrid coaster featuring massive wooden structure look with hyper-steep steel tracking and inversions." },
   { name: "Hyperion", rank: 2, year: 2018, type: "Extreme", mfg: "Intamin", height: "77.0 m", heightNum: 77.0, speed: "142.0 km/h", speedNum: 142.0, length: "1450 m", lengthNum: 1450, image: "hyperion.jpg", desc: "The crown jewel mega-coaster featuring staggering drops, high-speed airtime hills, and extreme velocity." },
-  { name: "Abyssus", rank: 3, year: 2021, type: "Extreme", mfg: "Vekoma", height: "38.5 m", heightNum: 38.5, speed: "100.0 km/h", speedNum: 100.0, length: "1316 m", lengthNum: 1316, image: "abyssus.jpg", desc: "Powerful Vekoma multi-launch coaster loaded with airtime, inversions, and lightning-fast transitions." },
+  { name: "Abyssus", winterClosed: true, rank: 3, year: 2021, type: "Extreme", mfg: "Vekoma", height: "38.5 m", heightNum: 38.5, speed: "100.0 km/h", speedNum: 100.0, length: "1316 m", lengthNum: 1316, image: "abyssus.jpg", desc: "Powerful Vekoma multi-launch coaster loaded with airtime, inversions, and lightning-fast transitions." },
   { name: "Formuła", rank: 4, year: 2016, type: "Extreme", mfg: "Vekoma", height: "24.7 m", heightNum: 24.7, speed: "79.2 km/h", speedNum: 79.2, length: "560 m", lengthNum: 560, image: "formula.jpg", desc: "Acceleration-packed launched coaster model Space Warp with multiple inversions." },
-  { name: "Speed", rank: 5, year: 2018, type: "Extreme", mfg: "Intamin", height: "50 m", heightNum: 50, speed: "101.1 km/h", speedNum: 101.1, length: "687 m", lengthNum: 687, image: "speed.jpg", desc: "Massive Intamin water coaster featuring a giant towering lift and massive splashdown." },
+  { name: "Speed", winterClosed: true, rank: 5, year: 2018, type: "Extreme", mfg: "Intamin", height: "50 m", heightNum: 50, speed: "101.1 km/h", speedNum: 101.1, length: "687 m", lengthNum: 687, image: "speed.jpg", desc: "Massive Intamin water coaster featuring a giant towering lift and massive splashdown." },
   { name: "Roller Coaster Mayan", rank: 6, year: 2015, type: "Extreme", mfg: "Vekoma", height: "33.3 m", heightNum: 33.3, speed: "80.0 km/h", speedNum: 80.0, length: "689 m", lengthNum: 689, image: "mayan.jpg", desc: "Vekoma Suspended Looping Coaster (SLC) delivering intense inversions and g-forces." },
   { name: "Choco Chip Creek", rank: 7, year: 2024, type: "Thrill", mfg: "Vekoma", height: "16.5 m", heightNum: 16.5, speed: "55.0 km/h", speedNum: 55.0, length: "1200 m", lengthNum: 1200, image: "choco_chip.jpg", desc: "Thematic modern mine train adventure adding immersive family fun in Sweet Valley." },
   { name: "Dragon Roller Coaster", rank: 8, year: 2015, type: "Family", mfg: "Vekoma", height: "19.3 m", heightNum: 19.3, speed: "75.6 km/h", speedNum: 75.6, length: "453 m", lengthNum: 453, image: "dragon_roller_coaster.jpg", desc: "Suspended family coaster taking riders through tight helices and near-ground drops." },
   { name: "Energuś", rank: 9, year: 2015, type: "Family", mfg: "Vekoma", height: "13.0 m", heightNum: 13.0, speed: "45.9 km/h", speedNum: 45.9, length: "335 m", lengthNum: 335, image: "ergus.jpg", desc: "Popular custom junior coaster smoothly navigating quick turns for families." },
-  { name: "Light Explorers", rank: 10, year: 2021, type: "Family", mfg: "Vekoma", height: "24.2 m", heightNum: 24.2, speed: "60.0 km/h", speedNum: 60.0, length: "238 m", lengthNum: 238, image: "light_explorers.jpg", desc: "Exciting family shuttle layout with multiple forward and backward direction passes." },
+  { name: "Light Explorers", winterClosed: true, rank: 10, year: 2021, type: "Family", mfg: "Vekoma", height: "24.2 m", heightNum: 24.2, speed: "60.0 km/h", speedNum: 60.0, length: "238 m", lengthNum: 238, image: "light_explorers.jpg", desc: "Exciting family shuttle layout with multiple forward and backward direction passes." },
   { name: "Frida", rank: 11, year: 2019, type: "Family", mfg: "Vekoma", height: "13.0 m", heightNum: 13.0, speed: "44.6 km/h", speedNum: 44.6, length: "247 m", lengthNum: 247, image: "frida.jpg", desc: "Smooth family junior coaster layout nestled in the Dragon Zone." },
-  { name: "Boomerang", rank: 12, year: 2017, type: "Family", mfg: "Vekoma", height: "23 m", heightNum: 23, speed: "60 km/h", speedNum: 60, length: "200 m", lengthNum: 200, image: "boomerang.jpg", desc: "Junior Boomerang model that travels forward and backward through the layout." },
-  { name: "Honey Harbour", rank: 13, year: 2024, type: "Family", mfg: "Vekoma", height: "11.7 m", heightNum: 11.7, speed: "46.0 km/h", speedNum: 46.0, length: "254 m", lengthNum: 254, image: "honey_harbour.jpg", desc: "Sweet-themed family coaster providing smooth dynamic turns in Sweet Valley." },
+  { name: "Boomerang", winterClosed: true, rank: 12, year: 2017, type: "Family", mfg: "Vekoma", height: "23 m", heightNum: 23, speed: "60 km/h", speedNum: 60, length: "200 m", lengthNum: 200, image: "boomerang.jpg", desc: "Junior Boomerang model that travels forward and backward through the layout." },
+  { name: "Honey Harbour", winterClosed: true, rank: 13, year: 2024, type: "Family", mfg: "Vekoma", height: "11.7 m", heightNum: 11.7, speed: "46.0 km/h", speedNum: 46.0, length: "254 m", lengthNum: 254, image: "honey_harbour.jpg", desc: "Sweet-themed family coaster providing smooth dynamic turns in Sweet Valley." },
   { name: "Draken", rank: 14, year: 2019, type: "Family", mfg: "Preston & Barbieri", height: "7.3 m", heightNum: 7.3, speed: "34.5 km/h", speedNum: 34.5, length: "140 m", lengthNum: 140, image: "draken.jpg", desc: "Charming family coaster nestled in Smoczy Gród." },
-  { name: "Viking Roller Coaster", rank: 15, year: 2014, type: "Thrill", mfg: "SBF Visa Group", height: "11 m", heightNum: 11, speed: "43 km/h", speedNum: 43, length: "320 m", lengthNum: 320, image: "viking.jpg", desc: "Spinning wild mouse style coaster offering erratic rotations and family thrills." },
+  { name: "Viking Roller Coaster", winterClosed: true, rank: 15, year: 2014, type: "Thrill", mfg: "SBF Visa Group", height: "11 m", heightNum: 11, speed: "43 km/h", speedNum: 43, length: "320 m", lengthNum: 320, image: "viking.jpg", desc: "Spinning wild mouse style coaster offering erratic rotations and family thrills." },
   { name: "Mars", rank: 16, year: 2014, type: "Family", mfg: "SBF Visa Group", height: "6.0 m", heightNum: 6.0, speed: "24.7 km/h", speedNum: 24.7, length: "150 m", lengthNum: 150, image: "mars.jpg", desc: "Early junior model built for family entertainment and younger visitors." },
   { name: "Frutti Loop Coaster", rank: 17, year: 2014, type: "Kiddie", mfg: "SBF Visa Group", height: "3.7 m", heightNum: 3.7, speed: "21.6 km/h", speedNum: 21.6, length: "90 m", lengthNum: 90, image: "frutti_loop.jpg", desc: "A compact starter kiddie coaster by SBF Visa Group located in Bajtkolandia." },
   { name: "Circus Coaster", rank: 18, year: 2017, type: "Kiddie", mfg: "Visa Rides", height: "—", heightNum: 0, speed: "12 km/h", speedNum: 12, length: "32 m", lengthNum: 32, image: "circus_coaster.jpg", desc: "Powered circuit experience tailored for younger children." },
-  { name: "Happy Loops", rank: 19, year: 2017, type: "Family", mfg: "SBF Visa Group", height: "7 m", heightNum: 7, speed: "30 km/h", speedNum: 30, length: "90 m", lengthNum: 90, image: "happy_loops.jpg", desc: "Spinning track layout packed with joyful layout switches." },
+  { name: "Happy Loops", winterClosed: true, rank: 19, year: 2017, type: "Family", mfg: "SBF Visa Group", height: "7 m", heightNum: 7, speed: "30 km/h", speedNum: 30, length: "90 m", lengthNum: 90, image: "happy_loops.jpg", desc: "Spinning track layout packed with joyful layout switches." },
   { name: "Rokan", rank: "?", year: "2027", type: "Extreme", mfg: "Bolliger & Mabillard", height: "62 m", heightNum: 62, speed: "115 km/h", speedNum: 115, length: "1215 m", lengthNum: 1215, image: "bm_wing.jpg", desc: "Tallest and longest B&M Wing Coaster in the world, opening spring 2027 as the centrepiece of Energylandia's new Volana zone. Riders sit on both sides of the track with legs dangling free for a 141-second flight at up to 115 km/h, named after a dragon awakening from long sleep." }
 ];
 
@@ -2106,6 +2145,7 @@ function renderRides(){
     return a.rank-b.rank;
   });
 
+  const wl=$('#winterLegend'); if(wl) wl.innerHTML=`<i class="fa-solid fa-snowflake"></i>${tr('Coasters marked “Closed in Winter Kingdom” did not operate in the last published winter list (2024/25). The 2026/27 list is not published yet, so check before you visit.')}`;
   const shown=list.slice(0, visibleCount);
   $('#dbMeta').innerHTML = `<b style="color:#dfe7f1">${shown.length}</b> / ${list.length} ${copyUi.shown} <span style="margin-left:8px">•</span> ${copyUi.click}`;
 
@@ -2120,11 +2160,12 @@ function renderRides(){
   }
 
   grid.innerHTML = shown.map(c => `
-    <article class="ride" onclick="openRideModal('${c.name.replace(/'/g,"\\'")}')">
+    <article class="ride${c.winterClosed?' winter-closed':''}" onclick="openRideModal('${c.name.replace(/'/g,"\\'")}')">
       <div class="ride-image">
         <img src="${c.image}" alt="${c.name}" loading="lazy" onerror="this.style.opacity='.25'">
         <span class="ride-rank">#${c.rank}</span>
         <span class="ride-type">${rideCopy(c).type}</span>
+        ${c.winterClosed?`<span class="ride-winter"><i class="fa-solid fa-snowflake"></i>${tr('Closed in Winter Kingdom')}</span>`:''}
       </div>
       <div class="ride-body">
         <span class="manufacturer">${c.mfg}</span>
@@ -2153,6 +2194,7 @@ function openRideModal(name){
   $('#modalKicker').textContent=`${c.mfg} • ${copy.type} • ${copyUi.rank} #${c.rank}`;
   $('#modalName').textContent=c.name;
   $('#modalDesc').textContent=copy.desc;
+  const mw=$('#modalWinter'); if(mw){ mw.hidden=!c.winterClosed; mw.innerHTML=c.winterClosed?`<i class="fa-solid fa-snowflake"></i>${tr('Closed in Winter Kingdom')} (28 Nov – 31 Jan)`:''; }
   $('#modalHeight').textContent=convUnits(c.height);
   $('#modalSpeed').textContent=convUnits(c.speed);
   $('#modalLength').textContent=convUnits(c.length);
@@ -3211,6 +3253,8 @@ function runCoasterFinder(silent){
 /* ===== Extended translations (tickets, map, hours, finder, plan) + currency ===== */
 const LANG_IDX={pl:0,de:1,cs:2,sk:3};
 const DYN={
+ 'Closed in Winter Kingdom':['Nieczynna w Winter Kingdom','Im Winter Kingdom geschlossen','Ve Winter Kingdom zavřeno','Vo Winter Kingdom zatvorené'],
+ 'Coasters marked “Closed in Winter Kingdom” did not operate in the last published winter list (2024/25). The 2026/27 list is not published yet, so check before you visit.':['Kolejki oznaczone „Nieczynna w Winter Kingdom” nie działały na ostatniej opublikowanej zimowej liście atrakcji (2024/25). Lista na sezon 2026/27 nie została jeszcze opublikowana — sprawdź przed wizytą.','Achterbahnen mit „Im Winter Kingdom geschlossen“ waren in der zuletzt veröffentlichten Winterliste (2024/25) nicht in Betrieb. Die Liste für 2026/27 ist noch nicht veröffentlicht – bitte vor dem Besuch prüfen.','Dráhy označené „Ve Winter Kingdom zavřeno“ nebyly v naposledy zveřejněném zimním seznamu (2024/25) v provozu. Seznam pro sezónu 2026/27 zatím nebyl zveřejněn – před návštěvou si to ověřte.','Dráhy označené „Vo Winter Kingdom zatvorené“ neboli v poslednom zverejnenom zimnom zozname (2024/25) v prevádzke. Zoznam pre sezónu 2026/27 zatiaľ nebol zverejnený – pred návštevou si to overte.'],
  'Almost there.':['Prawie gotowe.','Fast geschafft.','Skoro hotovo.','Takmer hotovo.'],
  'Build your match.':['Znajdź swoją kolejkę.','Finde deine Achterbahn.','Najdi svou dráhu.','Nájdi svoju dráhu.'],
  'Choose one answer in all five categories, then press':['Wybierz jedną odpowiedź w każdej z pięciu kategorii, a następnie kliknij','Wähle in allen fünf Kategorien eine Antwort und drücke dann','Vyber jednu odpověď v každé z pěti kategorií a poté stiskni','Vyber jednu odpoveď v každej z piatich kategórií a potom stlač'],
@@ -3270,6 +3314,54 @@ const I18N_SCOPE='#tickets,#map,#hours,#find-coaster,#plan,#modalPov';
 const I18N_SKIP='[data-pln],[data-dl],#findEmptyState,#findResultTitle,#findResultScore,#findHeroName,#findHeroScore,#findResultDesc,#findAlternates';
 let i18nNodes=null;
 const I18N_MAP={
+"2026/27.": [
+"2026/27.",
+"2026/27.",
+"2026/27.",
+"2026/27."
+],
+"Winter Kingdom": [
+"Winter Kingdom",
+"Winter Kingdom",
+"Winter Kingdom",
+"Winter Kingdom"
+],
+"28 Nov 2026 – 31 Jan 2027 • winter event": [
+"28 lis 2026 – 31 sty 2027 • wydarzenie zimowe",
+"28. Nov 2026 – 31. Jan 2027 • Winter-Event",
+"28. 11. 2026 – 31. 1. 2027 • zimní akce",
+"28. 11. 2026 – 31. 1. 2027 • zimné podujatie"
+],
+"Afternoon • standard": [
+"Popołudniowy • normalny",
+"Nachmittag • Standard",
+"Odpolední • standardní",
+"Popoludňajší • štandardný"
+],
+"Afternoon • discounted": [
+"Popołudniowy • ulgowy",
+"Nachmittag • ermäßigt",
+"Odpolední • zlevněná",
+"Popoludňajší • zľavnený"
+],
+"Afternoon tickets are valid from 15:00. Discounted category: up to 140 cm and seniors 65+, subject to the official ticket rules. Winter Kingdom runs on selected days only, so check the official calendar before you buy. Promotion: second Winter Kingdom ticket −50% when bought 6–27 Nov 2026.": [
+"Bilety popołudniowe są ważne od godz. 15:00. Kategoria ulgowa: do 140 cm i seniorzy 65+, zgodnie z oficjalnym regulaminem biletów. Winter Kingdom działa tylko w wybrane dni, więc przed zakupem sprawdź oficjalny kalendarz. Promocja: drugi bilet Winter Kingdom −50% przy zakupie 6–27 listopada 2026.",
+"Nachmittagstickets gelten ab 15:00 Uhr. Ermäßigte Kategorie: bis 140 cm und Senioren 65+, gemäß den offiziellen Ticketbedingungen. Winter Kingdom ist nur an ausgewählten Tagen geöffnet – prüfe vor dem Kauf den offiziellen Kalender. Aktion: zweites Winter-Kingdom-Ticket −50 % bei Kauf vom 6. bis 27. Nov 2026.",
+"Odpolední vstupenky platí od 15:00. Zlevněná kategorie: do 140 cm a senioři 65+ dle oficiálních pravidel vstupenek. Winter Kingdom je otevřený jen ve vybrané dny, proto si před nákupem zkontrolujte oficiální kalendář. Akce: druhá vstupenka Winter Kingdom −50 % při nákupu 6.–27. 11. 2026.",
+"Popoludňajšie vstupenky platia od 15:00. Zľavnená kategória: do 140 cm a seniori 65+ podľa oficiálnych pravidiel vstupeniek. Winter Kingdom je otvorený len vo vybrané dni, preto si pred nákupom skontrolujte oficiálny kalendár. Akcia: druhá vstupenka Winter Kingdom −50 % pri nákupe 6.–27. 11. 2026."
+],
+"28 Nov – 31 Jan": [
+"28 lis – 31 sty",
+"28. Nov – 31. Jan",
+"28. 11. – 31. 1.",
+"28. 11. – 31. 1."
+],
+"28 Nov 2026 – 31 Jan 2027, on selected days only. Water attractions are closed and part of the ride line-up is reduced.": [
+"28 lis 2026 – 31 sty 2027, tylko w wybrane dni. Atrakcje wodne są nieczynne, a część atrakcji działa w ograniczonym zakresie.",
+"28. Nov 2026 – 31. Jan 2027, nur an ausgewählten Tagen. Wasserattraktionen sind geschlossen, und ein Teil der Attraktionen ist nicht in Betrieb.",
+"28. 11. 2026 – 31. 1. 2027, jen ve vybrané dny. Vodní atrakce jsou zavřené a část atrakcí je mimo provoz.",
+"28. 11. 2026 – 31. 1. 2027, len vo vybrané dni. Vodné atrakcie sú zatvorené a časť atrakcií nie je v prevádzke."
+],
 "Orientation": [
 "Orientacja",
 "Orientierung",
@@ -3306,11 +3398,11 @@ const I18N_MAP={
 "doba.",
 "hodiny."
 ],
-"A simple overview of the 2026 operating periods. Exact dates and special-event times can change, so the official Energylandia calendar remains the final reference.": [
-"Prosty przegląd okresów działania w 2026 roku. Dokładne daty i godziny wydarzeń specjalnych mogą się zmienić, dlatego ostatecznym źródłem jest oficjalny kalendarz Energylandii.",
-"Ein einfacher Überblick über die Betriebszeiten 2026. Genaue Termine und Zeiten bei Sonderveranstaltungen können sich ändern – maßgeblich ist der offizielle Energylandia-Kalender.",
-"Jednoduchý přehled provozních období v roce 2026. Přesná data a časy zvláštních akcí se mohou změnit, proto je rozhodující oficiální kalendář Energylandie.",
-"Jednoduchý prehľad prevádzkových období v roku 2026. Presné dátumy a časy osobitných podujatí sa môžu zmeniť, preto je rozhodujúci oficiálny kalendár Energylandie."
+"A simple overview of the 2026 operating periods and Winter Kingdom 2026/27. Exact dates and special-event times can change, so the official Energylandia calendar remains the final reference.": [
+"Prosty przegląd okresów działania w 2026 roku oraz Winter Kingdom 2026/27. Dokładne daty i godziny wydarzeń specjalnych mogą się zmieniać, dlatego oficjalny kalendarz Energylandii pozostaje ostatecznym źródłem.",
+"Ein einfacher Überblick über die Betriebszeiten 2026 und Winter Kingdom 2026/27. Genaue Termine und Zeiten bei Sonderveranstaltungen können sich ändern; maßgeblich bleibt der offizielle Energylandia-Kalender.",
+"Jednoduchý přehled provozních období v roce 2026 a Winter Kingdom 2026/27. Přesná data a časy zvláštních akcí se mohou změnit, proto zůstává konečným zdrojem oficiální kalendář Energylandie.",
+"Jednoduchý prehľad prevádzkových období v roku 2026 a Winter Kingdom 2026/27. Presné dátumy a časy osobitných podujatí sa môžu zmeniť, preto zostáva konečným zdrojom oficiálny kalendár Energylandie."
 ],
 "Spring & Autumn": [
 "Wiosna i jesień",
@@ -3498,11 +3590,11 @@ const I18N_MAP={
 "Vstupenky",
 "Vstupenky"
 ],
-"Current 2026 e-ticket prices, split into low and high season, with the discounted category for guests up to 140 cm and other eligible visitors.": [
-"Aktualne ceny e-biletów 2026, podzielone na niski i wysoki sezon, z kategorią ulgową dla gości do 140 cm i innych uprawnionych osób.",
-"Aktuelle E-Ticket-Preise 2026, aufgeteilt in Neben- und Hauptsaison, mit ermäßigter Kategorie für Gäste bis 140 cm und weitere Berechtigte.",
-"Aktuální ceny e-vstupenek 2026 rozdělené na nízkou a vysokou sezónu, se slevou pro hosty do 140 cm a další oprávněné návštěvníky.",
-"Aktuálne ceny e-vstupeniek 2026 rozdelené na nízku a vysokú sezónu, so zľavou pre hostí do 140 cm a ďalších oprávnených návštevníkov."
+"Current e-ticket prices for 2026 and Winter Kingdom 2026/27, split into low season, high season and the winter event, with the discounted category for guests up to 140 cm and other eligible visitors.": [
+"Aktualne ceny e-biletów na 2026 rok i Winter Kingdom 2026/27, podzielone na niski sezon, wysoki sezon i wydarzenie zimowe, z kategorią ulgową dla gości do 140 cm i innych uprawnionych osób.",
+"Aktuelle E-Ticket-Preise für 2026 und Winter Kingdom 2026/27, aufgeteilt in Nebensaison, Hauptsaison und das Winter-Event, mit ermäßigter Kategorie für Gäste bis 140 cm und weitere Berechtigte.",
+"Aktuální ceny e-vstupenek pro rok 2026 a Winter Kingdom 2026/27, rozdělené na nízkou sezónu, vysokou sezónu a zimní akci, se slevou pro hosty do 140 cm a další oprávněné návštěvníky.",
+"Aktuálne ceny e-vstupeniek na rok 2026 a Winter Kingdom 2026/27, rozdelené na nízku sezónu, vysokú sezónu a zimné podujatie, so zľavou pre hostí do 140 cm a ďalších oprávnených návštevníkov."
 ],
 "Low season": [
 "Niski sezon",
@@ -3600,11 +3692,11 @@ const I18N_MAP={
 "Vyber datum",
 "Vyber dátum"
 ],
-"Season pricing is split between the lower-priced periods and the summer high season.": [
-"Ceny zależą od sezonu: tańsze okresy i letni wysoki sezon.",
-"Die Preise unterscheiden sich zwischen den günstigeren Zeiträumen und der Sommer-Hauptsaison.",
-"Ceny se dělí na levnější období a letní vysokou sezónu.",
-"Ceny sa delia na lacnejšie obdobia a letnú vysokú sezónu."
+"Season pricing is split between the lower-priced periods, the summer high season and the Winter Kingdom event.": [
+"Ceny zależą od sezonu: tańsze okresy, letni wysoki sezon i wydarzenie Winter Kingdom.",
+"Die Preise unterscheiden sich zwischen den günstigeren Zeiträumen, der Sommer-Hauptsaison und dem Winter-Kingdom-Event.",
+"Ceny se dělí na levnější období, letní vysokou sezónu a akci Winter Kingdom.",
+"Ceny sa delia na lacnejšie obdobia, letnú vysokú sezónu a podujatie Winter Kingdom."
 ],
 "Check the category": [
 "Sprawdź kategorię",
